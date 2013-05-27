@@ -1,6 +1,8 @@
 <section id='calendar'>
   <table>
-    <caption><h3><%= @calendar.current_month %></h3></caption>
+    <caption>
+      <h3><%= @calendar.current_month %></h3>
+    </caption>
     <thead>
       <tr>
         <th>Sunday</th>
@@ -19,7 +21,7 @@
             <div class='date'><%= day.date %></div>
             <ul>
               <% day.courses.each do |course| %>
-                <li class='course'><%= course.name %> </li>
+                <li class='course'><%= link_to course.name %> </li>
               <% end %>
             </ul>
           </td>

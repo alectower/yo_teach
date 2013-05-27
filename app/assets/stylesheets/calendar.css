@@ -10,6 +10,15 @@
     padding: 0 2px 2em 0;
 }
 
+#calendar ul {
+    list-style-type: none;
+}
+
 .date {
+    padding-left: .5em;
     background-color: #cacaca;
+}
+
+.course {
+    margin: .15em 0 .15em 0;
 }
