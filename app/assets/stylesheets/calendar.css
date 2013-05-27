@@ -1,0 +1,15 @@
+#calendar {
+    padding-top: 5em;
+}
+
+#calendar table {
+    width: 100%;
+}
+
+#calendar table td {
+    padding: 0 2px 2em 0;
+}
+
+.date {
+    background-color: #cacaca;
+}
