@@ -2,7 +2,6 @@ ruby '2.0.0'
 
 source 'https://rubygems.org'
 
-
 gem 'rails',     github: 'rails/rails'
 gem 'arel',      github: 'rails/arel'
 

@@ -13,5 +13,4 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require handlers
-//= require twitter-bootstrap-calendar
 //= require_tree .

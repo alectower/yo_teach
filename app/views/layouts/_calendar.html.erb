@@ -18,7 +18,9 @@
       <tr class='week'>
         <% week.each do |day| %>
           <td class='day'>
-            <div class='date'><%= day.date %></div>
+            <div class=<%= day.today ? 'today' : 'date' %>>
+              <%= day.date %>
+            </div>
             <ul>
               <% day.courses.each do |course| %>
                 <li class='course'><%= link_to course.name %> </li>

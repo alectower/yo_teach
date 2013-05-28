@@ -16,9 +16,14 @@
 
 .date {
     padding-left: .5em;
-    background-color: #cacaca;
+    background-color: #ececf0;
 }
 
 .course {
     margin: .15em 0 .15em 0;
+}
+
+.today {
+    padding-left: .5em;
+    background-color: #dceaf4;
 }
