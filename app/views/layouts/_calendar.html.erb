@@ -1,7 +1,9 @@
-<section id='calendar'>
+<% calendar = locals[:calendar] %>
+
+<section id='calendar' class='span8'>
   <table>
     <caption>
-      <h3><%= @calendar.current_month %></h3>
+      <h3><%= calendar.current_month %></h3>
     </caption>
     <thead>
       <tr>
@@ -14,7 +16,7 @@
         <th>Saturday</th>
       </tr>
     </thead>
-    <% @calendar.days.each_slice(7) do |week| %>
+    <% calendar.days.each_slice(7) do |week| %>
       <tr class='week'>
         <% week.each do |day| %>
           <td class='day'>

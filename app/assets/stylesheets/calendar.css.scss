@@ -1,3 +1,36 @@
 // Place all the styles related to the Calendar controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#calendar {
+
+    table {
+    
+        width: 100%;
+
+        td {
+            padding: 0 2px 2em 2px;
+            border: 1px solid lightgray;
+        }   
+    }
+
+    ul {
+        list-style-type: none;
+    }
+    
+}
+
+.date {
+    padding-left: .5em;
+    background-color: #ececf0;
+    border-radius: 5px;
+}
+
+.course {
+    margin: .15em 0 .15em 0;
+}
+
+.today {
+    padding-left: .5em;
+    background-color: #dceaf4;
+}

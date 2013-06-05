@@ -1,0 +1,31 @@
+<div class='main' >
+	<%= form_for @course, :html => {:class => 'form-inline form-horizontal'} do |f| %>
+		
+		<div class='control-group'>	
+			<%= f.label :name %>
+			<%= f.text_field :name %>
+		</div>
+
+		<div class='control-group'>
+			<%= f.label :start_date %>
+			<a href="#"><i class='icon-calendar'></i></a>
+		</div>
+		
+		<div class='control-group'>
+			<%= f.label :end_date %>
+			<a href="#"><i class='icon-calendar'></i></a>
+		</div>
+		
+		<div class='control-group'>
+			<%= f.label :start_time %>
+			<a href="#"><i class='icon-time'></i></a>
+		</div>
+
+		<div class='control-group'>
+			<%= f.label :end_time %>
+			<a href="#"><i class='icon-time'></i></a>
+		</div>
+
+		<%= f.submit 'Create' %>
+	<% end %>
+</div>
