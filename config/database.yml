@@ -1,16 +1,17 @@
-common: &common
+development:
+  adapter: sqlite3
+  database: db/development.sqlite3
+  pool: 5
+  timeout: 5000
+
+test:
+  adapter: sqlite3
+  database: db/test.sqlite3
+  pool: 5
+  timeout: 5000
+
+production:
   adapter: postgresql
   encoding: unicode
   pool: 5
-
-development:
-  <<: *common
-  database: yo_teach_development
-
-test:
-  <<: *common
-  database: yo_teach_test
-
-production:
-  <<: *common
   database: yo_teach_production

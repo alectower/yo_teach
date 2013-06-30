@@ -4,10 +4,6 @@ source 'https://rubygems.org'
 
 gem 'rails',     github: 'rails/rails'
 gem 'arel',      github: 'rails/arel'
-gem 'rails_12factor'
-
-# Use sqlite3 as the database for Active Record
-gem 'pg'
 
 # Use edge version of sprockets-rails
 gem 'sprockets-rails', github: 'rails/sprockets-rails'
@@ -42,11 +38,17 @@ end
 group :development, :test do
   gem 'rspec-rails', '~> 2.14.0.rc1'
   gem 'factory_girl_rails', '~> 4.0'
+  gem 'sqlite3'
 end
 
 group :test do
   gem 'faker'
   gem 'capybara'
+end
+
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
 end
 
 # Use ActiveModel has_secure_password
