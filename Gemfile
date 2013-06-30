@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 
 gem 'rails',     github: 'rails/rails'
 gem 'arel',      github: 'rails/arel'
+gem 'rails_12factor'
 
 # Use sqlite3 as the database for Active Record
 gem 'pg'
