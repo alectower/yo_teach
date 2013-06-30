@@ -1,2 +1,17 @@
-      
+<div id='courses' class='span2'>
+	<h3>Courses</h3>
+  <div id='courses-body'>
+  	<ul class=''>
+      <% @courses.each do |course| %>
+      	<li data-id=<%= course.id %> >
+      		<%= link_to course.name, course_path(course.id) %>
+        </li>
+      <% end %>
+  	</ul>
+  </div>  
+
+  <div id='course-control'>
+    <i class='icon-plus' ></i><a href="/courses/new"> New</a>
+  </div>  
+</div>      
 
