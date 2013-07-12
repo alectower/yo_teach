@@ -5,8 +5,9 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'calendar#index'
   resources :calendar
-  resources :notes
   resources :courses
+  resources :lesson_plans
+  resources :to_dos
   
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

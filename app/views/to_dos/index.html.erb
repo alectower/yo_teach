@@ -1,0 +1,14 @@
+<div id='to-do-list' class='span3'>
+  <h2>To-do List</h2>
+
+  <% @todos.each do |todo| %>
+    <p>
+      <%= todo.body %>
+    </p>
+  <% end %>
+  
+  <div id='course-control'>
+    <i class='icon-plus' ></i><%= link_to 'New To-do', new_to_do_path %>
+  </div>  
+
+</div>      

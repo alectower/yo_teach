@@ -1,6 +1,3 @@
-// Place all the styles related to the Calendar controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
 
 #calendar {
 
@@ -14,31 +11,57 @@
     table {
     
         width: 100%;
+        table-layout: fixed;
 
         td {
-            padding: 0 2px 5em 2px;
-            width: 9%;
+            padding: 0 2px 0 2px;
+            height: 110px;
             border: 1px solid lightgray;
         }   
     }
 
-    ul {
-        list-style-type: none;
-    }
-    
 }
 
-.date {
-    padding-left: .5em;
-    background-color: #ececf0;
+.day {
+  position: relative;
+}
+
+@mixin date-base {
+    position: absolute;
+    top: 0;
+    width: 95%;
+    margin: 0 1px 0 1px;
     border-radius: 5px;
 }
 
-.course {
-    margin: .15em 0 .15em 0;
+@mixin date-span {
+  padding: 0 0 0 5px;
+}
+
+.date {
+    @include date-base;
+    background-color: #ececf0;
+    span {
+      @include date-span
+    }
 }
 
 .today {
-    padding-left: .5em;
+    @include date-base;
     background-color: #dceaf4;
+    span {
+      @include date-span
+    }
 }
+
+.courses {
+  position: relative;
+  height: 100%;
+  top: 25%;
+}
+
+.course {
+    list-style: none;
+    margin: 2px 0 2px 5px;
+}
+

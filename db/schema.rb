@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130629200229) do
+ActiveRecord::Schema.define(version: 20130706200747) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  create_table "course_days", force: true do |t|
+    t.integer  "day_of_week"
+    t.integer  "course_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "course_days", ["course_id"], name: "index_course_days_on_course_id"
 
   create_table "courses", force: true do |t|
     t.string   "name"
@@ -24,12 +30,16 @@ ActiveRecord::Schema.define(version: 20130629200229) do
     t.time     "end_time"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "day_of_week"
   end
 
-  create_table "notes", force: true do |t|
-    t.string   "name"
-    t.string   "description"
+  create_table "lesson_plans", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "to_dos", force: true do |t|
+    t.string   "body"
+    t.boolean  "complete"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

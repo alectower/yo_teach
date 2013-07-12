@@ -10,6 +10,15 @@
 
 	<%= form_field(f, :end_time, 'icon-time') %>
 
+  <div class='control-group'>
+    <%= f.label :days_of_week, 'Days of Week', class: 'control-label' %> 
+    
+    <%= f.label :sunday, 'Sunday', class: 'control-label' %> 
+    <div class='controls'>
+      <%= check_box 'days_of_week', 'sunday'%>
+    </div>
+  </div>
+
 	<div class="control-group">
 	    <div class="controls">
 			<%= f.submit 'Create' %>

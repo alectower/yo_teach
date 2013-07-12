@@ -1,0 +1,17 @@
+// Place all the styles related to the to_dos controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#to-do-list {
+
+  #to-do-list-body {
+    padding: 1%;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 0 5px 1px #888;
+  }
+
+  h2 {
+    text-align: center;
+  }
+}

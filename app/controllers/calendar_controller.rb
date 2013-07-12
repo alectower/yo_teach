@@ -1,8 +1,8 @@
 class CalendarController < ApplicationController
   
   def index
-    courses = Course.order(:day_of_week)  
-    @calendar = CourseCalendar.new(courses: courses)
+    @to_dos = ToDo.all
+    @calendar = Calendar.new
   end
   
 end

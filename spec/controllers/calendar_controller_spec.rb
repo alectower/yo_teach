@@ -5,7 +5,13 @@ describe CalendarController do
     it "populates a calendar day array with courses" do
       course = FactoryGirl.create(:course)
       get :index
-      assigns(:calendar).courses.should match_array([course])
+      assigns(:calendar).dates[4].courses.should match_array([course])
+    end
+
+    it "populates the to-do list" do
+      to_do = FactoryGirl.create(:to_do)
+      get :index
+      assigns(:to_dos).should match_array([to_do])
     end
 
     it "renders the index template" do
