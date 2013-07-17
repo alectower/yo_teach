@@ -21,8 +21,12 @@
 
 	<div class="control-group">
 	    <div class="controls">
-			<%= f.submit 'Create' %>
+			<%= f.submit 'Create', class: 'btn' %>
 	    </div>
 	</div>
 
+<% end %>
+
+<% content_for :to_do_list do %>
+  <%= render 'layouts/to_do_list' %>
 <% end %>

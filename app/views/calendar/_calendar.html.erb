@@ -1,0 +1,39 @@
+<section id='calendar'>
+  <table>
+    <caption>
+      <h2><%= @calendar.current_month %></h2>
+    </caption>
+    <thead>
+      <tr>
+        <th>Sunday</th>
+        <th>Monday</th>
+        <th>Tuesday</th>
+        <th>Wednesday</th>
+        <th>Thursday</th>
+        <th>Friday</th>
+        <th>Saturday</th>
+      </tr>
+    </thead>
+    <% @calendar.dates.each_slice(7) do |week| %>
+      <tr class='week'>
+        <% week.each do |day| %>
+          <td class='day'>
+              <div class=<%= day.date.today? ? 'today' : 'date' %>>
+                <span><%= day.date.mday %></span>
+              </div>
+              <ul class='unstyled courses'>
+                <% day.courses.each do |course| %>
+                  <% if course.end_date > day.date %>
+                    <li class='course'>
+                      <%= link_to course.name, course_path(course.id) %> 
+                    </li>
+                  <% end %>
+                <% end %>
+              </ul>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+</section>
+

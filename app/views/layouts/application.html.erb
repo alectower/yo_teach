@@ -9,17 +9,25 @@
 	<%= render 'layouts/nav' %>	
 	
 	<nav class='site-nav nav nav-pills offset1'>
-    	<li class='active'><a href="/">Calendar</a></li>
-    	<li><a href="/courses">Courses</a></li>
-    	<li><a href="/lessons_plans">Lesson Plans</a></li>
-  	</nav>
+    <li class="<%= 'active' if params[:controller] == 'calendar' %>"><a href="/">Calendar</a></li>
+    <li class="<%= 'active' if params[:controller] == 'courses' %>"><a href="/courses">Courses</a></li>
+    <li class="<%= 'active' if params[:controller] == 'lesson_plans' %>"><a href="/lesson_plans">Lesson Plans</a></li>
+  </nav>
 
-	<div class='main container-fluid'>  
+	<div class='container-fluid'>  
 		<div id='messages'>
     		<ul></ul>
  	 	</div>
 	  	
-	  	<%= yield %>
+    <div class='row'>
+      <div class='main span8'>
+        <%= yield %>
+      </div>
+      <div class='span4'>
+        <%= render 'layouts/to_do_list' %>
+      </div>
+    </div>
+
 	</div>
 
 	<div id="dialog" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="dialogModalHeader" aria-hidden="true">

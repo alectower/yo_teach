@@ -1,11 +1,11 @@
-<div id='to-do-list'>
+<section id='to-do-list'>
 
   <h2>To-do List</h2>
 
-  <div id='to-do-list-body' class='span4'>
+  <div id='to-do-list-body'>
 
     <ul>
-    <% @to_dos.each do |todo| %>
+    <% to_dos.each do |todo| %>
       
       <li><%= todo.body %></li>
     <% end %>
@@ -15,4 +15,4 @@
       <i class='icon-plus' ></i><%= link_to 'New To-do', new_to_do_path %>
     </div>  
   </div>
-</div>
+</section>

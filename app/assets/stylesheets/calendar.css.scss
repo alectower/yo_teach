@@ -1,14 +1,9 @@
-
 #calendar {
 
-    border-radius: 5px;
-    background-color: #fff;
-    box-shadow: 0 0 5px 1px #888;
-    width: 85%;
-    margin: 2em 2em 5em 2em;
-    padding: 2em 2em 5em 2em;
-
     table {
+        caption {
+          padding: 0 0 1em 0;
+        }
     
         width: 100%;
         table-layout: fixed;
@@ -20,48 +15,49 @@
         }   
     }
 
-}
-
-.day {
-  position: relative;
-}
-
-@mixin date-base {
-    position: absolute;
-    top: 0;
-    width: 95%;
-    margin: 0 1px 0 1px;
-    border-radius: 5px;
-}
-
-@mixin date-span {
-  padding: 0 0 0 5px;
-}
-
-.date {
-    @include date-base;
-    background-color: #ececf0;
-    span {
-      @include date-span
+    @mixin date-base {
+        position: absolute;
+        top: 0;
+        width: 95%;
+        margin: 0 1px 0 1px;
+        border-radius: 5px;
     }
-}
 
-.today {
-    @include date-base;
-    background-color: #dceaf4;
-    span {
-      @include date-span
+    @mixin date-span {
+      padding: 0 0 0 5px;
     }
+
+    .date {
+        @include date-base;
+        background-color: #ececf0;
+        span {
+          @include date-span
+        }
+    }
+
+    .today {
+        @include date-base;
+        background-color: #dceaf4;
+        span {
+          @include date-span
+        }
+    }
+
+    .courses {
+      position: relative;
+      height: 100%;
+      top: 25%;
+    }
+
+    .course {
+        list-style: none;
+        margin: 2px 0 2px 5px;
+    }
+
+    .day {
+      position: relative;
+    }
+
 }
 
-.courses {
-  position: relative;
-  height: 100%;
-  top: 25%;
-}
-
-.course {
-    list-style: none;
-    margin: 2px 0 2px 5px;
-}
 

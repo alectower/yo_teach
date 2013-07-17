@@ -1,13 +1,13 @@
-<div id='courses' class='span2'>
-	<h3>Courses</h3>
+<div id='courses'>
+  <h2>Courses</h2>
   <div id='courses-body'>
-  	<ul class=''>
+    <ul class=''>
       <% @courses.each do |course| %>
-      	<li data-id=<%= course.id %> >
-      		<%= link_to course.name, course_path(course.id) %>
+        <li data-id=<%= course.id %> >
+          <%= link_to course.name, course_path(course.id) %>
         </li>
       <% end %>
-  	</ul>
+    </ul>
   </div>  
 
   <div id='course-control'>

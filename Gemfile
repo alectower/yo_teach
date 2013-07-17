@@ -10,6 +10,8 @@ gem 'sprockets-rails', github: 'rails/sprockets-rails'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', github: 'rails/sass-rails'
+gem 'bootstrap-sass', '~> 2.3.2.0'
+gem 'jquery-turbolinks'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
