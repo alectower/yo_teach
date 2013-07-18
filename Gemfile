@@ -39,11 +39,12 @@ end
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.14.0.rc1'
-  gem 'factory_girl_rails', '~> 4.0'
   gem 'sqlite3'
   gem 'capybara'
-  gem 'faker'
 end
+
+  gem 'factory_girl_rails', '~> 4.0'
+  gem 'faker'
 
 group :production do
   gem 'pg'
