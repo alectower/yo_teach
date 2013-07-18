@@ -42,9 +42,8 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.0'
   gem 'sqlite3'
   gem 'capybara'
+  gem 'faker'
 end
-
-gem 'faker'
 
 group :production do
   gem 'pg'
