@@ -2,11 +2,11 @@
   <table>
     <caption>
       <div id='prev_month'>
-        <%= link_to raw("<i class='icon-chevron-left'></i>"), calendar_path(id: "#{@calendar.date.year}/#{@calendar.date.prev_month.mon}") %>
+        <%= link_to raw("<i class='icon-chevron-left'></i>"), calendar_path(@calendar.date.year, @calendar.date.prev_month.mon) %>
       </div>
       <h2><%= @calendar.month %></h2>
       <div id='next_month'>
-        <%= link_to raw("<i class='icon-chevron-right'></i>"), calendar_path(id: "#{@calendar.date.year}/#{@calendar.date.next_month.mon}") %>
+        <%= link_to raw("<i class='icon-chevron-right'></i>"), calendar_path(@calendar.date.year, @calendar.date.next_month.mon) %>
       </div>
     </caption>
     <thead>
