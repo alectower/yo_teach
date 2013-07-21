@@ -13,15 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20130706200747) do
 
-  create_table "course_days", force: true do |t|
-    t.integer  "day_of_week"
-    t.integer  "course_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "course_days", ["course_id"], name: "index_course_days_on_course_id"
-
   create_table "courses", force: true do |t|
     t.string   "name"
     t.date     "start_date"
@@ -33,9 +24,15 @@ ActiveRecord::Schema.define(version: 20130706200747) do
   end
 
   create_table "lesson_plans", force: true do |t|
+    t.string   "objectives"
+    t.string   "lesson_steps"
+    t.date     "date"
+    t.integer  "course_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "lesson_plans", ["course_id"], name: "index_lesson_plans_on_course_id"
 
   create_table "to_dos", force: true do |t|
     t.string   "body"

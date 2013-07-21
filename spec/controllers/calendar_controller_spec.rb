@@ -1,22 +1,33 @@
 require 'spec_helper'
 
 describe CalendarController do
-  describe "GET #index" do
-    it "populates a calendar day array with courses" do
-      course = FactoryGirl.create(:course)
-      get :index
-      assigns(:calendar).dates[4].courses.should match_array([course])
+  describe "GET #month" do
+    it "creates a calendar object" do
+      get :month
+      assigns(:calendar).should be_a(Calendar)
     end
 
     it "populates the to-do list" do
       to_do = FactoryGirl.create(:to_do)
-      get :index
+      get :month
       assigns(:to_dos).should match_array([to_do])
     end
 
     it "renders the index template" do
-      get :index
-      expect(response).to render_template(:index)
+      get :month
+      expect(response).to render_template(:calendar)
+     end
+
+    it "creates a calendar for a specific month" do
+      get :month, month: 7
+      assigns(:calendar).month.should eq("July")
     end
+
+    it "renders the index template" do
+      get :month
+      expect(response).to render_template(:calendar)
+    end 
   end
+
+
 end

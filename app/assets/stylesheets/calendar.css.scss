@@ -1,8 +1,26 @@
 #calendar {
 
     table {
+
         caption {
+
+          position: relative;
+          width: 80%;
+          margin: auto;
           padding: 0 0 1em 0;
+
+          #prev_month {
+            position: absolute;
+            top: 5px;
+            float: left;
+          }
+
+          #next_month {
+            position: absolute;
+            top: 5px;
+            right: 0;
+            float: right;
+          }
         }
     
         width: 100%;

@@ -2,10 +2,9 @@ require 'faker'
 
 FactoryGirl.define do
   factory :lesson_plan do
-    objectives 
-    lesson_steps
-    standards
-    association :course, factory: course
-    association :course_day, factory: course_day
+    date { 1.day.from_now}
+    objectives { Faker::Lorem.sentence(1) }
+    lesson_steps { Faker::Lorem.sentence(1) }
+    association :course, factory: :course
   end
 end

@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'calendar#index'
-  resources :calendar
+  root 'calendar#month'
+  get 'calendar/:year/:month', to: 'calendar#month', as: :calendar
   resources :courses
   resources :lesson_plans
   resources :to_dos
