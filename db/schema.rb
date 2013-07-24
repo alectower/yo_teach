@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20130706200747) do
   end
 
   create_table "lesson_plans", force: true do |t|
+    t.string   "description"
     t.string   "objectives"
     t.string   "lesson_steps"
     t.date     "date"

@@ -1,6 +1,7 @@
 class CreateLessonPlans < ActiveRecord::Migration
   def change
     create_table :lesson_plans do |t|
+      t.string :description
       t.string :objectives
       t.string :lesson_steps
       t.date :date
