@@ -10,6 +10,7 @@
 // stub path allows dependency to be excluded from the asset bundle.
 //
 //= require jquery
-//= require jquery.turbolinks
 //= require jquery_ujs
+//= require jquery.turbolinks
+//= require to_dos
 //= require turbolinks

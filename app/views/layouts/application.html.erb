@@ -4,6 +4,7 @@
 	<title>Yo Teach</title>
 	<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
 	<%= csrf_meta_tags %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 </head>
 <body>
 	<%= render 'layouts/nav' %>	
@@ -19,10 +20,10 @@
  	 	</div>
 	  	
     <div class='row'>
-      <div class='main span8'>
+      <div class='main span9'>
         <%= yield %>
       </div>
-      <div class='span4'>
+      <div class='span3'>
         <%= render 'layouts/to_do_list' %>
       </div>
     </div>
@@ -41,6 +42,5 @@
 	    </div>
 	</div>
 
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 </body>
 </html>

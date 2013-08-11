@@ -8,6 +8,7 @@
       <tr>
         <th>Description</th>
         <th>Course</th>
+        <th>Date</td>
       </tr>
     </thead>
 </table>
@@ -17,7 +18,9 @@
       <tr>
         <td><%= link_to lesson_plan.description, 
                 lesson_plan_path(lesson_plan.id) %></td>
-        <td><%= lesson_plan.course.name %></td>
+        <td><%= link_to lesson_plan.course.name,
+                course_path(lesson_plan.course.id)%></td>
+        <td><%= lesson_plan.date %></td>
       </tr>
     <% end %>
   </table>

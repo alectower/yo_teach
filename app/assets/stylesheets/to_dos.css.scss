@@ -6,6 +6,11 @@
 
   #to-do-list-body {
     padding: 1%;
+
+    input[type='checkbox'] {
+      height: 20px;
+      width: 20px;
+    }
   }
 
   h2 {
