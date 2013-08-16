@@ -2,13 +2,14 @@ class CalendarController < ApplicationController
   
   def month
     @to_dos = ToDo.all
-    @calendar = Calendar.new year_month
+    @calendar = Calendar.new(calendar_date)
     render :calendar
   end
 
-  def year_month
+  def calendar_date
     year = params[:year].to_i
     month = params[:month].to_i
-    year != 0 && month != 0 ? Date.new(year,month,1) : Date.today
+    year != 0 && month != 0 ? Date.new(year, month, 1) : Date.today
   end
+
 end

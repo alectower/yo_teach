@@ -11,7 +11,7 @@ describe Calendar do
   end
 
   it "knows the first date to be displayed on the calendar" do
-    @cal.first_calendar_date.should eq(Date.new(1984,5,27))
+    @cal.first_date.should eq(Date.new(1984,5,27))
   end
 end
 
