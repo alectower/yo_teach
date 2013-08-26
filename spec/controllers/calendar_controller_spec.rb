@@ -16,18 +16,11 @@ describe CalendarController do
     it "renders the index template" do
       get :month
       expect(response).to render_template(:calendar)
-     end
+		end
 
     it "creates a calendar for a specific month" do
-      get :month, month: 7
+      get :month, month: 7, year: 2013
       assigns(:calendar).month.should eq("July")
     end
-
-    it "renders the index template" do
-      get :month
-      expect(response).to render_template(:calendar)
-    end 
   end
-
-
 end

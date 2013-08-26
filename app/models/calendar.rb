@@ -18,15 +18,14 @@ class Calendar
 		first = first_date(date)
 		calendar_dates = first..first.days_since(34)
 		lessons = retrieve_lessons(calendar_dates)
-		@dates = calendar_dates.map do |d| 
-			DateLessons.new d, lessons[d]
+		@dates = []
+		calendar_dates.each do |d| 
+			@dates << DateLessons.new(d, lessons[d])
 		end
 	end
 
   def retrieve_lessons(calendar_dates)
-		LessonPlan.includes(:course).
-			where(date: calendar_dates).
-				order('date asc').group_by(&:date)
+  	LessonPlan.monthly_lessons(calendar_dates)
 	end
 
   def first_date(date)

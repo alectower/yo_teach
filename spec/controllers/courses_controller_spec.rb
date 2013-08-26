@@ -31,12 +31,14 @@ describe CoursesController do
     context "with valid attributes" do 
       it "creates a new course" do
         expect{ 
-          post :create, course: FactoryGirl.attributes_for(:course)
+          post :create, course: 
+          	FactoryGirl.attributes_for(:course)
         }.to change(Course,:count).by(1) 
       end
       
       it "redirects to the home page" do
-        post :create, course: FactoryGirl.attributes_for(:course) 
+        post :create, course: 
+        	FactoryGirl.attributes_for(:course) 
         response.should redirect_to root_url
       end
     end 
@@ -44,24 +46,26 @@ describe CoursesController do
     context "with invalid attributes" do 
       it "does not save the new contact in the database" do
         expect{ 
-          post :create, course: FactoryGirl.attributes_for(:invalid_course)
-        }.to_not change(Course,:count)
+          post :create, course: 
+          	FactoryGirl.attributes_for(:invalid_course)
+        }.to_not change(Course, :count)
       end
       
       it "re-renders the :new template" do
-        post :create, course: FactoryGirl.attributes_for(:invalid_course) 
+        post :create, course: 
+        	FactoryGirl.attributes_for(:invalid_course) 
         response.should render_template :new
       end
     end 
   
     it "redirects to home page on save" do
-      post :create, course: FactoryGirl.attributes_for(:course)
+      post :create, course: 
+      	FactoryGirl.attributes_for(:course)
       response.should redirect_to root_url
     end
   end
 
   describe "POST #delete" do 
-
     it "renders the destroy template" do
       course = FactoryGirl.create(:course)
       delete :destroy, id: course.id
