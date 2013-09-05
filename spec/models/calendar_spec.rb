@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Calendar do
   before :each do
     @date = Date.new(1984,6,26)
-    @cal = Calendar.new @date
+    @cal = Calendar.new @date, LessonsPlan
   end
   
   it "knows the current month" do

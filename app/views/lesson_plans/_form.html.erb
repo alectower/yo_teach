@@ -1,17 +1,20 @@
-<%= form_for(@lesson_plan) do |f| %>
-  <% if @lesson_plan.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@lesson_plan.errors.count, "error") %> prohibited this lesson_plan from being saved:</h2>
+<h3>New Lesson Plan</h3>
 
-      <ul>
-      <% @lesson_plan.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= bootstrap_form_for @lesson_plan do |f| %>
 
-  <div class="actions">
-    <%= f.submit 'Create', class: 'btn'%>
-  </div>
+	<%= f.collection_select :course_id, Course.all, :id, :name, prepend: 'icon-book' %>
+
+	<%= f.text_field :description, prepend: 'icon-list-alt' %>
+
+	<%= f.datetime_local_field :start_time, prepend: 'icon-time' %>
+
+	<%= f.datetime_local_field :end_time, prepend: 'icon-time' %>
+
+	<div class="control-group">
+	    <div class="controls">
+				<%= f.submit 'Create Lesson Plan', class: 'btn btn-primary' %>
+				<%= link_to 'Cancel', lesson_plans_path, class: 'btn' %>
+	    </div>
+	</div>
+
 <% end %>

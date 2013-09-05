@@ -1,11 +1,15 @@
 require 'spec_helper'
 
 describe "LessonPlans" do
-  describe "GET /lesson_plans" do
-    it "works! (now write some real specs)" do
-      # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-      get lesson_plans_path
-      response.status.should be(200)
-    end
-  end
+
+  describe "GET /lesson_plans/new" do
+		it "provides a description field" do
+			visit new_lesson_plan_path
+			within "#new_lesson_plan" do
+				page.should have_content "Description"
+				page.should have_content "Add Field"
+			end
+		end
+	end
+
 end

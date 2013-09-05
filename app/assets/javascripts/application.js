@@ -12,5 +12,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.turbolinks
+//= require courses
 //= require to_dos
 //= require turbolinks

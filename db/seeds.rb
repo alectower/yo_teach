@@ -6,8 +6,8 @@ rval.each do |t|
 	t.classify.constantize.delete_all
 end
 
-FactoryGirl.create(:course, name: 'Math')
-FactoryGirl.create(:course, name: 'English')
+FactoryGirl.create(:course_with_lesson_plans, name: 'Math')
+FactoryGirl.create(:course_with_lesson_plans, name: 'English')
 
 4.times do
   FactoryGirl.create :to_do

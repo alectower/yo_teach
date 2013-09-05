@@ -37,7 +37,7 @@ class ToDosController < ApplicationController
   def destroy
     @to_do.destroy
     respond_to do |format|
-      format.json { head :no_content }
+      format.json { render json: {}}
     end
   end
 

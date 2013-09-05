@@ -20,7 +20,7 @@
                 lesson_plan_path(lesson_plan.id) %></td>
         <td><%= link_to lesson_plan.course.name,
                 course_path(lesson_plan.course.id)%></td>
-        <td><%= lesson_plan.date %></td>
+        <td><%= lesson_plan.start_time %></td>
       </tr>
     <% end %>
   </table>

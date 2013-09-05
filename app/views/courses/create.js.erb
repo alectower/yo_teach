@@ -1,8 +1,0 @@
-(function() {
-	$('#dialog').modal('hide');
-	$("#messages").append("<div class='alert alert-success'>"
-		+ "<%= escape_javascript(flash[:notice]) %>"
-		+ "<button type='button' class='close' data-dismiss='alert'>&times;</button></div>");
-	$("#courses-body > ul").append("<li><a data-no-turbolink href='#'>"
-		+ "<%= escape_javascript(@course.name) %></a></li>");
-})();

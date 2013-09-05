@@ -10,6 +10,9 @@ class LessonPlansController < ApplicationController
 
   def new
     @lesson_plan = LessonPlan.new
+    now = DateTime.now
+    @lesson_plan.start_time = now
+		@lesson_plan.end_time = 1.hour.since(now)
   end
 
   def edit
@@ -20,11 +23,14 @@ class LessonPlansController < ApplicationController
 
     respond_to do |format|
       if @lesson_plan.save
-        format.html { redirect_to @lesson_plan, notice: 'Lesson plan was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @lesson_plan }
+        format.html { redirect_to @lesson_plan, 
+        							notice: 'Lesson plan was successfully created.' }
+        format.json { render action: 'show', 
+        							status: :created, location: @lesson_plan }
       else
         format.html { render action: 'new' }
-        format.json { render json: @lesson_plan.errors, status: :unprocessable_entity }
+        format.json { render json: @lesson_plan.errors, 
+        							status: :unprocessable_entity }
       end
     end
   end
@@ -32,11 +38,13 @@ class LessonPlansController < ApplicationController
   def update
     respond_to do |format|
       if @lesson_plan.update(lesson_plan_params)
-        format.html { redirect_to @lesson_plan, notice: 'Lesson plan was successfully updated.' }
+        format.html { redirect_to @lesson_plan, 
+        							notice: 'Lesson plan was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @lesson_plan.errors, status: :unprocessable_entity }
+        format.json { render json: @lesson_plan.errors, 
+        							status: :unprocessable_entity }
       end
     end
   end
@@ -55,6 +63,7 @@ class LessonPlansController < ApplicationController
     end
 
     def lesson_plan_params
-      params[:lesson_plan]
+      params.require(:lesson_plan)
+      	.permit(:description)
     end
 end

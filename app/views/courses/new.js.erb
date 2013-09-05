@@ -1,7 +1,0 @@
-$('#dialogModalHeader').html('New Course');
-$('#dialog-body').html("<%= escape_javascript(render 'courses/new') %>");
-$('#dialog').modal('show');
-$('#submit').off('click').click(function() {
-	$('#new_course').submit();
-	$('#dialog').modal('hide');
-});

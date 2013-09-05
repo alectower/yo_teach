@@ -17,17 +17,14 @@ ActiveRecord::Schema.define(version: 20130706200747) do
     t.string   "name"
     t.date     "start_date"
     t.date     "end_date"
-    t.time     "start_time"
-    t.time     "end_time"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "lesson_plans", force: true do |t|
+    t.date     "start_time"
+    t.date     "end_time"
     t.string   "description"
-    t.string   "objectives"
-    t.string   "lesson_steps"
-    t.date     "date"
     t.integer  "course_id"
     t.datetime "created_at"
     t.datetime "updated_at"
