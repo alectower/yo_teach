@@ -12,7 +12,7 @@ class CoursesController < ApplicationController
     @course = Course.new strong_params(params[:course])
     if @course.save
       flash[:notice] = 'Course was successfully created.' 
-      redirect_to root_url
+      redirect_to courses_path
     else
       render action: :new
     end

@@ -36,10 +36,10 @@ describe CoursesController do
         }.to change(Course,:count).by(1) 
       end
       
-      it "redirects to the home page" do
+      it "redirects to the courses page" do
         post :create, course: 
         	FactoryGirl.attributes_for(:course) 
-        response.should redirect_to root_url
+        response.should redirect_to courses_path
       end
     end 
 
@@ -57,12 +57,6 @@ describe CoursesController do
         response.should render_template :new
       end
     end 
-  
-    it "redirects to home page on save" do
-      post :create, course: 
-      	FactoryGirl.attributes_for(:course)
-      response.should redirect_to root_url
-    end
   end
 
   describe "POST #delete" do 
