@@ -1,5 +1,3 @@
-<h3>New Lesson Plan</h3>
-
 <%= bootstrap_form_for @lesson_plan do |f| %>
 
 	<%= f.collection_select :course_id, Course.all, :id, :name, prepend: 'icon-book' %>
@@ -12,7 +10,7 @@
 
 	<div class="control-group">
 	    <div class="controls">
-				<%= f.submit 'Create Lesson Plan', class: 'btn btn-primary' %>
+				<%= f.submit submit_text, class: 'btn btn-primary' %>
 				<%= link_to 'Cancel', lesson_plans_path, class: 'btn' %>
 	    </div>
 	</div>

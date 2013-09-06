@@ -1,5 +1,3 @@
-<h3>New Course</h3>
-
 <%= bootstrap_form_for @course do |f| %>
 
 	<%= f.text_field :name, prepend: 'icon-book' %>
@@ -10,7 +8,7 @@
 
 	<div class="control-group">
 	    <div class="controls">
-				<%= f.submit 'Create Course', class: 'btn btn-primary' %>
+				<%= f.submit submit_button, class: 'btn btn-primary' %>
 				<%= link_to 'Cancel', courses_path, class: 'btn' %>
 	    </div>
 	</div>

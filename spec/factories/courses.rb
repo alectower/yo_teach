@@ -11,7 +11,10 @@ FactoryGirl.define do
     after(:create) do |course|
       (course.start_date..course.end_date).each do |d|
         if d.wday % 2 != 0
-					FactoryGirl.create(:lesson_plan, start_time: d, end_time: 1.hour.since(d), course: course)
+					FactoryGirl.create(:lesson_plan, 
+														 start_time: d.to_datetime, 
+														 end_time: 1.hour.since(d.to_datetime), 
+														 course: course)
         end
       end
     end

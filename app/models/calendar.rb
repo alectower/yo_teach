@@ -8,7 +8,7 @@ end
 class Calendar
 	attr_reader :date, :dates, :month
 	
-	def initialize(date = Date.today)
+	def initialize(date = DateTime.now.beginning_of_day)
 		@date = date
 		@month = Date::MONTHNAMES[date.month]
 		get_date_lessons(date)
@@ -20,7 +20,8 @@ class Calendar
 		lessons = retrieve_lessons(calendar_dates)
 		@dates = []
 		calendar_dates.each do |d| 
-			@dates << DateLessons.new(d, lessons[d])
+			date = d.to_date
+			@dates << DateLessons.new(date, lessons[date])
 		end
 	end
 

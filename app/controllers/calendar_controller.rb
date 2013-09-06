@@ -12,7 +12,8 @@ class CalendarController < ApplicationController
     year = params[:year].to_i
     month = params[:month].to_i
     year != 0 && month != 0 ? 
-    	Date.new(year, month, 1) : Date.today
+    	DateTime.new(year, month, 1) : 
+    		DateTime.now.beginning_of_day
   end
 
 end

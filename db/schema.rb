@@ -22,8 +22,8 @@ ActiveRecord::Schema.define(version: 20130706200747) do
   end
 
   create_table "lesson_plans", force: true do |t|
-    t.date     "start_time"
-    t.date     "end_time"
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.string   "description"
     t.integer  "course_id"
     t.datetime "created_at"

@@ -33,7 +33,6 @@ class CoursesController < ApplicationController
   private
 
     def strong_params(params) 
-      params.permit(:name, :start_date, 
-      	:end_date, :start_time, :end_time)
+      params.permit(:name, :start_date, :end_date)
     end
 end
