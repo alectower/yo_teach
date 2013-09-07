@@ -7,7 +7,6 @@ describe "LessonPlans" do
 			visit new_lesson_plan_path
 			within "#new_lesson_plan" do
 				page.should have_content "Description"
-				page.should have_content "Add Field"
 			end
 		end
 	end
