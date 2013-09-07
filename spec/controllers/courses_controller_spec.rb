@@ -63,7 +63,7 @@ describe CoursesController do
     it "renders the destroy template" do
       course = FactoryGirl.create(:course)
       delete :destroy, id: course.id
-      response.should redirect_to root_url
+      response.should redirect_to courses_path
     end
   
     it "deletes the course" do

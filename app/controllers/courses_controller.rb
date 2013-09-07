@@ -1,4 +1,5 @@
 class CoursesController < ApplicationController
+  before_action :set_course, only: [:show, :edit, :update, :destroy]
 
   def index
     @courses = Course.all
@@ -8,8 +9,14 @@ class CoursesController < ApplicationController
     @course = Course.new
   end
 
+  def show
+  end
+
+  def edit
+	end
+
   def create
-    @course = Course.new strong_params(params[:course])
+    @course = Course.new course_params(params[:course])
     if @course.save
       flash[:notice] = 'Course was successfully created.' 
       redirect_to courses_path
@@ -18,21 +25,36 @@ class CoursesController < ApplicationController
     end
   end
 
-  def show
-    @course = Course.find(params[:id])
-  end
-
-  def destroy
-    @course = Course.find(params[:id])
-    if @course.destroy
-      flash[:notice] = 'Course deleted successfully' 
-      redirect_to root_url
+  def update
+    respond_to do |format|
+      if @course.update(course_params)
+        format.html { redirect_to courses_path, 
+        							notice: 'Course was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: :edit }
+        format.json { render json: @course.errors, 
+        							status: :unprocessable_entity }
+      end
     end
   end
 
-  private
+  def destroy
+    if @course.destroy
+			respond_to do |format|
+				flash[:notice] = 'Course deleted successfully' 
+				format.html { redirect_to courses_path }
+				format.json { head :no_content }
+			end
+		end
+  end
 
-    def strong_params(params) 
+  private
+    def set_course
+      @course = Course.find(params[:id])
+    end
+
+    def course_params(params) 
       params.permit(:name, :start_date, :end_date)
     end
 end
