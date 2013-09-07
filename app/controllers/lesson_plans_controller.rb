@@ -11,8 +11,8 @@ class LessonPlansController < ApplicationController
   def new
     @lesson_plan = LessonPlan.new
     now = DateTime.now
-    @lesson_plan.start_time = now
-		@lesson_plan.end_time = 1.hour.since(now)
+    @lesson_plan.start = now
+		@lesson_plan.end = 1.hour.since(now)
   end
 
   def edit
@@ -49,11 +49,13 @@ class LessonPlansController < ApplicationController
   end
 
   def destroy
-    @lesson_plan.destroy
-    respond_to do |format|
-      format.html { redirect_to lesson_plans_path }
-      format.json { head :no_content }
-    end
+    if @lesson_plan.destroy
+			flash[:notice] = 'Lesson plan deleted successfully' 
+			respond_to do |format|
+				format.html { redirect_to lesson_plans_path }
+				format.json { head :no_content }
+			end
+		end
   end
 
   private
@@ -63,6 +65,6 @@ class LessonPlansController < ApplicationController
 
     def lesson_plan_params
       params.require(:lesson_plan)
-				.permit(:course_id, :description, :start_time, :end_time)
+				.permit(:course_id, :description, :start, :end)
     end
 end

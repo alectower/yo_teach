@@ -4,23 +4,37 @@
 </div>
 <br/>
 <table class='table'>
+		<col width="40%"/>
+		<col width="15%"/>
+		<col width="15%"/>
+		<col width="15%"/>
+		<col width="15%"/>
     <thead>
       <tr>
         <th>Description</th>
         <th>Course</th>
         <th>Date</td>
+				<th>Start Time</td>
+				<th>End Time</td>
       </tr>
     </thead>
 </table>
 <div class='table-container'>
   <table class='table table-hover table-striped'>
+		<col width="40%"/>
+		<col width="15%"/>
+		<col width="15%"/>
+		<col width="15%"/>
+		<col width="15%"/>
     <% @lesson_plans.each do |lesson_plan| %>
       <tr>
         <td><%= link_to lesson_plan.description, 
-                lesson_plan_path(lesson_plan.id) %></td>
+                edit_lesson_plan_path(lesson_plan.id) %></td>
         <td><%= link_to lesson_plan.course.name,
-                course_path(lesson_plan.course.id)%></td>
+                edit_course_path(lesson_plan.course.id)%></td>
+        <td><%= lesson_plan.start_date %></td>
         <td><%= lesson_plan.start_time %></td>
+				<td><%= lesson_plan.end_time %></td>
       </tr>
     <% end %>
   </table>

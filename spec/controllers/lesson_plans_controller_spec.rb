@@ -33,7 +33,7 @@ describe LessonPlansController do
         expect{ 
           post :create, lesson_plan: 
           	FactoryGirl.build(:lesson_plan).attributes.symbolize_keys
-        }.to change(LessonPlan,:count).by(1) 
+        }.to change(LessonPlan, :count).by(1) 
       end
       
       it "redirects to the lesson_plans page" do
