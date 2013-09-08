@@ -13,6 +13,7 @@
 //= require jquery_ujs
 //= require jquery.turbolinks
 //= require bootstrap
+//= require calendar
 //= require courses
 //= require to_dos
 //= require turbolinks

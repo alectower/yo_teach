@@ -74,6 +74,13 @@
 
     .day {
       position: relative;
+
+			.add-lesson-plan {
+				position: absolute;
+				right: 7px;
+				bottom: 5px;
+				display: none;
+			}
     }
 
 }

@@ -1,3 +1,14 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+
+class Calendar
+
+	this.addLessonPlan = ->
+		$('.day').hover(showLink, hideLink)
+	
+	showLink = ->
+		$(this).find('.add-lesson-plan').show()
+
+	hideLink = ->
+		$('.add-lesson-plan').not(this).hide()
+
+$(document).ready Calendar.addLessonPlan
+$(document).on 'page:load', Calendar.addLessonPlan
