@@ -1,6 +1,6 @@
 #!/bin/sh -e
  
-rake assets:precompile
+rake assets:precompile RAILS_ENV=production
 
 git add public/assets
 git commit -m 'Precompiling assets for heroku'
