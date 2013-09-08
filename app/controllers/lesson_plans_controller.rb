@@ -11,8 +11,8 @@ class LessonPlansController < ApplicationController
   def new
     @lesson_plan = LessonPlan.new
     now = DateTime.now
-    @lesson_plan.start = now
-		@lesson_plan.end = 1.hour.since(now)
+    @lesson_plan.start = params.fetch(:start) { now }
+		@lesson_plan.end = params.fetch(:end) { 1.hour.since(now) }
   end
 
   def edit

@@ -37,7 +37,10 @@
 							<% end %>
 						</ul>
 						<div class="add-lesson-plan">
-							<a href="/lesson_plans/new" title="Add Lesson Plan"><i class='icon-plus'></i></a>
+							<% start = 9.hours.since(day.date.to_datetime) %>
+							<%= link_to raw("<i class='icon-plus'></i>"), 
+								new_lesson_plan_path(start: start, 
+																		 end: 1.hour.since(start)) %>
 						</div>
           </td>
         <% end %>
