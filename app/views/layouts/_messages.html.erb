@@ -1,0 +1,7 @@
+<% flash.each do |k, v| %>
+	<% bootstrap_class = {alert: 'alert-error', notice: 'alert-success', info: 'alert-info'}[k] %>
+	<div class="alert <%= bootstrap_class %>">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		<%= v %>
+	</div>
+<% end %>
