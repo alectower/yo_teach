@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130907162840) do
+ActiveRecord::Schema.define(version: 20130908200046) do
 
   create_table "courses", force: true do |t|
     t.string   "name"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20130907162840) do
   end
 
   add_index "lesson_plans", ["course_id"], name: "index_lesson_plans_on_course_id"
+  add_index "lesson_plans", ["start"], name: "index_lesson_plans_on_start"
 
   create_table "to_dos", force: true do |t|
     t.string   "body"
