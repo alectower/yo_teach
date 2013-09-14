@@ -25,6 +25,7 @@ group :development, :test do
   gem 'sqlite3'
   gem 'capybara'
   gem 'database_cleaner', '1.0.1'
+  gem 'simplecov', require: false
 end
 
 gem 'factory_girl_rails', '~> 4.0'
