@@ -2,6 +2,12 @@ require 'faker'
 
 FactoryGirl.define do
 
+	factory :course do
+		name { "Math" }
+		start_date 1.month.ago
+		end_date 1.month.from_now
+	end
+
   factory :course_with_lesson_plans, parent: Course do
     name { ["Math", "English I", 
       "English II", "Chemistry"].sample }
@@ -25,7 +31,7 @@ FactoryGirl.define do
     f.name nil
   end
 
-  factory :course do 
+  factory :course_with_lesson_plan do 
   	name { "Math" }
   	start_date 1.month.ago
 		end_date 1.month.from_now
@@ -33,4 +39,5 @@ FactoryGirl.define do
 			FactoryGirl.create(:lesson_plan, course: c)
 		end
 	end
+	
 end
