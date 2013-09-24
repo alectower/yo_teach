@@ -44,6 +44,6 @@ group :production do
 end
 
 gem 'bcrypt-ruby', '~> 3.0.0'
-gem 'rack-mini-profiler' 
+gem 'rack-mini-profiler'
 gem 'unicorn'
 

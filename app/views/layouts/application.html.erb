@@ -7,19 +7,19 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 </head>
 <body>
-	<%= render 'layouts/nav' %>	
-	
+	<%= render 'layouts/nav' %>
+
 	<nav class='site-nav nav nav-pills offset1'>
     <li class="<%= 'active' if params[:controller] == 'calendar' %>"><a href="/">Calendar</a></li>
     <li class="<%= 'active' if params[:controller] == 'courses' %>"><a href="/courses">Courses</a></li>
     <li class="<%= 'active' if params[:controller] == 'lesson_plans' %>"><a href="/lesson_plans">Lesson Plans</a></li>
   </nav>
 
-	<div class='container-fluid'>  
+	<div class='container-fluid'>
 		<div id='messages'>
 			<%= render 'layouts/messages' %>
  	 	</div>
-	  	
+
     <div class='row'>
       <div class='main span9'>
         <%= yield %>

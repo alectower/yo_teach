@@ -1,21 +1,21 @@
-<%= bootstrap_form_for @lesson_plan do |form| %>
+<%= bootstrap_form_for lesson_plan do |form| %>
 
 	<div class='tabbable tabs-left'>
 		<%= render 'form_nav' %>
 
 		<div class='tab-content'>
-			<%= render 'form_details_tab', 
-				lesson_plan_form: form %>	
-			<%= render 'form_content_tab', 
+			<%= render 'form_details_tab',
 				lesson_plan_form: form %>
+			<%= render 'form_content_tab',
+				lesson_plan: lesson_plan, lesson_plan_form: form %>
 		</div>
 	</div>
 
 	<div class="control-group form-submit">
 		<div class="controls">
-			<%= form.submit submit_text, 
+			<%= form.submit submit_text,
 				class: 'btn btn-primary' %>
-			<%= link_to 'Cancel', lesson_plans_path, 
+			<%= link_to 'Cancel', lesson_plans_path,
 				class: 'btn' %>
 		</div>
 	</div>

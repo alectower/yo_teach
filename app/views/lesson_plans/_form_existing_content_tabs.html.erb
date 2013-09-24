@@ -1,4 +1,4 @@
-<% @lesson_plan.fields.each do |field| %>
+<% lesson_plan.fields.each do |field| %>
 	<% unless field.name.nil? %>
 		<div id=<%= "#{field.name.downcase.dasherize}-tab"%> class='tab-pane'>
 			<div class='span6'>

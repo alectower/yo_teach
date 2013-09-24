@@ -1,7 +1,7 @@
 class LessonPlansController < ApplicationController
   before_action :set_lesson_plan, only: [:show, :edit, :update, :destroy]
 
-	TIME_FORMAT = "%Y-%m-%dT%H:%M" 
+	TIME_FORMAT = "%Y-%m-%dT%H:%M"
 
   def index
     @lesson_plans = LessonPlan.all
@@ -28,11 +28,11 @@ class LessonPlansController < ApplicationController
       if @lesson_plan.save
 				flash[:notice] = 'Lesson plan was successfully created.'
         format.html { redirect_to edit_lesson_plan_path @lesson_plan.id }
-        format.json { render action: 'show', 
+        format.json { render :show,
         		status: :created, location: @lesson_plan }
       else
-        format.html { render action: :new }
-        format.json { render json: @lesson_plan.errors, 
+        format.html { render :new }
+        format.json { render json: @lesson_plan.errors,
         							status: :unprocessable_entity }
       end
     end
@@ -41,12 +41,12 @@ class LessonPlansController < ApplicationController
   def update
     respond_to do |format|
       if @lesson_plan.update(lesson_plan_params)
-        flash[:notice] = 'Lesson plan was successfully updated.' 
-        format.html { redirect_to edit_lesson_plan_path @lesson_plan.id } 
+        flash[:notice] = 'Lesson plan was successfully updated.'
+        format.html { redirect_to edit_lesson_plan_path @lesson_plan.id }
         format.json { head :no_content }
       else
-        format.html { render action: 'edit' }
-        format.json { render json: @lesson_plan.errors, 
+        format.html { render :edit }
+        format.json { render json: @lesson_plan.errors,
         							status: :unprocessable_entity }
       end
     end
@@ -54,7 +54,7 @@ class LessonPlansController < ApplicationController
 
   def destroy
     if @lesson_plan.destroy
-			flash[:notice] = 'Lesson plan deleted successfully' 
+			flash[:notice] = 'Lesson plan deleted successfully'
 			respond_to do |format|
 				format.html { redirect_to lesson_plans_path }
 				format.json { head :no_content }
@@ -69,10 +69,10 @@ class LessonPlansController < ApplicationController
 
     def lesson_plan_params
       params.require(:lesson_plan)
-				.permit(:course_id, 
-								:description, 
-								:start, 
-								:end, 
+				.permit(:course_id,
+								:description,
+								:start,
+								:end,
 								fields_attributes: [:name, :content])
     end
 end

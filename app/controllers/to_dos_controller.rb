@@ -18,7 +18,7 @@ class ToDosController < ApplicationController
       if @to_do.save
         format.js
       else
-        format.json { render json: @to_do.errors, 
+        format.json { render json: @to_do.errors,
           status: :unprocessable_entity }
       end
     end

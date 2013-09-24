@@ -4,7 +4,7 @@
 			Add Content
 		</a>
 	</li>
-	<% @lesson_plan.fields.each do |field| %>
+	<% lesson_plan.fields.each do |field| %>
 		<% unless field.name.nil? %>
 			<li>
 				<a href=<%= "##{field.name.downcase.dasherize}-tab" %> data-toggle='tab'>

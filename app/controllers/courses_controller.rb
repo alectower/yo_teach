@@ -18,22 +18,22 @@ class CoursesController < ApplicationController
   def create
     @course = Course.new course_params(params[:course])
     if @course.save
-      flash[:notice] = 'Course was successfully created.' 
+      flash[:notice] = 'Course was successfully created.'
       redirect_to courses_path
     else
-      render action: :new
+      render :new
     end
   end
 
   def update
     respond_to do |format|
       if @course.update(course_params)
-        format.html { redirect_to courses_path, 
+        format.html { redirect_to courses_path,
         							notice: 'Course was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: :edit }
-        format.json { render json: @course.errors, 
+        format.html { render :edit }
+        format.json { render json: @course.errors,
         							status: :unprocessable_entity }
       end
     end
@@ -42,7 +42,7 @@ class CoursesController < ApplicationController
   def destroy
     if @course.destroy
 			respond_to do |format|
-				flash[:notice] = 'Course deleted successfully' 
+				flash[:notice] = 'Course deleted successfully'
 				format.html { redirect_to courses_path }
 				format.json { head :no_content }
 			end
@@ -54,7 +54,7 @@ class CoursesController < ApplicationController
       @course = Course.find(params[:id])
     end
 
-    def course_params(params) 
+    def course_params(params)
       params.permit(:name, :start_date, :end_date)
     end
 end

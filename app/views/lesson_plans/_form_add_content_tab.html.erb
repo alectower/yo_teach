@@ -1,6 +1,6 @@
 <div id='add-content-tab' class='tab-pane active'>
 	<div class='span6'>
-		<%= lesson_plan_form.fields_for :fields, @lesson_plan.fields.last do |field| %>
+		<%= lesson_plan_form.fields_for :fields, lesson_plan.fields.last do |field| %>
 			<%= field.text_field :name, class: 'span4'%>
 			<%= field.text_area :content, rows: 10, class: 'span6'%>
 		<% end %>

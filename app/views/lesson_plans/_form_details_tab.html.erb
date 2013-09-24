@@ -1,15 +1,15 @@
 <div id='details-tab' class='tab-pane active'>
 	<div class="span7">
-		<%= lesson_plan_form.collection_select :course_id, 
+		<%= lesson_plan_form.collection_select :course_id,
 			Course.all, :id, :name, prepend: 'icon-book' %>
 
-		<%= lesson_plan_form.text_field :description, 
+		<%= lesson_plan_form.text_field :description,
 			prepend: 'icon-list-alt' %>
 
-		<%= lesson_plan_form.datetime_local_field :start, 
+		<%= lesson_plan_form.datetime_local_field :start,
 			prepend: 'icon-time' %>
 
-		<%= lesson_plan_form.datetime_local_field :end, 
+		<%= lesson_plan_form.datetime_local_field :end,
 			prepend: 'icon-time' %>
 	</div>
 </div>
