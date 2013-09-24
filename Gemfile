@@ -24,8 +24,14 @@ group :development, :test do
   gem 'rspec-rails', '~> 2.14.0.rc1'
   gem 'sqlite3'
   gem 'capybara'
+  gem 'selenium-webdriver'
   gem 'database_cleaner', '1.0.1'
   gem 'simplecov', require: false
+  gem 'brakeman', require: false
+  gem 'turbulence', require: false
+  gem 'flog', require: false
+  gem 'flay', require: false
+  gem 'rails_best_practices', require: false
 end
 
 gem 'factory_girl_rails', '~> 4.0'
