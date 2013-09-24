@@ -1,18 +1,23 @@
-<%= bootstrap_form_for @lesson_plan do |f| %>
+<%= bootstrap_form_for @lesson_plan do |form| %>
 
-	<%= f.collection_select :course_id, Course.all, :id, :name, prepend: 'icon-book' %>
+	<div class='tabbable tabs-left'>
+		<%= render 'form_nav' %>
 
-	<%= f.text_field :description, prepend: 'icon-list-alt' %>
+		<div class='tab-content'>
+			<%= render 'form_details_tab', 
+				lesson_plan_form: form %>	
+			<%= render 'form_content_tab', 
+				lesson_plan_form: form %>
+		</div>
+	</div>
 
-	<%= f.datetime_local_field :start, prepend: 'icon-time' %>
-
-	<%= f.datetime_local_field :end, prepend: 'icon-time' %>
-
-	<div class="control-group">
-	    <div class="controls">
-				<%= f.submit submit_text, class: 'btn btn-primary' %>
-				<%= link_to 'Cancel', lesson_plans_path, class: 'btn' %>
-	    </div>
+	<div class="control-group form-submit">
+		<div class="controls">
+			<%= form.submit submit_text, 
+				class: 'btn btn-primary' %>
+			<%= link_to 'Cancel', lesson_plans_path, 
+				class: 'btn' %>
+		</div>
 	</div>
 
 <% end %>

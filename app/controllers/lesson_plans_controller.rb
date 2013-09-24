@@ -1,6 +1,8 @@
 class LessonPlansController < ApplicationController
   before_action :set_lesson_plan, only: [:show, :edit, :update, :destroy]
 
+	TIME_FORMAT = "%Y-%m-%dT%H:%M" 
+
   def index
     @lesson_plans = LessonPlan.all
   end
@@ -10,22 +12,24 @@ class LessonPlansController < ApplicationController
 
   def new
     @lesson_plan = LessonPlan.new
-    now = DateTime.now
-    @lesson_plan.start = params.fetch(:start) { now }
-		@lesson_plan.end = params.fetch(:end) { 1.hour.since(now) }
+    now = 8.hours.since DateTime.now.beginning_of_day
+    @lesson_plan.start = params.fetch(:start) { now }.strftime(TIME_FORMAT)
+		@lesson_plan.end = params.fetch(:end) { 1.hour.since(now) }.strftime(TIME_FORMAT)
+		@lesson_plan.fields.build
   end
 
   def edit
+		@lesson_plan.fields.build
   end
 
   def create
     @lesson_plan = LessonPlan.new(lesson_plan_params)
     respond_to do |format|
       if @lesson_plan.save
-        format.html { redirect_to lesson_plans_path, 
-        							notice: 'Lesson plan was successfully created.' }
+				flash[:notice] = 'Lesson plan was successfully created.'
+        format.html { redirect_to edit_lesson_plan_path @lesson_plan.id }
         format.json { render action: 'show', 
-        							status: :created, location: @lesson_plan }
+        		status: :created, location: @lesson_plan }
       else
         format.html { render action: :new }
         format.json { render json: @lesson_plan.errors, 
@@ -37,8 +41,8 @@ class LessonPlansController < ApplicationController
   def update
     respond_to do |format|
       if @lesson_plan.update(lesson_plan_params)
-        format.html { redirect_to lesson_plans_path, 
-        							notice: 'Lesson plan was successfully updated.' }
+        flash[:notice] = 'Lesson plan was successfully updated.' 
+        format.html { redirect_to edit_lesson_plan_path @lesson_plan.id } 
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -60,11 +64,15 @@ class LessonPlansController < ApplicationController
 
   private
     def set_lesson_plan
-      @lesson_plan = LessonPlan.find(params[:id])
+      @lesson_plan = LessonPlan.lesson_plan_with_fields(params[:id])
     end
 
     def lesson_plan_params
       params.require(:lesson_plan)
-				.permit(:course_id, :description, :start, :end)
+				.permit(:course_id, 
+								:description, 
+								:start, 
+								:end, 
+								fields_attributes: [:name, :content])
     end
 end

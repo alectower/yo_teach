@@ -20,11 +20,11 @@ module BootstrapFormBuilder
         define_method "bootstrap_#{method}" do |record, *args, &block|
           # add the TwitterBootstrap builder to the options
           options           = args.extract_options!
-          options[:builder] = BootstrapFormBuilder::FormBuilder
+          options[:builder] = BootstrapFormBuilder::Builder
  
           if method == :form_for
             options[:html] ||= {}
-            options[:html][:class] ||= 'form-horizontal'
+            options[:html][:class] ||= ''
           end
  
           # call the original method with our overridden options
@@ -34,21 +34,20 @@ module BootstrapFormBuilder
     end
   end
  
-  class FormBuilder < ActionView::Helpers::FormBuilder
+  class Builder < ActionView::Helpers::FormBuilder
     include FormHelper
  
-    def get_error_text(object, field, options)
-      if object.nil? || options[:hide_errors]
+    def get_error_text(field, options)
+      if @object.nil? || options[:hide_errors]
         ""
       else
-        errors = object.errors[field.to_sym]
+        errors = @object.errors[field.to_sym]
         if errors.empty? then "" else errors.first end
       end
     end
  
     def get_object_id(field, options)
-      object = @template.instance_variable_get("@#{@object_name}")
-      return options[:id] || object.class.name.underscore + '_' + field.to_s
+      return options[:id] || @object.class.name.underscore + '_' + field.to_s
     end
  
     def get_label(field, options)
@@ -84,11 +83,10 @@ module BootstrapFormBuilder
  
       define_method(name) do |field, *args, &help_block|
         options = args.last.is_a?(Hash) ? args.last : {}
-        object = @template.instance_variable_get("@#{@object_name}")
- 
+
         labelTag = get_label(field, options)
  
-        errorText = get_error_text(object, field, options)
+        errorText = get_error_text(field, options)
  
         wrapperClass = 'control-group' + (errorText.empty? ? '' : ' error')
         prepend_icon = options.fetch(:prepend) {false}

@@ -4,7 +4,7 @@ FactoryGirl.define do
   factory :lesson_plan do |lp|
   	start_datetime = 1.day.from_now.to_datetime
   	lp.start { start_datetime }
-		lp.end { 1.hour.since(start) }
+		lp.end { 1.hour.since start_datetime }
     lp.description { Faker::Lorem.sentence(1) }
     lp.course
   end

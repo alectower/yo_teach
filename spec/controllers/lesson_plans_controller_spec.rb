@@ -37,9 +37,9 @@ describe LessonPlansController do
       end
       
       it "redirects to the lesson_plans page" do
-        post :create, lesson_plan: 
-        	FactoryGirl.build(:lesson_plan).attributes.symbolize_keys
-        response.should redirect_to lesson_plans_path
+        l = FactoryGirl.build(:lesson_plan).attributes.symbolize_keys
+        post :create, lesson_plan: l
+        response.should redirect_to edit_lesson_plan_path(LessonPlan.first.id)
       end
     end 
 
@@ -58,6 +58,24 @@ describe LessonPlansController do
       end
     end 
   end
+
+  describe "POST #update" do
+		it "saves updated fields" do
+			l = FactoryGirl.create(:lesson_plan)
+			l.description = 'In class essay'
+			put :update, id: l, 
+				lesson_plan: l.attributes.symbolize_keys
+			LessonPlan.first.description.should eq 'In class essay'
+		end
+
+		it 'redirects to edit template' do
+			l = FactoryGirl.create(:lesson_plan)
+			l.description = 'In class essay'
+			put :update, id: l, 
+				lesson_plan: l.attributes.symbolize_keys
+			response.should redirect_to edit_lesson_plan_path l.id
+		end
+	end
 
   describe "POST #delete" do 
     it "renders the destroy template" do
