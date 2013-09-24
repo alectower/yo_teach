@@ -1,5 +1,6 @@
 $('#to-do-list-table').append("<tr><td>" + 
 		"<%= escape_javascript(check_box_tag @to_do.id, 1, @to_do.complete, class: 'to-do') %>" + 
+		"</td><td>" + 
     "<%= escape_javascript(@to_do.body) %>" +
     "</td></tr>");
 $('#new_to_do').remove();

@@ -3,7 +3,7 @@
   <h2>To-do List</h2>
 
   <div id='to-do-list-body'>
-    <table>
+    <table class='table'>
       <tbody id='to-do-list-table'>
         <% to_dos.each do |to_do| %>
           <tr>
@@ -12,8 +12,10 @@
                 to_do.complete,
                 class: 'to-do'
               %>
-              <%= to_do.body %>
             </td>
+						<td>
+              <%= to_do.body %>
+						</td>
           </tr>
         <% end %>
       </tbody>

@@ -12,7 +12,10 @@ class ToDo
 				removeToDoFromPage(id)
 
 	removeToDoFromPage = (id) ->
-		setTimeout $('#' + id).parent().remove(), 5000
+		setTimeout $('#' + id)
+			.parent()
+			.parent()
+			.remove(), 5000
 
 $(document).ready ToDo.remove
 $(document).on 'page:load', ToDo.remove
