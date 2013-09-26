@@ -8,8 +8,8 @@ end
 class Calendar
 	attr_reader :date, :dates, :month
 
-	def initialize(date = DateTime.now.beginning_of_day)
-		@date = date
+	def initialize(cal_date = DateTime.now.beginning_of_day)
+		@date = cal_date.to_date
 		@month = Date::MONTHNAMES[date.month]
 		get_date_lessons(date)
 	end
