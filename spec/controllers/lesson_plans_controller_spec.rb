@@ -62,15 +62,15 @@ describe LessonPlansController do
   describe "POST #update" do
 		it "saves updated fields" do
 			l = FactoryGirl.create(:lesson_plan)
-			l.description = 'In class essay'
+			l.title = 'In class essay'
 			put :update, id: l, 
 				lesson_plan: l.attributes.symbolize_keys
-			LessonPlan.first.description.should eq 'In class essay'
+			LessonPlan.first.title.should eq 'In class essay'
 		end
 
 		it 'redirects to edit template' do
 			l = FactoryGirl.create(:lesson_plan)
-			l.description = 'In class essay'
+			l.title = 'In class essay'
 			put :update, id: l, 
 				lesson_plan: l.attributes.symbolize_keys
 			response.should redirect_to edit_lesson_plan_path l.id

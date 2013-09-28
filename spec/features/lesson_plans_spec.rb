@@ -80,4 +80,20 @@ describe "LessonPlans" do
 		end
 	end
 
+	describe 'edit lesson plan' do
+		let(:datetime) { DateTime.now }
+		before :each do
+			c = FactoryGirl.create :course_with_lesson_plan_field
+			visit edit_lesson_plan_path c.lesson_plans.first.id
+		end
+
+		it "displays lesson plan info in title" do
+			within '.heading' do
+				page.should have_content /Area/
+				page.should have_content /Math/
+				page.should have_content Date::DAYNAMES[datetime.to_date.wday]
+				page.should have_content datetime.to_date
+			end
+		end
+	end
 end

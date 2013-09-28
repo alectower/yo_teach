@@ -6,8 +6,8 @@ describe LessonPlan do
 		FactoryGirl.create(:lesson_plan).should be_valid
 	end
 
-	it "is invalid without a description" do
-		FactoryGirl.build(:lesson_plan, description: nil)
+	it "is invalid without a title" do
+		FactoryGirl.build(:lesson_plan, title: nil)
 			.should_not be_valid
 	end
 

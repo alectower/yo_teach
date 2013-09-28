@@ -1,5 +1,11 @@
-<h3><%= @lesson_plan.title %></h3>
+<div class='heading'>
+	<h3><%= @lesson_plan.title %></h3>
+	Course: <%= @lesson_plan.course.name %><br/>
+	Day: <%= Date::DAYNAMES[@lesson_plan.start.to_date.wday] %><br/>
+	Date: <%= @lesson_plan.start.to_date %>
+</div>
 
+<br/>
 <%= render 'form', lesson_plan: @lesson_plan,
 	submit_text: 'Update Lesson Plan' %>
 

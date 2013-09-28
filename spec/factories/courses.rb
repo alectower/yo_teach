@@ -8,7 +8,7 @@ FactoryGirl.define do
 		end_date 1.month.from_now
 	end
 
-  factory :course_with_lesson_plans, parent: Course do
+  factory :course_with_lesson_plans, parent: :course do
     name { ["Math", "English I", 
       "English II", "Chemistry"].sample }
     start_date 1.month.ago
@@ -25,18 +25,26 @@ FactoryGirl.define do
       end
     end
   end
-
   
   factory :invalid_course, parent: :course do |f|
     f.name nil
   end
 
-  factory :course_with_lesson_plan do 
+  factory :course_with_lesson_plan, parent: :course do 
   	name { "Math" }
   	start_date 1.month.ago
 		end_date 1.month.from_now
 		after(:create) do |c|
 			FactoryGirl.create(:lesson_plan, course: c)
+		end
+	end
+
+	factory :course_with_lesson_plan_field, parent: :course do
+		name { "Math" }
+  	start_date 1.month.ago
+		end_date 1.month.from_now
+		after(:create) do |c|
+			FactoryGirl.create(:lesson_plan_with_field, course: c)
 		end
 	end
 	
