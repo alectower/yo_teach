@@ -15,7 +15,7 @@
             float: left;
           }
 
-          #next_month {
+					#next_month {
             position: absolute;
             top: 5px;
             right: 0;
@@ -27,9 +27,22 @@
         table-layout: fixed;
 
         td {
-            padding: 0 2px 0 2px;
-            height: 110px;
-            border: 1px solid lightgray;
+					padding: 0 2px 0 2px;
+					height: 110px;
+					border: 1px solid lightgray;
+
+					.courses {
+						position: relative;
+						height: 100px;
+						overflow: auto;
+						top: 25%;
+
+						li > span {
+							float: right;
+							color: #888;
+							font-size: 13px;
+						}
+					}
         }   
     }
 
@@ -59,12 +72,6 @@
         span {
           @include date-span
         }
-    }
-
-    .courses {
-      position: relative;
-      height: 100%;
-      top: 25%;
     }
 
     .course {

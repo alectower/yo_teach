@@ -13,8 +13,8 @@ class LessonPlansController < ApplicationController
   def new
     @lesson_plan = LessonPlan.new
     now = 8.hours.since DateTime.now.beginning_of_day
-    @lesson_plan.start = params.fetch(:start) { now }.strftime(TIME_FORMAT)
-		@lesson_plan.end = params.fetch(:end) { 1.hour.since(now) }.strftime(TIME_FORMAT)
+    @lesson_plan.start = params.fetch(:start).to_datetime { now }.strftime(TIME_FORMAT)
+		@lesson_plan.end = params.fetch(:end).to_datetime { 1.hour.since(now) }.strftime(TIME_FORMAT)
 		build_default_fields
 	end
 
