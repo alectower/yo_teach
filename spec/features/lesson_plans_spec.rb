@@ -5,7 +5,7 @@ describe "LessonPlans" do
 	describe "view lesson plans page" do
 		it "displays lesson plans and their attribtues" do
 			visit lesson_plans_path
-			page.should have_content /Lesson Plan Description/
+			page.should have_content /Lesson Plan Title/
 			page.should have_content /Course/
 			page.should have_content /Date/
 			page.should have_content /Start Time/
