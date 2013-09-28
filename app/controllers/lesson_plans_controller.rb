@@ -73,6 +73,6 @@ class LessonPlansController < ApplicationController
 								:description,
 								:start,
 								:end,
-								fields_attributes: [:name, :content])
+								fields_attributes: [:title, :description])
     end
 end

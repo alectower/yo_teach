@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :lesson_plan_field do
-    name "Homework"
-    content "Read ch. 1-3"
+    title "Homework"
+    description "Read ch. 1-3"
     lesson_plan
   end
 end

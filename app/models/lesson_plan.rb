@@ -2,7 +2,7 @@ class LessonPlan < ActiveRecord::Base
   belongs_to :course
   has_many :fields, foreign_key: 'lesson_plan_id', class_name: 'LessonPlanField'
   accepts_nested_attributes_for :fields,
-  	reject_if: proc { |attrs| attrs[:name].blank? && attrs[:content].blank? }
+  	reject_if: proc { |attrs| attrs[:title].blank? && attrs[:description].blank? }
 	validates_presence_of :description,
 												:course,
 												:start,

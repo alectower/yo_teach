@@ -17,11 +17,6 @@ describe "LessonPlans" do
 		it "displays navigation links" do
 			visit new_lesson_plan_path
 			page.should have_content /Details/
-			page.should have_content /Objectives/
-			page.should have_content /Assessments/
-			page.should have_content /Assignments/
-			page.should have_content /Homework/
-			page.should have_content /Standards/
 			page.should have_content /Add/
 		end
 
@@ -30,10 +25,12 @@ describe "LessonPlans" do
 				FactoryGirl.create(:course, name: 'Math')
 				expect {
 					visit new_lesson_plan_path
-					select 'Math', from: 'Course'
-					fill_in 'Description', with: 'Mitosis'
-					fill_in 'Start', with: DateTime.now
-					fill_in 'End', with: 1.hour.since(DateTime.now)
+					within '#details-tab' do
+						select 'Math', from: 'Course'
+						fill_in 'Description', with: 'Mitosis'
+						fill_in 'Start', with: DateTime.now
+						fill_in 'End', with: 1.hour.since(DateTime.now)
+					end
 					click_button 'Create Lesson Plan'
 				}.to change(LessonPlan, :count).by(1)
 			end
@@ -42,19 +39,23 @@ describe "LessonPlans" do
 				before :each do
 					FactoryGirl.create :course, name: 'Math'
 					visit new_lesson_plan_path
-					select 'Math', from: 'Course'
-					fill_in 'Description', with: 'Mitosis'
-					fill_in 'Start', with: DateTime.now
-					fill_in 'End', with: 1.hour.since(DateTime.now)
-					click_link 'Content'
+					within "#details-tab" do
+						select 'Math', from: 'Course'
+						fill_in 'Description', with: 'Mitosis'
+						fill_in 'Start', with: DateTime.now
+						fill_in 'End', with: 1.hour.since(DateTime.now)
+					end
+					click_link 'Add'
 				end
 
 				context "new custom lesson plan field" do
 					it "associates field with lesson plan" do
 						expect {
-							page.should have_content /Add Content/
-							fill_in 'Name', with: 'Homework'
-							fill_in 'Content', with: 'Read ch. 1-3'
+							page.should have_content /Add/
+							within '#add-tab' do
+								fill_in 'Title', with: 'Homework'
+								fill_in 'Description', with: 'Read ch. 1-3'
+							end
 							click_button 'Create Lesson Plan'
 						}.to change(LessonPlanField, :count).by(1)
 						LessonPlanField.first.lesson_plan_id

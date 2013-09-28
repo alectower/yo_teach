@@ -6,8 +6,11 @@
 		<div class='tab-content'>
 			<%= render 'form_details_tab',
 				lesson_plan_form: form %>
-			<%= render 'form_content_tab',
-				lesson_plan: lesson_plan, lesson_plan_form: form %>
+			<% lesson_plan.fields.each do |f| %>
+				<%= render 'form_content_tab',
+					field: f, lesson_plan_form: form, lesson_plan: lesson_plan %>
+			<% end %>
+			<%= render 'form_add_content_tab', lesson_plan_form: form, lesson_plan: lesson_plan %>
 		</div>
 	</div>
 

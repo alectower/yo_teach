@@ -5,13 +5,13 @@ describe LessonPlanField do
 		FactoryGirl.build(:lesson_plan_field).should be_valid
 	end
 
-	it "is invalid without a name" do
-		FactoryGirl.build(:lesson_plan_field, name: nil)
+	it "is invalid without a title" do
+		FactoryGirl.build(:lesson_plan_field, title: nil)
 			.should_not be_valid
 	end
 
-	it "is invalid without content" do
-		FactoryGirl.build(:lesson_plan_field, content: nil)
+	it "is invalid without a description" do
+		FactoryGirl.build(:lesson_plan_field, description: nil)
 			.should_not be_valid
 	end
 end

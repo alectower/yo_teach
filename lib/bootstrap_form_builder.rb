@@ -47,7 +47,7 @@ module BootstrapFormBuilder
     end
 
     def get_object_id(field, options)
-      return options[:id] || @object.class.name.underscore + '_' + field.to_s
+      return options[:id] || @object.class.title.underscore + '_' + field.to_s
     end
 
     def get_label(field, options)
