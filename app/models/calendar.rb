@@ -16,7 +16,7 @@ class Calendar
 
 	def get_date_lessons(date)
 		first = first_date(date)
-		calendar_dates = first..first.days_since(34)
+		calendar_dates = first..first.days_since(34).end_of_day
 		lessons = retrieve_lessons(calendar_dates)
 		@dates = []
 		calendar_dates.each do |d|

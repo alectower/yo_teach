@@ -7,8 +7,24 @@ rval.each do |t|
 	t.classify.constantize.delete_all
 end
 
-FactoryGirl.create(:course_with_lesson_plans, name: 'Math')
-FactoryGirl.create(:course_with_lesson_plans, name: 'English')
+def time
+	month = DateTime.now.beginning_of_month
+	day = month.beginning_of_week
+	time = 8.hours.since day.beginning_of_day
+end
+
+def create_lesson_plans(course, *args)
+	t = time
+	args.each do |l|
+		FactoryGirl.create :lesson_plan_with_fields, course: course, title: l, start: t, end: 1.hour.since(t)
+		t += 2.days
+	end
+end
+
+c = FactoryGirl.create :course, name: 'Math'
+create_lesson_plans(c, "Area", "Circumference", "Pythagorean Theorem")
+c = FactoryGirl.create :course, name: 'English'
+create_lesson_plans(c, "Grammar", "Rhetoric", "Style of Speech")
 
 4.times do
   FactoryGirl.create :to_do

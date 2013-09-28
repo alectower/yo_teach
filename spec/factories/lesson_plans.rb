@@ -16,6 +16,25 @@ FactoryGirl.define do
 		lp.course
 	end
 
+	factory :lesson_plan_with_fields, parent: :lesson_plan do |lp|
+		start_datetime = DateTime.now
+  	lp.start { start_datetime }
+		lp.end { 1.hour.since start_datetime }
+    lp.title { 'Area' }
+    lp.course
+    after(:create) do |l|
+			%w[ 
+					Objectives 
+					Activities 
+					Assessments 
+					Homework 
+					Standards
+			].each do |field|
+				FactoryGirl.create(:lesson_plan_field, title: field, description: "", lesson_plan: l)
+			end
+		end
+	end
+
 	factory :lesson_plan_with_field, parent: :lesson_plan do |lp|
 		start_datetime = DateTime.now
   	lp.start { start_datetime }
@@ -23,8 +42,9 @@ FactoryGirl.define do
     lp.title { 'Area' }
     lp.course
     after(:create) do |l|
-			FactoryGirl.create(:lesson_plan_field, lesson_plan: l)
-		end
+				FactoryGirl.create(:lesson_plan_field, lesson_plan: l)
+			end
 	end
+
 
 end
