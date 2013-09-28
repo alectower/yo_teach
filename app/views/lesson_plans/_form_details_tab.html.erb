@@ -3,8 +3,8 @@
 		<%= lesson_plan_form.collection_select :course_id,
 			Course.all, :id, :name, prepend: 'icon-book' %>
 
-		<%= lesson_plan_form.text_field :description,
-			prepend: 'icon-list-alt' %>
+		<%= lesson_plan_form.text_field :title,
+			prepend: 'icon-list-alt', label: { text: 'Lesson Title' } %>
 
 		<%= lesson_plan_form.datetime_local_field :start,
 			prepend: 'icon-time' %>

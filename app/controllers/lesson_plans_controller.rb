@@ -15,8 +15,8 @@ class LessonPlansController < ApplicationController
     now = 8.hours.since DateTime.now.beginning_of_day
     @lesson_plan.start = params.fetch(:start) { now }.strftime(TIME_FORMAT)
 		@lesson_plan.end = params.fetch(:end) { 1.hour.since(now) }.strftime(TIME_FORMAT)
-		@lesson_plan.fields.build
-  end
+		build_default_fields
+	end
 
   def edit
 		@lesson_plan.fields.build
@@ -63,6 +63,19 @@ class LessonPlansController < ApplicationController
   end
 
   private
+
+  	def build_default_fields
+			%w[ Objectives 
+					Activities 
+					Assessments 
+					Homework 
+					Standards
+			].each do |field|
+				@lesson_plan.fields.build title: field
+			end
+			@lesson_plan.fields.build 
+		end
+
     def set_lesson_plan
       @lesson_plan = LessonPlan.lesson_plan_with_fields(params[:id])
     end
@@ -70,9 +83,10 @@ class LessonPlansController < ApplicationController
     def lesson_plan_params
       params.require(:lesson_plan)
 				.permit(:course_id,
-								:description,
+								:title,
 								:start,
 								:end,
 								fields_attributes: [:title, :description])
     end
+
 end

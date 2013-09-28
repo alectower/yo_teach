@@ -28,7 +28,7 @@
 		<col width="15%"/>
     <% @lesson_plans.each do |lesson_plan| %>
       <tr>
-        <td><%= link_to lesson_plan.description,
+        <td><%= link_to lesson_plan.title,
                 edit_lesson_plan_path(lesson_plan.id) %></td>
         <td><%= link_to lesson_plan.course_name,
                 edit_course_path(lesson_plan.course.id)%></td>

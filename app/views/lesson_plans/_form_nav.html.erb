@@ -5,14 +5,16 @@
 	<% lesson_plan.fields.each do |f| %>
 		<% unless f.title.nil? %>
 			<li>
-				<a href=<%= "##{f.title}-tab" %> data-toggle='tab'>
+				<a href=<%= "##{f.title.downcase}-tab"%> data-toggle='tab'>
 					<%= f.title %>
 				</a>
 			</li>
 		<% end %>
 	<% end %>
 	<li>
-		<a href='#add-tab' data-toggle='tab'>Add</a>
+		<a href='#add-tab' data-toggle='tab'>
+			Add
+		</a>
 	</li>
 </ul>
 

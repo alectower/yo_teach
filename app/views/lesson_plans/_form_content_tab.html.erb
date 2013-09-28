@@ -1,13 +1,21 @@
-<div id='content-tab' class='tab-pane'>
-	<div class="span7">
-		<div class='tabbable'>
-			<div class=<%= "##{field.title}-tab" %>>
-				<%= lesson_plan_form.fields_for :fields, lesson_plan.fields.select { |f| f == field } do |field| %>
-					<%= field.text_field :title, class: 'span4'%>
-					<%= field.text_area :description, rows: 10, class: 'span6'%>
-				<% end %>
-			</div>
+<% if field.title.nil? %>
+	<div id='add-tab' class='tab-pane'>
+		<div class='span7'>
+			<%= lesson_plan_form.fields_for :fields, lesson_plan.fields.last do |field| %>
+				<%= field.text_field :title, class: 'span4'%>
+				<%= field.text_area :description, rows: 10, class: 'span6'%>
+			<% end %>
+
 		</div>
 	</div>
-</div>
+<% else %>
 
+	<div id=<%= "#{field.title.downcase}-tab"%> class='tab-pane'>
+		<div class="span7">
+			<%= lesson_plan_form.fields_for :fields, lesson_plan.fields.select { |f| f == field } do |field| %>
+				<%= field.text_field :title, class: 'span4'%>
+				<%= field.text_area :description, rows: 10, class: 'span6'%>
+			<% end %>
+		</div>
+	</div>
+<% end %>

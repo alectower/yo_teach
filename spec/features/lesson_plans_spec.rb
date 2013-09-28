@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "LessonPlans" do
 
-	describe "GET /lessons_plans" do
+	describe "view lesson plans page" do
 		it "displays lesson plans and their attribtues" do
 			visit lesson_plans_path
 			page.should have_content /Lesson Plan Description/
@@ -13,10 +13,15 @@ describe "LessonPlans" do
 		end
 	end
 
-	describe "POST /lesson_plans" do
+	describe "create new lesson plan" do
 		it "displays navigation links" do
 			visit new_lesson_plan_path
 			page.should have_content /Details/
+			page.should have_content /Objectives/
+			page.should have_content /Activities/
+			page.should have_content /Assessments/
+			page.should have_content /Homework/
+			page.should have_content /Standards/
 			page.should have_content /Add/
 		end
 
@@ -27,7 +32,7 @@ describe "LessonPlans" do
 					visit new_lesson_plan_path
 					within '#details-tab' do
 						select 'Math', from: 'Course'
-						fill_in 'Description', with: 'Mitosis'
+						fill_in 'Lesson Title', with: 'Mitosis'
 						fill_in 'Start', with: DateTime.now
 						fill_in 'End', with: 1.hour.since(DateTime.now)
 					end
@@ -41,7 +46,7 @@ describe "LessonPlans" do
 					visit new_lesson_plan_path
 					within "#details-tab" do
 						select 'Math', from: 'Course'
-						fill_in 'Description', with: 'Mitosis'
+						fill_in 'Lesson Title', with: 'Mitosis'
 						fill_in 'Start', with: DateTime.now
 						fill_in 'End', with: 1.hour.since(DateTime.now)
 					end
@@ -57,17 +62,18 @@ describe "LessonPlans" do
 								fill_in 'Description', with: 'Read ch. 1-3'
 							end
 							click_button 'Create Lesson Plan'
-						}.to change(LessonPlanField, :count).by(1)
-						LessonPlanField.first.lesson_plan_id
-							.should eq LessonPlan.first.id
+						}.to change(LessonPlanField, :count).by(6)
 					end
 				end
 
-				context "blank custom lesson plan field" do
-					it "doesn't create blank lesson fields" do
+				context "custom lesson plan field without title" do
+					it "doesn't create blank titled lesson fields" do
 						expect {
+							within '#add-tab' do
+								fill_in 'Title', with: ''
+							end
 							click_button 'Create Lesson Plan'
-						}.to_not change(LessonPlanField, :count)
+						}.to change(LessonPlanField, :count).by 5
 					end
 				end
 			end
