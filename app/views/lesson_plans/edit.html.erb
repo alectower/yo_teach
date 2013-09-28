@@ -1,6 +1,6 @@
 <div class='heading'>
-	<h3><%= @lesson_plan.title %></h3>
-	<strong><%= @lesson_plan.course.name %> - <%= Date::DAYNAMES[@lesson_plan.start.to_date.wday] %>, <%= @lesson_plan.start.to_date %></strong>
+	<h3><%= @lesson_plan.course.name %> - <%= @lesson_plan.title %></h3>
+	<strong><%= Date::DAYNAMES[@lesson_plan.start.to_date.wday] %>, <%= @lesson_plan.start.to_date %></strong>
 </div>
 
 <%= render 'form', lesson_plan: @lesson_plan,
