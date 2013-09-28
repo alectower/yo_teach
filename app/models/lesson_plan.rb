@@ -17,7 +17,8 @@ class LessonPlan < ActiveRecord::Base
 
 	def self.lesson_plan_with_fields(id)
 		includes(:fields, :course)
-      .find(id)
+			.order("lesson_plan_fields.title asc")
+			.find(id)
 	end
 
 	def course_name

@@ -70,10 +70,10 @@ class LessonPlansController < ApplicationController
 					Assessments 
 					Homework 
 					Standards
-			].each do |field|
+			].sort.each do |field|
 				@lesson_plan.fields.build title: field
 			end
-			@lesson_plan.fields.build 
+			@lesson_plan.fields.build
 		end
 
     def set_lesson_plan
