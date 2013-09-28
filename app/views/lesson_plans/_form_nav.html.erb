@@ -2,8 +2,12 @@
 	<li class='active'>
 		<a href='#details-tab' data-toggle='tab'>Details</a>
 	</li>
-	<li>
-		<a href='#content-tab' data-toggle='tab'>Content</a>
-	</li>
+	<% lesson_plan.fields.each do |f| %>
+		<li>
+			<a href=<%= "##{f.title}-tab" %> data-toggle='tab'>
+				<%= f.title %>
+			</a>
+		</li>
+	<% end %>
 </ul>
 

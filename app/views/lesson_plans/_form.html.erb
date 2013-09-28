@@ -1,7 +1,7 @@
 <%= bootstrap_form_for lesson_plan do |form| %>
 
 	<div class='tabbable tabs-left'>
-		<%= render 'form_nav' %>
+		<%= render 'form_nav', lesson_plan: lesson_plan %>
 
 		<div class='tab-content'>
 			<%= render 'form_details_tab',
