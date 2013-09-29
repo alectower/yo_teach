@@ -33,9 +33,9 @@
 
 					.courses {
 						position: relative;
-						height: 100px;
+						height: 70%;
 						overflow: auto;
-						top: 25%;
+						top: 15px;
 
 						li > span {
 							float: right;
@@ -76,7 +76,7 @@
 
     .course {
         list-style: none;
-        margin: 2px 0 2px 5px;
+        margin: 2px 5px 2px 5px;
     }
 
     .day {
@@ -85,7 +85,7 @@
 			.add-lesson-plan {
 				position: absolute;
 				right: 7px;
-				bottom: 5px;
+				top: 1px;
 				display: none;
 			}
     }
