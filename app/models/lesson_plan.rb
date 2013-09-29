@@ -1,12 +1,16 @@
 class LessonPlan < ActiveRecord::Base
   belongs_to :course
-  has_many :fields, foreign_key: 'lesson_plan_id', class_name: 'LessonPlanField'
+  belongs_to :lesson_plan_status
+  has_many :fields, foreign_key: 'lesson_plan_id',
+    class_name: 'LessonPlanField'
   accepts_nested_attributes_for :fields,
-    reject_if: proc { |attrs| attrs[:title].blank? && attrs[:description].blank? }
+    reject_if: :empty_attributes
   validates_presence_of :title,
                         :course,
                         :start,
                         :end
+
+  TIME_FORMAT = "%I:%M %p"
 
   def self.monthly_lessons(date_range)
     includes(:course)
@@ -25,7 +29,6 @@ class LessonPlan < ActiveRecord::Base
     course.name
   end
 
-  TIME_FORMAT = "%I:%M %p"
   def start_date
     read_attribute(:start).to_date
   end
@@ -36,6 +39,15 @@ class LessonPlan < ActiveRecord::Base
 
   def end_time
     read_attribute(:end).strftime(TIME_FORMAT)
+  end
+
+  private
+
+  def empty_attributes
+    proc do |attrs|
+      attrs[:title].blank? &&
+        attrs[:description].blank?
+    end
   end
 
 end

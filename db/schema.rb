@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130928154444) do
+ActiveRecord::Schema.define(version: 20130929172457) do
 
   create_table "courses", force: true do |t|
     t.string   "name"
@@ -31,6 +31,13 @@ ActiveRecord::Schema.define(version: 20130928154444) do
 
   add_index "lesson_plan_fields", ["lesson_plan_id"], name: "index_lesson_plan_fields_on_lesson_plan_id"
 
+  create_table "lesson_plan_statuses", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "lesson_plans", force: true do |t|
     t.datetime "start"
     t.datetime "end"
@@ -38,9 +45,11 @@ ActiveRecord::Schema.define(version: 20130928154444) do
     t.integer  "course_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "lesson_plan_status_id"
   end
 
   add_index "lesson_plans", ["course_id"], name: "index_lesson_plans_on_course_id"
+  add_index "lesson_plans", ["lesson_plan_status_id"], name: "index_lesson_plans_on_lesson_plan_status_id"
   add_index "lesson_plans", ["start"], name: "index_lesson_plans_on_start"
 
   create_table "to_dos", force: true do |t|
