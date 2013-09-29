@@ -1,95 +1,93 @@
 #calendar {
 
-    table {
+  table {
 
-        caption {
+    caption {
 
-          position: relative;
-          width: 80%;
-          margin: auto;
-          padding: 0 0 1em 0;
-
-          #prev_month {
-            position: absolute;
-            top: 5px;
-            float: left;
-          }
-
-					#next_month {
-            position: absolute;
-            top: 5px;
-            right: 0;
-            float: right;
-          }
-        }
-    
-        width: 100%;
-        table-layout: fixed;
-
-        td {
-					padding: 0 2px 0 2px;
-					height: 110px;
-					border: 1px solid lightgray;
-
-					.courses {
-						position: relative;
-						height: 70%;
-						overflow: auto;
-						top: 15px;
-
-						li > span {
-							float: right;
-							color: #888;
-							font-size: 13px;
-						}
-					}
-        }   
-    }
-
-    @mixin date-base {
-        position: absolute;
-        top: 0;
-        width: 95%;
-        margin: 0 1px 0 1px;
-        border-radius: 5px;
-    }
-
-    @mixin date-span {
-      padding: 0 0 0 5px;
-    }
-
-    .date {
-        @include date-base;
-        background-color: #ececf0;
-        span {
-          @include date-span
-        }
-    }
-
-    .today {
-        @include date-base;
-        background-color: #dceaf4;
-        span {
-          @include date-span
-        }
-    }
-
-    .course {
-        list-style: none;
-        margin: 2px 5px 2px 5px;
-    }
-
-    .day {
       position: relative;
+      width: 80%;
+      margin: auto;
+      padding: 0 0 1em 0;
 
-			.add-lesson-plan {
-				position: absolute;
-				right: 7px;
-				top: 1px;
-				display: none;
-			}
+      #prev_month {
+        position: absolute;
+        top: 5px;
+        float: left;
+      }
+
+      #next_month {
+        position: absolute;
+        top: 5px;
+        right: 0;
+        float: right;
+      }
     }
 
-}
+    width: 100%;
+    table-layout: fixed;
 
+    td {
+      padding: 0 2px 0 2px;
+      height: 110px;
+      border: 1px solid lightgray;
+
+      .courses {
+        position: relative;
+        height: 70%;
+        overflow: auto;
+        top: 15px;
+
+        li > span {
+          float: right;
+          color: #888;
+          font-size: 13px;
+        }
+      }
+    }
+  }
+
+  @mixin date-base {
+    position: absolute;
+    top: 0;
+    width: 95%;
+    margin: 0 1px 0 1px;
+    border-radius: 5px;
+  }
+
+  @mixin date-span {
+    padding: 0 0 0 5px;
+  }
+
+  .date {
+    @include date-base;
+    background-color: #ececf0;
+    span {
+      @include date-span
+    }
+  }
+
+  .today {
+    @include date-base;
+    background-color: #dceaf4;
+    span {
+      @include date-span
+    }
+  }
+
+  .course {
+    list-style: none;
+    margin: 2px 5px 2px 5px;
+  }
+
+  .day {
+    position: relative;
+
+    .add-lesson-plan {
+      position: absolute;
+      right: 7px;
+      top: 1px;
+      display: none;
+    }
+  }
+}
 
