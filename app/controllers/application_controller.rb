@@ -4,8 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_filter :authorize
 
-	private
-	def authorize
-		Rack::MiniProfiler.authorize_request
-	end
+  private
+  def authorize
+    Rack::MiniProfiler.authorize_request
+  end
 end

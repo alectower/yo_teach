@@ -1,3 +1,3 @@
 class ToDo < ActiveRecord::Base
-	validates :body, presence: true
+  validates :body, presence: true
 end

@@ -1,20 +1,20 @@
 <ul class='nav nav-tabs'>
-	<li class='active'>
-		<a href='#details-tab' data-toggle='tab'>Details</a>
-	</li>
-	<% lesson_plan.fields.each do |f| %>
-		<% unless f.title.nil? %>
-			<li>
-				<a href=<%= "##{f.title.downcase}-tab"%> data-toggle='tab'>
-					<%= f.title %>
-				</a>
-			</li>
-		<% end %>
-	<% end %>
-	<li>
-		<a href='#add-tab' data-toggle='tab'>
-			Add
-		</a>
-	</li>
+  <li class='active'>
+    <a href='#details-tab' data-toggle='tab'>Details</a>
+  </li>
+  <% lesson_plan.fields.each do |f| %>
+    <% unless f.title.nil? %>
+      <li>
+        <a href=<%= "##{f.title.downcase}-tab"%> data-toggle='tab'>
+          <%= f.title %>
+        </a>
+      </li>
+    <% end %>
+  <% end %>
+  <li>
+    <a href='#add-tab' data-toggle='tab'>
+      Add
+    </a>
+  </li>
 </ul>
 

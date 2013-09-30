@@ -6,14 +6,14 @@ class CalendarController < ApplicationController
     render :calendar
   end
 
-	private
+  private
 
   def calendar_date
     year = params[:year].to_i
     month = params[:month].to_i
     year != 0 && month != 0 ?
-    	DateTime.new(year, month, 1) :
-    		DateTime.now.beginning_of_day
+      DateTime.new(year, month, 1) :
+        DateTime.now.beginning_of_day
   end
 
 end
