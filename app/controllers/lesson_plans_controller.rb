@@ -76,6 +76,7 @@ class LessonPlansController < ApplicationController
       @lesson_plan.fields.build title: field
     end
     @lesson_plan.fields.build
+    @lesson_plan.lesson_plan_status = LessonPlanStatus.find(1)
   end
 
   def set_lesson_plan
@@ -85,10 +86,11 @@ class LessonPlansController < ApplicationController
   def lesson_plan_params
     params.require(:lesson_plan)
       .permit(:course_id,
-            :title,
-            :start,
-            :end,
-            fields_attributes: [:id, :title, :description])
+              :lesson_plan_status_id,
+              :title,
+              :start,
+              :end,
+              fields_attributes: [:id, :title, :description])
   end
 
 end
