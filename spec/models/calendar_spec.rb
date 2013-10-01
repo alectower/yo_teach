@@ -5,7 +5,7 @@ describe Calendar do
     @date = DateTime.new(1984,6,26)
     @cal = Calendar.new @date
   end
-  
+
   it "knows the current month" do
     @cal.month.should eq("June")
   end

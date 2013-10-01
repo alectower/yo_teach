@@ -4,21 +4,21 @@ rval.reject! do |tbl|
 end
 
 rval.each do |t|
-	t.classify.constantize.delete_all
+  t.classify.constantize.delete_all
 end
 
 def time
-	month = DateTime.now.beginning_of_month
-	day = month.beginning_of_week
-	time = 8.hours.since day.beginning_of_day
+  month = DateTime.now.beginning_of_month
+  day = month.beginning_of_week
+  time = 8.hours.since day.beginning_of_day
 end
 
 def create_lesson_plans(course, *args)
-	t = time
-	args.each do |l|
-		FactoryGirl.create :lesson_plan_with_fields, course: course, title: l, start: t, end: 1.hour.since(t)
-		t += 2.days
-	end
+  t = time
+  args.each do |l|
+    FactoryGirl.create :lesson_plan_with_fields, course: course, title: l, start: t, end: 1.hour.since(t)
+    t += 2.days
+  end
 end
 
 c = FactoryGirl.create :course, name: 'Math'

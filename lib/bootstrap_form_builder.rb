@@ -61,21 +61,21 @@ module BootstrapFormBuilder
     end
 
     basic_helpers = %w{
-    									date_select
-    									time_select
-    									datetime_select
-    									date_field
-    									time_field
-    									datetime_local_field
-    									collection_select
-											text_field
-											text_area
-											select
-											email_field
-											password_field
-											check_box
-											number_field
-										}
+                      date_select
+                      time_select
+                      datetime_select
+                      date_field
+                      time_field
+                      datetime_local_field
+                      collection_select
+                      text_field
+                      text_area
+                      select
+                      email_field
+                      password_field
+                      check_box
+                      number_field
+                    }
 
     basic_helpers.each do |name|
       # First alias old method
@@ -94,12 +94,12 @@ module BootstrapFormBuilder
         ("<div class='#{wrapperClass}'>" +
             labelTag +
             "<div class='controls'>" +
-            	"<div class='#{prepend_icon ? 'input-prepend' : ''}'>" +
-								(prepend_icon ? "<span class='add-on'><i class=#{prepend_icon}></i></span>" : '') +
-								super(field, *args) +
-								(help_block ? @template.capture(&help_block) : "") +
-							"</div>" +
-							errorSpan +
+              "<div class='#{prepend_icon ? 'input-prepend' : ''}'>" +
+                (prepend_icon ? "<span class='add-on'><i class=#{prepend_icon}></i></span>" : '') +
+                super(field, *args) +
+                (help_block ? @template.capture(&help_block) : "") +
+              "</div>" +
+              errorSpan +
             "</div>" +
           "</div>"
         ).html_safe

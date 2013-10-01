@@ -7,6 +7,6 @@ FactoryGirl.define do
   end
 
   factory :invalid_to_do, parent: :to_do do
-  	body { nil }
-	end
+    body { nil }
+  end
 end
