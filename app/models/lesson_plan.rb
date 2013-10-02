@@ -4,11 +4,13 @@ class LessonPlan < ActiveRecord::Base
   has_many :fields, foreign_key: 'lesson_plan_id',
     class_name: 'LessonPlanField'
   accepts_nested_attributes_for :fields,
-    reject_if: :empty_attributes
+    reject_if: :empty_attrs
   validates_presence_of :title,
                         :course,
                         :start,
-                        :end
+                        :end,
+                        :course_id,
+                        :lesson_plan_status_id
 
   TIME_FORMAT = "%I:%M %p"
 
@@ -20,7 +22,7 @@ class LessonPlan < ActiveRecord::Base
   end
 
   def self.lesson_plan_with_fields(id)
-    includes(:fields, :course)
+    includes(:fields, :course, :lesson_plan_status)
       .order("lesson_plan_fields.title asc")
       .find(id)
   end
@@ -41,13 +43,10 @@ class LessonPlan < ActiveRecord::Base
     read_attribute(:end).strftime(TIME_FORMAT)
   end
 
-  private
-
-  def empty_attributes
-    proc do |attrs|
-      attrs[:title].blank? &&
-        attrs[:description].blank?
-    end
+  def empty_attrs(attrs)
+    attrs[:title].blank? &&
+      attrs[:description].blank?
   end
+
 
 end

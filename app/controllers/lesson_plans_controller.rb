@@ -14,9 +14,11 @@ class LessonPlansController < ApplicationController
     @lesson_plan = LessonPlan.new
     now = 8.hours.since DateTime.now.beginning_of_day
     start_time = params.fetch(:start) { now }
-    @lesson_plan.start = start_time.to_datetime.strftime(TIME_FORMAT)
+    @lesson_plan.start = start_time.to_datetime
+      .strftime(TIME_FORMAT)
     end_time = params.fetch(:end) { 1.hour.since(now) }
-    @lesson_plan.end = end_time.to_datetime.strftime(TIME_FORMAT)
+    @lesson_plan.end = end_time.to_datetime
+      .strftime(TIME_FORMAT)
     build_default_fields
   end
 
@@ -26,10 +28,11 @@ class LessonPlansController < ApplicationController
 
   def create
     @lesson_plan = LessonPlan.new(lesson_plan_params)
+    set_status
     respond_to do |format|
       if @lesson_plan.save
         flash[:notice] = 'Lesson plan was successfully created.'
-        format.html { redirect_to edit_lesson_plan_path @lesson_plan.id }
+        format.html { redirect_to edit_lesson_plan_path @lesson_plan }
         format.json { render :show,
                   status: :created, location: @lesson_plan }
       else
@@ -47,7 +50,7 @@ class LessonPlansController < ApplicationController
         format.html { redirect_to edit_lesson_plan_path @lesson_plan.id }
         format.json { head :no_content }
       else
-        format.html { render :edit }
+        format.html { render :new }
         format.json { render json: @lesson_plan.errors,
                   status: :unprocessable_entity }
       end
@@ -56,7 +59,7 @@ class LessonPlansController < ApplicationController
 
   def destroy
     if @lesson_plan.destroy
-      flash[:notice] = 'Lesson plan deleted successfully'
+      flash[:notice] = 'Lesson plan was successfully deleted.'
       respond_to do |format|
         format.html { redirect_to lesson_plans_path }
         format.json { head :no_content }
@@ -65,6 +68,12 @@ class LessonPlansController < ApplicationController
   end
 
   private
+
+  def set_status
+    @lesson_plan.lesson_plan_status_id = 1 if @lesson_plan.fields.all? { |f| f.description.empty? }
+    @lesson_plan.lesson_plan_status_id = 3 if @lesson_plan.fields.none? { |f| f.description.empty? }
+    @lesson_plan.lesson_plan_status_id = 2 if @lesson_plan.lesson_plan_status_id.nil?
+  end
 
   def build_default_fields
     %w[ Objectives
@@ -76,7 +85,6 @@ class LessonPlansController < ApplicationController
       @lesson_plan.fields.build title: field
     end
     @lesson_plan.fields.build
-    @lesson_plan.lesson_plan_status = LessonPlanStatus.find(1)
   end
 
   def set_lesson_plan
@@ -86,10 +94,10 @@ class LessonPlansController < ApplicationController
   def lesson_plan_params
     params.require(:lesson_plan)
       .permit(:course_id,
-              :lesson_plan_status_id,
               :title,
               :start,
               :end,
+              :lesson_plan_status_id,
               fields_attributes: [:id, :title, :description])
   end
 

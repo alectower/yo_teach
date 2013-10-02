@@ -14,6 +14,10 @@ describe "LessonPlans" do
   end
 
   describe "create new lesson plan" do
+    before :each do
+      FactoryGirl.create(:lesson_plan_status_empty)
+    end
+
     it "displays navigation links" do
       visit new_lesson_plan_path
       page.should have_content /Details/
@@ -38,6 +42,7 @@ describe "LessonPlans" do
           end
           click_button 'Create Lesson Plan'
         }.to change(LessonPlan, :count).by(1)
+        LessonPlan.first.lesson_plan_status_id.should eq 1
       end
 
       context "content tab" do

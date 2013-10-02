@@ -1,8 +1,16 @@
-<div class='heading'>
-  <h3><%= @lesson_plan.course.name %> - <%= @lesson_plan.title %></h3>
-  <strong><%= Date::DAYNAMES[@lesson_plan.start.to_date.wday] %>, <%= @lesson_plan.start.to_date %></strong>
+<div class='row'>
+  <div class='heading span4'>
+    <h3 class='span3'>
+      <%= @lesson_plan.course.name %> - <%= @lesson_plan.title %>
+    </h3>
+    <span class='lesson-plan-status badge badge-important'>
+      <%= @lesson_plan.lesson_plan_status.name %>
+    </span>
+    <strong class='span4'>
+      <%= Date::DAYNAMES[@lesson_plan.start.to_date.wday] %>, <%= @lesson_plan.start.to_date %>
+    </strong>
+  </div>
 </div>
 
 <%= render 'form', lesson_plan: @lesson_plan,
   submit_text: 'Update Lesson Plan' %>
-
