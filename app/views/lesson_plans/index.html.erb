@@ -1,6 +1,9 @@
 <div>
   <h2>Lesson Plans</h2>
   <i class='icon-plus'></i>&nbsp;<%= link_to 'New Lesson Plan', new_lesson_plan_path %>
+  <div class='course-list'>
+    <%= select :course, :id, Course.all.collect {|p| [ p.name, p.id ] }, { include_blank: 'All Courses' }  %>
+  </div>
 </div>
 <br/>
 <table class='table lesson-plans'>
