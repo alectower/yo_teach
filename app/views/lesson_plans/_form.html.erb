@@ -15,24 +15,18 @@
 
   <div class="control-group lesson-plan-submit">
     <div class="controls">
-      <div class='span2'>
-        <%= form.submit submit_text,
-          class: 'btn btn-primary' %>
-      </div>
-      <div class='span1'>
-        <%= link_to 'Cancel', lesson_plans_path,
-          class: 'btn' %>
-      </div>
-      <div class='span1'>
-        <%=
-          unless lesson_plan.id.nil?
-            link_to 'Delete', lesson_plan_path(lesson_plan),
-              data: { confirm: 'Are you sure?' },
-              method: :delete,
-              class: 'btn'
-          end
-        %>
-      </div>
+      <%= form.submit submit_text,
+        class: 'btn btn-primary' %>
+      <%= link_to 'Cancel', lesson_plans_path,
+        class: 'btn' %>
+      <%=
+        unless lesson_plan.id.nil?
+          link_to 'Delete', lesson_plan_path(lesson_plan),
+            data: { confirm: 'Are you sure?' },
+            method: :delete,
+            class: 'btn'
+        end
+      %>
     </div>
   </div>
 
