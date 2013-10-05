@@ -37,7 +37,17 @@
         overflow: auto;
         top: 15px;
 
-        li > span {
+        .status-underline1 {
+          border-bottom: 3px solid #b94a48;
+        }
+        .status-underline2 {
+          border-bottom: 3px solid #f89406;
+        }
+        .status-underline3 {
+          border-bottom: 3px solid #468847;
+        }
+
+        li span.time {
           float: right;
           color: #888;
           font-size: 13px;

@@ -1,18 +1,19 @@
-#lesson-plans {
-  height: 350px;
-  overflow: auto;
-}
-
 .lesson-plan {
   width: 100%;
   margin: 0 auto;
 }
 
 .lesson-plan-submit {
-  position: absolute;
-  bottom: 40px;
+  margin-top: 20px;
 }
 
 .lesson-plan-status {
   margin-top: 2%;
+}
+
+.lesson-plans {
+  th:not(:first-child),
+  td:not(:first-child) {
+    text-align: center;
+  }
 }

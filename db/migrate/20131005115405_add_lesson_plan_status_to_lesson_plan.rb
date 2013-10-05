@@ -1,6 +1,5 @@
 class AddLessonPlanStatusToLessonPlan < ActiveRecord::Migration
   def change
-    add_reference :lesson_plans,
-      :lesson_plan_status, index: true
+    add_column :lesson_plans, :status, :int
   end
 end

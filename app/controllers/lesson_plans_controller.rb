@@ -28,7 +28,6 @@ class LessonPlansController < ApplicationController
 
   def create
     @lesson_plan = LessonPlan.new(lesson_plan_params)
-    set_status
     respond_to do |format|
       if @lesson_plan.save
         flash[:notice] = 'Lesson plan was successfully created.'
@@ -36,6 +35,7 @@ class LessonPlansController < ApplicationController
         format.json { render :show,
                   status: :created, location: @lesson_plan }
       else
+        flash[:error] = 'Lesson plan failed to be created.'
         format.html { render :new }
         format.json { render json: @lesson_plan.errors,
                   status: :unprocessable_entity }
@@ -50,6 +50,7 @@ class LessonPlansController < ApplicationController
         format.html { redirect_to edit_lesson_plan_path @lesson_plan }
         format.json { head :no_content }
       else
+        flash[:error] = 'Lesson plan failed to be updated.'
         format.html { render :new }
         format.json { render json: @lesson_plan.errors,
                   status: :unprocessable_entity }
@@ -68,12 +69,6 @@ class LessonPlansController < ApplicationController
   end
 
   private
-
-  def set_status
-    @lesson_plan.lesson_plan_status_id = 1 if @lesson_plan.fields.all? { |f| f.description.empty? }
-    @lesson_plan.lesson_plan_status_id = 3 if @lesson_plan.fields.none? { |f| f.description.empty? }
-    @lesson_plan.lesson_plan_status_id = 2 if @lesson_plan.lesson_plan_status_id.nil?
-  end
 
   def build_default_fields
     %w[ Objectives
@@ -97,7 +92,7 @@ class LessonPlansController < ApplicationController
               :title,
               :start,
               :end,
-              :lesson_plan_status_id,
+              :status,
               fields_attributes: [:id, :title, :description])
   end
 
