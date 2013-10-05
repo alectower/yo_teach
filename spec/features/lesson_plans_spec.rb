@@ -15,7 +15,7 @@ describe "LessonPlans" do
 
   describe "create new lesson plan" do
     before :each do
-      FactoryGirl.create(:lesson_plan_status_empty)
+      FactoryGirl.create(:lesson_plan_status)
     end
 
     it "displays navigation links" do
@@ -61,6 +61,7 @@ describe "LessonPlans" do
         context "new custom lesson plan field" do
           it "associates field with lesson plan" do
             expect {
+              p LessonPlanStatus.all
               page.should have_content /Add/
               within '#add-tab' do
                 fill_in 'Title', with: 'Homework'

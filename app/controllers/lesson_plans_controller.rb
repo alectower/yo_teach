@@ -47,7 +47,7 @@ class LessonPlansController < ApplicationController
     respond_to do |format|
       if @lesson_plan.update(lesson_plan_params)
         flash[:notice] = 'Lesson plan was successfully updated.'
-        format.html { redirect_to edit_lesson_plan_path @lesson_plan.id }
+        format.html { redirect_to edit_lesson_plan_path @lesson_plan }
         format.json { head :no_content }
       else
         format.html { render :new }

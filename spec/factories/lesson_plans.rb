@@ -7,6 +7,7 @@ FactoryGirl.define do
     lp.end { 1.hour.since start_datetime }
     lp.title { Faker::Lorem.sentence(1) }
     lp.course
+    lp.lesson_plan_status
   end
 
   factory :invalid_lesson_plan, parent: :lesson_plan do |lp|
@@ -14,6 +15,7 @@ FactoryGirl.define do
     lp.end { 1.day.from_now.to_datetime }
     lp.title { nil }
     lp.course
+    lp.lesson_plan_status
   end
 
   factory :lesson_plan_with_fields, parent: :lesson_plan do |lp|
@@ -22,6 +24,7 @@ FactoryGirl.define do
     lp.end { 1.hour.since start_datetime }
     lp.title { 'Area' }
     lp.course
+    lp.lesson_plan_status
     after(:create) do |l|
       %w[
           Objectives
