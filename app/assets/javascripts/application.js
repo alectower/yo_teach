@@ -15,5 +15,6 @@
 //= require bootstrap
 //= require calendar
 //= require courses
+//= require lesson_plans
 //= require to_dos
 //= require turbolinks
