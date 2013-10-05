@@ -6,6 +6,7 @@ describe "LessonPlans" do
     it "displays lesson plans and their attribtues" do
       visit lesson_plans_path
       page.should have_content /Lesson Plan Title/
+      page.should have_content /Status/
       page.should have_content /Course/
       page.should have_content /Date/
       page.should have_content /Start Time/
@@ -14,9 +15,6 @@ describe "LessonPlans" do
   end
 
   describe "create new lesson plan" do
-    before :each do
-      FactoryGirl.create(:lesson_plan_status)
-    end
 
     it "displays navigation links" do
       visit new_lesson_plan_path
@@ -42,7 +40,7 @@ describe "LessonPlans" do
           end
           click_button 'Create Lesson Plan'
         }.to change(LessonPlan, :count).by(1)
-        LessonPlan.first.lesson_plan_status_id.should eq 1
+        LessonPlan.first.status.should eq 1
       end
 
       context "content tab" do
@@ -61,7 +59,6 @@ describe "LessonPlans" do
         context "new custom lesson plan field" do
           it "associates field with lesson plan" do
             expect {
-              p LessonPlanStatus.all
               page.should have_content /Add/
               within '#add-tab' do
                 fill_in 'Title', with: 'Homework'

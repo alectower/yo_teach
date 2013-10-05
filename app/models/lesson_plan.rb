@@ -1,8 +1,7 @@
 class LessonPlan < ActiveRecord::Base
   belongs_to :course
-  belongs_to :lesson_plan_status
   has_many :fields, foreign_key: 'lesson_plan_id',
-    class_name: 'LessonPlanField'
+    class_name: 'LessonPlanField', dependent: :destroy
   accepts_nested_attributes_for :fields,
     reject_if: :empty_attrs
   validates_presence_of :title,
@@ -10,9 +9,15 @@ class LessonPlan < ActiveRecord::Base
                         :start,
                         :end,
                         :course_id,
-                        :lesson_plan_status_id
+                        :status
+  validates_inclusion_of :status, in: 1..3
+  before_validation :update_status
 
   TIME_FORMAT = "%I:%M %p"
+
+  EMPTY = 1
+  IN_PROGRESS = 2
+  COMPLETE = 3
 
   def self.monthly_lessons(date_range)
     includes(:course)
@@ -22,7 +27,7 @@ class LessonPlan < ActiveRecord::Base
   end
 
   def self.lesson_plan_with_fields(id)
-    includes(:fields, :course, :lesson_plan_status)
+    includes(:fields, :course)
       .order("lesson_plan_fields.title asc")
       .find(id)
   end
@@ -48,5 +53,23 @@ class LessonPlan < ActiveRecord::Base
       attrs[:description].blank?
   end
 
+  def status_text
+    case self.status
+    when EMPTY
+      'Empty'
+    when IN_PROGRESS
+      'In Progress'
+    when COMPLETE
+      'Complete'
+    end
+  end
+
+  private
+
+  def update_status
+    self.status = IN_PROGRESS if !fields.empty? && fields.any? { |f| !f.description.blank? }
+    self.status = EMPTY if fields.empty? || fields.all? { |f| f.description.blank? }
+    self.status = COMPLETE if !fields.empty? && fields.all? { |f| !f.description.blank? }
+  end
 
 end
