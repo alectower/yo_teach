@@ -27,6 +27,7 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'database_cleaner', '1.0.1'
   gem 'metric_fu', require: false
+  gem 'simplecov', require: false
   gem 'brakeman', require: false
   gem 'turbulence', require: false
 end
