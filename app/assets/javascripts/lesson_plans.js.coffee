@@ -9,15 +9,6 @@ class LessonPlan
       plugins: 'fullscreen table'
       tools: 'inserttable'
 
-  this.updateNavBar = ->
-    console.log $('.mce-fullscreen')
-    appNav = $('.app-nav')
-    if $('.mce-fullscreen').empty?
-      appNav.show()
-    else
-      appNav.hide()
-
-
   this.filter = ->
     $('.course-list').change ->
       course = $(this).find('select :selected').text()
@@ -36,4 +27,3 @@ $(document).ready ->
 $(document).on 'page:load', ->
   LessonPlan.filter()
   LessonPlan.initTinyMce()
-$(document).on 'change', LessonPlan.updateNavBar
