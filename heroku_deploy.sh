@@ -11,3 +11,4 @@ heroku run rake db:migrate
 git rm -rf public/assets
 git commit -m 'Removing compiled assets'
 
+
