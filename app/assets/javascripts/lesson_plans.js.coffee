@@ -1,5 +1,23 @@
 class LessonPlan
 
+  this.initTinyMce = ->
+    tinymce.init
+      menubar: 'edit view format table'
+      selector: 'textarea'
+      height: '300px'
+      autoresize: true
+      plugins: 'fullscreen table'
+      tools: 'inserttable'
+
+  this.updateNavBar = ->
+    console.log $('.mce-fullscreen')
+    appNav = $('.app-nav')
+    if $('.mce-fullscreen').empty?
+      appNav.show()
+    else
+      appNav.hide()
+
+
   this.filter = ->
     $('.course-list').change ->
       course = $(this).find('select :selected').text()
@@ -12,5 +30,10 @@ class LessonPlan
         return $(this).text().indexOf(courseName) == -1
       .parent().hide()
 
-$(document).ready LessonPlan.filter
-$(document).on 'page:load', LessonPlan.filter
+$(document).ready ->
+  LessonPlan.filter()
+  LessonPlan.initTinyMce()
+$(document).on 'page:load', ->
+  LessonPlan.filter()
+  LessonPlan.initTinyMce()
+$(document).on 'change', LessonPlan.updateNavBar

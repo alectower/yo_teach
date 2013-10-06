@@ -14,7 +14,7 @@
     <div class="span7">
       <%= lesson_plan_form.fields_for :fields, lesson_plan.fields.select { |f| f == field } do |field| %>
         <%= field.text_field :title, class: 'span4'%>
-        <%= field.text_area :description, rows: 10, class: 'span6'%>
+        <%= field.text_area :description, class: 'span6'%>
       <% end %>
     </div>
   </div>
