@@ -9,9 +9,9 @@ describe Course do
     FactoryGirl.build(:course, name: nil).should_not be_valid
   end
 
-  it "has a unique name" do
+  it "allows non-unique name" do
     FactoryGirl.create(:course)
-    FactoryGirl.build(:course).should_not be_valid
+    FactoryGirl.build(:course).should be_valid
   end
 
   it "is invalid without a start date" do
