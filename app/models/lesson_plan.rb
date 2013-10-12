@@ -32,6 +32,53 @@ class LessonPlan < ActiveRecord::Base
       .find(id)
   end
 
+  def self.search(args)
+    return all if args.each_value.all? { |v| v.blank? }
+
+    args.each_value do |v|
+      v.downcase! unless v.blank? ||
+        !v.respond_to?(:downcase?)
+    end
+
+    rel = all
+    rel = by_sort(args, rel)
+    rel = by_title(args, rel)
+    rel = by_course(args, rel)
+    rel
+  end
+
+
+  def self.by_title(args, rel = none)
+    if !args[:search].blank?
+        rel.where('lower(title) like ?', "%#{args[:search]}%")
+    else
+      rel
+    end
+  end
+
+  def self.by_course(args, rel = none)
+    if !args[:course].blank?
+      rel.where(course_id: args[:course])
+    else
+      rel
+    end
+  end
+
+  def self.by_sort(args, rel = none)
+    column = args[:sort]
+    if !column.blank?
+      direction = args[:direction]
+      if column == 'course_name'
+        rel.includes(:course)
+          .order("courses.name #{sort_direction(direction)}")
+      else
+        rel.order("#{sort_column(column)} #{sort_direction(direction)}")
+      end
+    else
+      rel
+    end
+  end
+
   def course_name
     course.name
   end
@@ -59,9 +106,6 @@ class LessonPlan < ActiveRecord::Base
     end
   end
 
-  def self.search_by_title(search_terms)
-    search_terms.blank? ? LessonPlan.all : LessonPlan.where("title LIKE ?", "%#{search_terms}%")
-  end
 
   private
 
@@ -75,4 +119,13 @@ class LessonPlan < ActiveRecord::Base
     self.status = EMPTY if fields.empty? || fields.all? { |f| f.description.blank? }
     self.status = COMPLETE if !fields.empty? && fields.all? { |f| !f.description.blank? }
   end
+
+  def self.sort_column(col)
+    LessonPlan.column_names.include?(col) ? col : 'title'
+  end
+
+  def self.sort_direction(dir)
+    %w[asc desc].include?(dir) ? dir : 'asc'
+  end
+
 end

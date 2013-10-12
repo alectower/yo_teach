@@ -4,12 +4,7 @@ class LessonPlansController < ApplicationController
   TIME_FORMAT = "%Y-%m-%dT%H:%M"
 
   def index
-    @lesson_plans = if params[:sort] == 'name'
-      LessonPlan.includes(:course)
-        .order("courses.name #{sort_direction}")
-    else
-      LessonPlan.order("#{sort_column} #{sort_direction}")
-    end
+    @lesson_plans = LessonPlan.search(params)
   end
 
   def show
@@ -80,22 +75,12 @@ class LessonPlansController < ApplicationController
 
   private
 
-  def sort_column
-    LessonPlan.column_names.include?(params[:sort]) ?
-      params[:sort] : "title"
-  end
-
-  def sort_direction
-    %w[asc desc].include?(params[:direction]) ?
-      params[:direction] : "asc"
-  end
-
   def build_default_fields
     %w[ Objectives
-          Activities
-          Assessments
-          Homework
-          Standards
+        Activities
+        Assessments
+        Homework
+        Standards
     ].sort.each do |field|
       @lesson_plan.fields.build title: field
     end

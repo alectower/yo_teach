@@ -5,7 +5,7 @@
   </div>
   <div class='course-list'>
     <%= select :course, :id, Course.all.collect {|p| [ p.name, p.name ] }, { include_blank: 'All Courses' }, style: 'margin-right: 20px'  %>
-    <%= form_tag search_lesson_plans_path, method: 'get', style: 'display: inline' do %>
+    <%= form_tag lesson_plans_path, method: 'get', style: 'display: inline' do %>
       <%= text_field_tag :search, params[:search], placeholder: 'Search by Lesson Plan Title' %>
       <%= submit_tag 'Search', class: 'btn btn-small', style: 'margin-bottom: 10px' %>
     <% end %>
@@ -22,20 +22,20 @@
     <thead>
       <tr>
         <th>
-          <%= sortable column: 'title',
+          <%= sortable sort: 'title',
             title: 'Lesson Plan Title' %>
           <%= sort_image 'title' %>
         </th>
         <th>
-          <%= sortable column: 'status' %>
+          <%= sortable sort: 'status' %>
           <%= sort_image 'status' %>
         </th>
         <th>
-          <%= sortable column: 'name', title: 'Course' %>
+          <%= sortable sort: 'course_name', title: 'Course' %>
           <%= sort_image 'name' %>
         </th>
         <th>
-          <%= sortable column: 'start', title: 'Date' %>
+          <%= sortable sort: 'start', title: 'Date' %>
           <%= sort_image 'start' %>
         </td>
         <th>Start Time</td>

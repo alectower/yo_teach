@@ -20,6 +20,8 @@ class LessonPlan
       $('.lesson-plans table td:nth-child(3)').filter ->
         return $(this).text().indexOf(courseName) == -1
       .parent().hide()
+      $('th a').attr('href', ->
+        this + '&course=' + courseName)
 
 $(document).ready ->
   LessonPlan.filter()
