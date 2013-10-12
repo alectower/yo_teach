@@ -73,7 +73,6 @@ class LessonPlan < ActiveRecord::Base
     end
   end
 
-
   private
 
   def empty_attrs(attrs)
