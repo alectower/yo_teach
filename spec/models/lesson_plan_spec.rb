@@ -72,12 +72,12 @@ describe LessonPlan do
 
     it "cannot be found with blank search terms" do
       results = LessonPlan.search_by_title('')
-      results.size.should eq(0)
+      results.size.should eq(3)
     end
 
     it "cannot be found with nil search terms" do
       results = LessonPlan.search_by_title(nil)
-      results.size.should eq(0)
+      results.size.should eq(3)
     end
   end
 end
