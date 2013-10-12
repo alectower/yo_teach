@@ -1,8 +1,10 @@
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 
-require 'simplecov'
-SimpleCov.start 'rails'
+if ENV["RAILS_ENV"] == 'development'
+  require 'simplecov'
+  SimpleCov.start 'rails'
+end
 
 require 'rspec/rails'
 require 'rspec/autorun'
