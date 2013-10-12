@@ -59,6 +59,10 @@ class LessonPlan < ActiveRecord::Base
     end
   end
 
+  def self.search_by_title(search_terms)
+    search_terms == "" ? [] : LessonPlan.where("title LIKE ?", "%#{search_terms}%")
+  end
+
   private
 
   def empty_attrs(attrs)
@@ -71,5 +75,4 @@ class LessonPlan < ActiveRecord::Base
     self.status = EMPTY if fields.empty? || fields.all? { |f| f.description.blank? }
     self.status = COMPLETE if !fields.empty? && fields.all? { |f| !f.description.blank? }
   end
-
 end

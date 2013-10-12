@@ -48,6 +48,10 @@ class LessonPlansController < ApplicationController
     end
   end
 
+  def search
+    @lesson_plans = LessonPlan.search_by_title(params[:search])
+  end
+
   def update
     respond_to do |format|
       if @lesson_plan.update(lesson_plan_params)
