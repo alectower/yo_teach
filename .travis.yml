@@ -7,5 +7,6 @@ bundler_args:
   - --without development
 deploy:
   provider: heroku
+  app: yoteach
   api_key:
     secure: K3+GYhFAV4Yx8Gcyn5p8IAWuM8lllWpwmtqOQ8524e+AuZKbzl+5Th3Hy1XwaeIYHFgrTw3m2XT9KDLAWQSFJtgST7BBh2T2z0rHD4dDYWYjw1/mouwtX/zjU/qHWTISTFBJOHcg6h5L8dz254L+cFSLeliA2I8gB8LBQNb52wY=
