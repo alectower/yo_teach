@@ -25,6 +25,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 2.14.0.rc1'
   gem 'sqlite3'
   gem 'capybara'
+  gem 'poltergeist'
   gem 'selenium-webdriver'
   gem 'database_cleaner', '1.0.1'
   gem 'metric_fu', require: false
