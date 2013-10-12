@@ -53,4 +53,31 @@ describe LessonPlan do
     end
   end
 
+  context "when searching for a lesson plan" do
+    before do
+      math = FactoryGirl.create(:lesson_plan, title: 'Area')
+      english = FactoryGirl.create(:lesson_plan, title: 'Dare to be Great')
+      math2 = FactoryGirl.create(:lesson_plan, title: "Circumference")
+    end
+
+    it "can be found by title" do
+      results = LessonPlan.search_by_title('area')
+      results.size.should eq(1)
+    end
+
+    it "can be found by partial title" do
+      results = LessonPlan.search_by_title('are')
+      results.size.should eq(2)
+    end
+
+    it "cannot be found with blank search terms" do
+      results = LessonPlan.search_by_title('')
+      results.size.should eq(0)
+    end
+
+    it "cannot be found with nil search terms" do
+      results = LessonPlan.search_by_title(nil)
+      results.size.should eq(0)
+    end
+  end
 end
