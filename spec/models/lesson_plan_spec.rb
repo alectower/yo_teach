@@ -74,5 +74,10 @@ describe LessonPlan do
       results = LessonPlan.search_by_title('')
       results.size.should eq(0)
     end
+
+    it "cannot be found with nil search terms" do
+      results = LessonPlan.search_by_title(nil)
+      results.size.should eq(0)
+    end
   end
 end
