@@ -45,6 +45,7 @@ class LessonPlansController < ApplicationController
 
   def search
     @lesson_plans = LessonPlan.search_by_title(params[:search])
+    render :index
   end
 
   def update
