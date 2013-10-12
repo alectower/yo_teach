@@ -99,4 +99,21 @@ describe "LessonPlans" do
       end
     end
   end
+
+  describe 'user searches for lesson plan(s)' do
+    it "returns the correct lesson plan(s)" do
+      math = FactoryGirl.create :course
+      math.lesson_plans << FactoryGirl.create(:lesson_plan, title: "Area")
+      math.lesson_plans << FactoryGirl.create(:lesson_plan, title: "Barely Multiplication")
+      math.lesson_plans << FactoryGirl.create(:lesson_plan, title: "Circumference")
+      visit lesson_plans_path
+      page.should have_content /Lesson Plans/
+      page.should have_content /Area/
+      page.should have_content /Barely Multiplication/
+      page.should have_content /Circumference/
+      fill_in "search", with: "are"
+      click_button "Search"
+      page.should_not have_content("Circumference")
+    end
+  end
 end

@@ -92,4 +92,12 @@ describe LessonPlansController do
     end
   end
 
+  describe "GET #search" do
+    it "sets the @lesson_plans variable to the searched for lesson plans" do
+      math = FactoryGirl.create(:lesson_plan, title: 'Area')
+      get :search, search: 'are'
+      assigns(:lesson_plans).size.should eq (1)
+    end
+  end
+
 end

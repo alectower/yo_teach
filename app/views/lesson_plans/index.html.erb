@@ -1,8 +1,14 @@
 <div>
   <h2>Lesson Plans</h2>
-  <i class='icon-plus'></i>&nbsp;<%= link_to 'New Lesson Plan', new_lesson_plan_path %>
+  <div style='float: left'>
+    <i class='icon-plus'></i>&nbsp;<%= link_to 'New Lesson Plan', new_lesson_plan_path %>
+  </div>
   <div class='course-list'>
-    <%= select :course, :id, Course.all.collect {|p| [ p.name, p.name ] }, { include_blank: 'All Courses' }  %>
+    <%= select :course, :id, Course.all.collect {|p| [ p.name, p.name ] }, { include_blank: 'All Courses' }, style: 'margin-right: 20px'  %>
+    <%= form_tag search_lesson_plans_path, method: 'get', style: 'display: inline' do %>
+      <%= text_field_tag :search, params[:search], placeholder: 'Search by Lesson Plan Title' %>
+      <%= submit_tag 'Search', class: 'btn btn-small', style: 'margin-bottom: 10px' %>
+    <% end %>
   </div>
 </div>
 <br/>
