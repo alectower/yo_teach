@@ -84,9 +84,13 @@ describe "LessonPlans" do
   end
 
   describe 'edit lesson plan' do
-    let(:datetime) { DateTime.now }
+    let(:datetime) { DateTime.new(2013, 6, 26) }
     before :each do
-      c = FactoryGirl.create :course_with_lesson_plan_field
+      c = FactoryGirl.create :course_with_lesson_plan_field do |course|
+        l = course.lesson_plans.first
+        l.start = datetime
+        l.save!
+      end
       visit edit_lesson_plan_path c.lesson_plans.first.id
     end
 
@@ -94,7 +98,7 @@ describe "LessonPlans" do
       within '.heading' do
         page.should have_content /Area/
         page.should have_content /Math/
-        page.should have_content Date::DAYNAMES[datetime.to_date.wday]
+        page.should have_content /Wednesday/
         page.should have_content datetime.to_date
       end
     end
