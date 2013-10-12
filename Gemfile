@@ -21,17 +21,20 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-group :development, :test do
-  gem 'rspec-rails', '~> 2.14.0.rc1'
+group :development do
   gem 'sqlite3'
-  gem 'capybara'
-  gem 'poltergeist'
-  gem 'selenium-webdriver'
-  gem 'database_cleaner', '1.0.1'
   gem 'metric_fu', require: false
   gem 'simplecov', require: false
   gem 'brakeman', require: false
   gem 'turbulence', require: false
+end
+
+group :development, :test do
+  gem 'rspec-rails', '~> 2.14.0.rc1'
+  gem 'capybara'
+  gem 'poltergeist'
+  gem 'selenium-webdriver'
+  gem 'database_cleaner', '1.0.1'
 end
 
 gem 'factory_girl_rails', '~> 4.0'
