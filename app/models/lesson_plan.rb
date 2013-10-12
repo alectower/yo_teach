@@ -60,7 +60,8 @@ class LessonPlan < ActiveRecord::Base
   end
 
   def self.search_by_title(search_terms)
-    search_terms.blank? ? LessonPlan.all : LessonPlan.where("title LIKE ?", "%#{search_terms}%")
+    search_terms.blank? ? LessonPlan.all :
+                          LessonPlan.where("lower(title) LIKE ?", "%#{search_terms.downcase}%")
   end
 
   private
