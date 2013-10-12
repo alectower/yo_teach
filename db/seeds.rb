@@ -26,6 +26,8 @@ create_lesson_plans(c, "Area", "Circumference", "Pythagorean Theorem")
 c = FactoryGirl.create :course, name: 'English'
 create_lesson_plans(c, "Grammar", "Rhetoric", "Style of Speech")
 
-4.times do
-  FactoryGirl.create :to_do
-end
+FactoryGirl.create :to_do, body: 'Create math exam'
+FactoryGirl.create :to_do, body: 'Grade english papers'
+FactoryGirl.create :to_do, body: 'Fill out report cards'
+FactoryGirl.create :to_do, body: 'Talk to Billy about his behavior in class'
+

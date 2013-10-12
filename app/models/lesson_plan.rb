@@ -48,11 +48,6 @@ class LessonPlan < ActiveRecord::Base
     read_attribute(:end).strftime(TIME_FORMAT)
   end
 
-  def empty_attrs(attrs)
-    attrs[:title].blank? &&
-      attrs[:description].blank?
-  end
-
   def status_text
     case self.status
     when EMPTY
@@ -65,6 +60,11 @@ class LessonPlan < ActiveRecord::Base
   end
 
   private
+
+  def empty_attrs(attrs)
+    attrs[:title].blank? &&
+      attrs[:description].blank?
+  end
 
   def update_status
     self.status = IN_PROGRESS if !fields.empty? && fields.any? { |f| !f.description.blank? }

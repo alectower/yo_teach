@@ -15,10 +15,23 @@
     <col width="15%"/>
     <thead>
       <tr>
-        <th>Lesson Plan Title</th>
-        <th>Status</th>
-        <th>Course</th>
-        <th>Date</td>
+        <th>
+          <%= sortable column: 'title',
+            title: 'Lesson Plan Title' %>
+          <%= sort_image 'title' %>
+        </th>
+        <th>
+          <%= sortable column: 'status' %>
+          <%= sort_image 'status' %>
+        </th>
+        <th>
+          <%= sortable column: 'name', title: 'Course' %>
+          <%= sort_image 'name' %>
+        </th>
+        <th>
+          <%= sortable column: 'start', title: 'Date' %>
+          <%= sort_image 'start' %>
+        </td>
         <th>Start Time</td>
         <th>End Time</td>
       </tr>
@@ -35,7 +48,7 @@
     <% @lesson_plans.each do |lesson_plan| %>
       <tr>
         <td><%= link_to lesson_plan.title,
-                edit_lesson_plan_path(lesson_plan.id) %></td>
+              edit_lesson_plan_path(lesson_plan.id) %></td>
         <td>
           <span class="<%= status_class(lesson_plan) %>">
             <%= lesson_plan.status_text %>
