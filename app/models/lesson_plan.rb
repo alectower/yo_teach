@@ -41,42 +41,9 @@ class LessonPlan < ActiveRecord::Base
     end
 
     rel = all
-    rel = by_sort(args, rel)
-    rel = by_title(args, rel)
-    rel = by_course(args, rel)
-    rel
-  end
-
-
-  def self.by_title(args, rel = none)
-    if !args[:search].blank?
-        rel.where('lower(title) like ?', "%#{args[:search]}%")
-    else
-      rel
-    end
-  end
-
-  def self.by_course(args, rel = none)
-    if !args[:course].blank?
-      rel.where(course_id: args[:course])
-    else
-      rel
-    end
-  end
-
-  def self.by_sort(args, rel = none)
-    column = args[:sort]
-    if !column.blank?
-      direction = args[:direction]
-      if column == 'course_name'
-        rel.includes(:course)
-          .order("courses.name #{sort_direction(direction)}")
-      else
-        rel.order("#{sort_column(column)} #{sort_direction(direction)}")
-      end
-    else
-      rel
-    end
+    rel = by_sort(args[:sort], args[:direction], rel)
+    rel = by_title(args[:search], rel)
+    rel = by_course(args[:course], rel)
   end
 
   def course_name
@@ -118,6 +85,27 @@ class LessonPlan < ActiveRecord::Base
     self.status = IN_PROGRESS if !fields.empty? && fields.any? { |f| !f.description.blank? }
     self.status = EMPTY if fields.empty? || fields.all? { |f| f.description.blank? }
     self.status = COMPLETE if !fields.empty? && fields.all? { |f| !f.description.blank? }
+  end
+
+  def self.by_title(title, rel = none)
+    !title.blank? ? rel.where('lower(title) like ?', "%#{title}%") : rel
+  end
+
+  def self.by_course(course_id, rel = none)
+    !course_id.blank? ? rel.where(course_id: course_id) : rel
+  end
+
+  def self.by_sort(column, direction, rel = none)
+    if !column.blank?
+      if column == 'course_name'
+        rel.includes(:course)
+          .order("courses.name #{sort_direction(direction)}")
+      else
+        rel.order("#{sort_column(column)} #{sort_direction(direction)}")
+      end
+    else
+      rel
+    end
   end
 
   def self.sort_column(col)
