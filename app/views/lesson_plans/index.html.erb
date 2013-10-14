@@ -4,9 +4,11 @@
     <i class='icon-plus'></i>&nbsp;<%= link_to 'New Lesson Plan', new_lesson_plan_path %>
   </div>
   <div class='course-list'>
-    <%= select :course, :id, Course.all.collect {|c| [ c.name, c.id ] }, { selected: params[:course], include_blank: 'All Courses' }, style: 'margin-right: 20px'  %>
+    <span id='dropdown'>
+      <%= select :course, :id, Course.all.collect {|c| [ c.name, c.id ] }, { selected: params[:course], include_blank: 'All Courses' }, style: 'margin-right: 20px'  %>
+    </span>
     <%= form_tag lesson_plans_path, method: 'get', style: 'display: inline' do %>
-      <%= hidden_field_tag 'course', params[:course] if params[:course] %>
+      <%= hidden_field_tag :course, params[:course] %>
       <%= text_field_tag :search, params[:search], placeholder: 'Search by Lesson Plan Title' %>
       <%= submit_tag 'Search', class: 'btn btn-small', style: 'margin-bottom: 10px' %>
     <% end %>

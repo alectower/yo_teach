@@ -10,12 +10,12 @@ class LessonPlan
       tools: 'inserttable'
 
   this.filter = ->
-    $('.course-list').change ->
+    $('#dropdown').change ->
       course = $(this).find('select :selected')
       if course.text() == 'All Courses'
-        document.location.href = '/lesson_plans'
+        Turbolinks.visit '/lesson_plans'
       else
-        document.location.href = '/lesson_plans?course=' + course.val()
+        Turbolinks.visit '/lesson_plans?course=' + course.val()
 
 $(document).ready ->
   LessonPlan.filter()

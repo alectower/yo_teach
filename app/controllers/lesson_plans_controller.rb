@@ -4,7 +4,14 @@ class LessonPlansController < ApplicationController
   TIME_FORMAT = "%Y-%m-%dT%H:%M"
 
   def index
-    @lesson_plans = LessonPlan.search(params)
+    if params.each_value.all? { |v| v.blank? }
+      LessonPlan.all
+    else
+      params.each_value do |v|
+        v.downcase! if !v.respond_to?(:downcase?)
+      end
+      @lesson_plans = LessonPlan.search(params)
+    end
   end
 
   def show

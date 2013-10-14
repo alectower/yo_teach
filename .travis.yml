@@ -13,6 +13,7 @@ deploy:
 notifications:
   email:
     recipients:
+      - alectower@gmail.com
       - lukegtower@gmail.com
     on_success: always
     on_failure: always

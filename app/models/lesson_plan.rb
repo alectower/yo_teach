@@ -33,13 +33,6 @@ class LessonPlan < ActiveRecord::Base
   end
 
   def self.search(args)
-    return all if args.each_value.all? { |v| v.blank? }
-
-    args.each_value do |v|
-      v.downcase! unless v.blank? ||
-        !v.respond_to?(:downcase?)
-    end
-
     rel = all
     rel = by_sort(args[:sort], args[:direction], rel)
     rel = by_title(args[:search], rel)
