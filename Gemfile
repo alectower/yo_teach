@@ -30,7 +30,7 @@ end
 
 group :development, :test do
   gem 'sqlite3'
-  gem 'rspec-rails', '~> 2.14.0.rc1'
+  gem 'rspec-rails', '~> 2.1'
   gem 'capybara'
   gem 'poltergeist'
   gem 'selenium-webdriver'
