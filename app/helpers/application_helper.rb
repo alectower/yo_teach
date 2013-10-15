@@ -5,9 +5,11 @@ module ApplicationHelper
   end
 
   def sortable(args)
+    column = args.fetch(:sort)
     args[:direction] = (args[:sort] == params[:sort] &&
       params[:direction] == "asc") ? "desc" : "asc"
     args[:course] = params[:course] if params[:course]
+    args[:search] = params[:search] if params[:search]
     link_to args.fetch(:title) { args.fetch(:sort).titleize }, args
   end
 

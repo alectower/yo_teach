@@ -5,6 +5,12 @@ describe ApplicationHelper do
     controller.request.path_parameters[:controller] = 'lesson_plans'
   end
 
+  it 'fails without a sort key' do
+    expect {
+      sortable(title: 'Link')
+    }.to raise_error
+  end
+
   context 'table allows column sorting' do
     it 'uses column name for link if title isn\'t given' do
       sortable(sort: 'course').should eq "<a href=\"/lesson_plans?direction=asc&amp;sort=course\">Course</a>"
@@ -19,6 +25,13 @@ describe ApplicationHelper do
     context 'link for one course' do
       it 'adds course to params when specified' do
         sortable(sort: 'status', course: 1).should eq "<a href=\"/lesson_plans?course=1&amp;direction=asc&amp;sort=status\">Status</a>"
+      end
+    end
+
+    context 'search has been executed' do
+      it 'adds search params to links for sorting' do
+        controller.params[:search] = 'are'
+        sortable(sort: 'title', course: 1).should eq "<a href=\"/lesson_plans?course=1&amp;direction=asc&amp;search=are&amp;sort=title\">Title</a>"
       end
     end
   end
@@ -41,6 +54,6 @@ describe ApplicationHelper do
         sort_image('status').should eq "<i class=\"icon-chevron-up\"></i>"
       end
     end
-  end
 
+  end
 end
