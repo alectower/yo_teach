@@ -1,18 +1,20 @@
 class CalendarController < ApplicationController
 
-  def month
+  def calendar
+    if params[:view]
+      @calendar = Calendar.new calendar_date,
+        view: params[:view].to_sym
+    else
+      @calendar = Calendar.new calendar_date
+    end
     @to_dos = ToDo.all
-    @calendar = Calendar.new(calendar_date)
-    render :calendar
   end
 
   private
 
   def calendar_date
-    year = params[:year].to_i
-    month = params[:month].to_i
-    year != 0 && month != 0 ?
-      DateTime.new(year, month, 1) :
+    !params[:date].blank? ?
+      DateTime.parse(params[:date]) :
         DateTime.now.beginning_of_day
   end
 

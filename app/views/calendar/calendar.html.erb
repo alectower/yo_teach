@@ -1,12 +1,16 @@
 <section id='calendar'>
   <table>
     <caption>
-      <div id='prev_month'>
-        <%= link_to raw("<i class='icon-chevron-left'></i>"), calendar_path(@calendar.date.prev_month.year, @calendar.date.prev_month.mon) %>
+      <div id='prev-month'>
+        <%= link_to raw("<i class='icon-chevron-left'></i>"), calendar_path(date: @calendar.prev_month) %>
       </div>
-      <h2><%= @calendar.month %>  <%= @calendar.date.year %></h2>
-      <div id='next_month'>
-        <%= link_to raw("<i class='icon-chevron-right'></i>"), calendar_path(@calendar.date.next_month.year, @calendar.date.next_month.mon) %>
+      <h2><%= @calendar.month %>  <%= @calendar.year %></h2>
+      <div id='next-month'>
+        <%= link_to raw("<i class='icon-chevron-right'></i>"), calendar_path(date: @calendar.next_month) %>
+      </div>
+      <div id='calendar-views'>
+          <%= link_to 'This Month', calendar_path, class: 'active' %>
+          <%= link_to 'This Week', calendar_path(view: :week) %>
       </div>
     </caption>
     <thead>
@@ -20,10 +24,10 @@
         <th>Saturday</th>
       </tr>
     </thead>
-    <% @calendar.dates.each_slice(7) do |week| %>
-      <tr class='week'>
+    <% @calendar.each_week do |week| %>
+      <tr class="<%= week_class %>">
         <% week.each do |day| %>
-          <td class='day'>
+          <td class="day">
             <div class=<%= day.date.today? ? 'today' : 'date' %>>
               <span><%= day.date.mday %></span>
             </div>
