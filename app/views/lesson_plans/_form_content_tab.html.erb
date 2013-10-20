@@ -12,6 +12,7 @@
 
   <div id=<%= "#{field.title.downcase}-tab"%> class='tab-pane'>
     <div class="span7">
+      <%= link_to "Remove #{field.title}", lesson_plan_fields_path(id: field.id), method: :delete, style: 'float: right' %>
       <%= lesson_plan_form.fields_for :fields, lesson_plan.fields.select { |f| f == field } do |field| %>
         <%= field.text_field :title, class: 'span4'%>
         <%= field.text_area :description, class: 'span6'%>
