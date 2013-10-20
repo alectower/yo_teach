@@ -9,18 +9,28 @@
       margin: auto;
       padding: 0 0 1em 0;
 
-      #prev_month {
+      #prev-month {
         position: absolute;
         top: 5px;
         float: left;
       }
 
-      #next_month {
+      #next-month {
         position: absolute;
         top: 5px;
         right: 0;
         float: right;
       }
+
+      #calendar-views {
+        a {
+          margin: 0 15px;
+        }
+      }
+    }
+
+    .week {
+      height: 400px;
     }
 
     width: 100%;
@@ -99,5 +109,6 @@
       display: none;
     }
   }
+
 }
 

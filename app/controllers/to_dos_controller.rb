@@ -1,5 +1,5 @@
 class ToDosController < ApplicationController
-  before_action :set_to_do, only: [:edit, :update, :destroy]
+  before_action :set_to_do, only: [:destroy]
 
   def new
     @to_do = ToDo.new
@@ -8,28 +8,14 @@ class ToDosController < ApplicationController
     end
   end
 
-  def edit
-  end
-
   def create
     @to_do = ToDo.new(to_do_params)
-
     respond_to do |format|
       if @to_do.save
         format.js
       else
         format.json { render json: @to_do.errors,
           status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def update
-    respond_to do |format|
-      if @to_do.update(to_do_params)
-        format.json { head :no_content }
-      else
-        format.json { render json: @to_do.errors, status: :unprocessable_entity }
       end
     end
   end

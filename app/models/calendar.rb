@@ -1,36 +1,49 @@
-DateLessons = Struct.new(:date, :lessons) do
-  def initialize(date, lessons)
-    self.date = date
-    self.lessons = lessons || []
-  end
-end
-
 class Calendar
-  attr_reader :date, :dates, :month
 
-  def initialize(cal_date = DateTime.now.beginning_of_day)
-    @date = cal_date.to_date
-    @month = Date::MONTHNAMES[date.month]
-    get_date_lessons(date)
+  def self.month_dates(date = Date.current)
+    start_date = first_of_month(date)
+    start_date..start_date.days_since(34).end_of_day
   end
 
-  def get_date_lessons(date)
-    first = first_date(date)
-    calendar_dates = first..first.days_since(34).end_of_day
-    lessons = retrieve_lessons(calendar_dates)
-    @dates = []
-    calendar_dates.each do |d|
-      date = d.to_date
-      @dates << DateLessons.new(date, lessons[date])
+  def self.week_dates(date = Date.current)
+    start_date = date.beginning_of_week
+    start_date..start_date.days_since(6).end_of_day
+  end
+
+  def initialize(cal_date, args = {})
+    @date = cal_date.to_date
+    @view = args.fetch(:view) { :month }
+    @event_type = args.fetch(:event_type) { LessonPlanEvents }
+  end
+
+  def year
+    @date.year
+  end
+
+  def month
+    Date::MONTHNAMES[@date.month]
+  end
+
+  def next_month
+    @date.next_month
+  end
+
+  def prev_month
+    @date.prev_month
+  end
+
+  def each_week
+    @event_type.each_week(@date, @view).each do |week|
+      yield week
     end
   end
 
-  def retrieve_lessons(calendar_dates)
-    LessonPlan.monthly_lessons(calendar_dates)
-  end
+  private
 
-  def first_date(date)
-    date.beginning_of_month.beginning_of_week.yesterday
+  def self.first_of_month(date)
+    date.beginning_of_month
+      .beginning_of_week
+      .yesterday
   end
 
 end

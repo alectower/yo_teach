@@ -32,14 +32,17 @@ describe LessonPlansController do
       it "creates a new lesson_plan" do
         expect{
           post :create, lesson_plan:
-            FactoryGirl.build(:lesson_plan).attributes.symbolize_keys
+            FactoryGirl.build(:lesson_plan)
+              .attributes.symbolize_keys
         }.to change(LessonPlan, :count).by(1)
       end
 
       it "redirects to the lesson_plans page" do
-        l = FactoryGirl.build(:lesson_plan).attributes.symbolize_keys
+        l = FactoryGirl.build(:lesson_plan)
+          .attributes.symbolize_keys
         post :create, lesson_plan: l
-        response.should redirect_to edit_lesson_plan_path(LessonPlan.first.id)
+        response.should redirect_to(
+          edit_lesson_plan_path(LessonPlan.first.id))
       end
     end
 
@@ -47,13 +50,15 @@ describe LessonPlansController do
       it "does not save the new contact in the database" do
         expect{
           post :create, lesson_plan:
-            FactoryGirl.build(:invalid_lesson_plan).attributes.symbolize_keys
+            FactoryGirl.build(:invalid_lesson_plan)
+              .attributes.symbolize_keys
         }.to_not change(LessonPlan, :count)
       end
 
       it "re-renders the :new template" do
         post :create, lesson_plan:
-          FactoryGirl.build(:invalid_lesson_plan).attributes.symbolize_keys
+          FactoryGirl.build(:invalid_lesson_plan)
+            .attributes.symbolize_keys
         response.should render_template :new
       end
     end
@@ -73,7 +78,8 @@ describe LessonPlansController do
       l.title = 'In class essay'
       put :update, id: l,
         lesson_plan: l.attributes.symbolize_keys
-      response.should redirect_to edit_lesson_plan_path l.id
+      response.should redirect_to(
+        edit_lesson_plan_path l.id)
     end
   end
 
@@ -94,7 +100,8 @@ describe LessonPlansController do
 
   describe "GET #search" do
     it "sets the @lesson_plans variable to the searched for lesson plans" do
-      math = FactoryGirl.create(:lesson_plan, title: 'Area')
+      math = FactoryGirl.create(:lesson_plan,
+                                title: 'Area')
       get :index, title: 'are'
       assigns(:lesson_plans).size.should eq (1)
     end

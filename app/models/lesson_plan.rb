@@ -19,26 +19,6 @@ class LessonPlan < ActiveRecord::Base
   IN_PROGRESS = 2
   COMPLETE = 3
 
-  def self.monthly_lessons(date_range)
-    includes(:course)
-      .where(start: date_range)
-      .order('start asc')
-      .group_by(&:start_date)
-  end
-
-  def self.lesson_plan_with_fields(id)
-    includes(:fields, :course)
-      .order("lesson_plan_fields.title asc")
-      .find(id)
-  end
-
-  def self.search(args)
-    rel = all
-    rel = by_sort(args[:sort], args[:direction], rel)
-    rel = by_title(args[:search], rel)
-    rel = by_course(args[:course], rel)
-  end
-
   def course_name
     course.name
   end
@@ -66,47 +46,16 @@ class LessonPlan < ActiveRecord::Base
     end
   end
 
-
   private
 
   def empty_attrs(attrs)
-    attrs[:title].blank? &&
-      attrs[:description].blank?
+    attrs[:title].blank? && attrs[:description].blank?
   end
 
   def update_status
     self.status = IN_PROGRESS if !fields.empty? && fields.any? { |f| !f.description.blank? }
     self.status = EMPTY if fields.empty? || fields.all? { |f| f.description.blank? }
     self.status = COMPLETE if !fields.empty? && fields.all? { |f| !f.description.blank? }
-  end
-
-  def self.by_title(title, rel = none)
-    !title.blank? ? rel.where('lower(title) like ?', "%#{title}%") : rel
-  end
-
-  def self.by_course(course_id, rel = none)
-    !course_id.blank? ? rel.where(course_id: course_id) : rel
-  end
-
-  def self.by_sort(column, direction, rel = none)
-    if !column.blank?
-      if column == 'course_name'
-        rel.includes(:course)
-          .order("courses.name #{sort_direction(direction)}")
-      else
-        rel.order("#{sort_column(column)} #{sort_direction(direction)}")
-      end
-    else
-      rel
-    end
-  end
-
-  def self.sort_column(col)
-    LessonPlan.column_names.include?(col) ? col : 'title'
-  end
-
-  def self.sort_direction(dir)
-    %w[asc desc].include?(dir) ? dir : 'asc'
   end
 
 end
