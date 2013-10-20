@@ -23,7 +23,6 @@ end
 
 group :development do
   gem 'metric_fu', require: false
-  gem 'simplecov', require: false
   gem 'brakeman', require: false
   gem 'turbulence', require: false
 end
@@ -36,6 +35,7 @@ group :development, :test do
   gem 'poltergeist'
   gem 'selenium-webdriver'
   gem 'database_cleaner', '1.0.1'
+  gem 'simplecov', require: false
 end
 
 gem 'factory_girl_rails', '~> 4.0'
