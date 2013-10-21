@@ -9,10 +9,6 @@ class LessonPlanFieldsController < ApplicationController
         format.html { redirect_to :back }
         format.json { head :no_content }
       end
-    else
-      flash[:error] = "There was a problem with your request."
-      render :back
     end
-
   end
 end
