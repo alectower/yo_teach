@@ -1,0 +1,17 @@
+<% calendar = month_view %>
+
+<% content_for :calendar_heading do %>
+  <%= render 'calendar_week_heading' %>
+<% end %>
+
+<% content_for :calendar_body do %>
+  <% calendar.each_week do |week| %>
+    <tr>
+      <% week.each do |day| %>
+        <%= render 'calendar_day', day: day %>
+      <% end %>
+    </tr>
+  <% end %>
+<% end %>
+
+<%= render 'calendar', calendar: calendar %>

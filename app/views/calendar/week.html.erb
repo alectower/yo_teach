@@ -1,0 +1,20 @@
+<% calendar = week_view %>
+
+<% content_for :calendar_heading do %>
+  <%= render 'calendar_week_heading' %>
+<% end %>
+
+<% content_for :calendar_body do %>
+  <% calendar.each_week do |week| %>
+    <tr class="week">
+      <% week.each do |day| %>
+        <%= render 'calendar_day',
+          day: day,
+          day_format: 'calendar_day_lessons_with_hours'
+        %>
+      <% end %>
+    </tr>
+  <% end %>
+<% end %>
+
+<%= render 'calendar', calendar: calendar %>

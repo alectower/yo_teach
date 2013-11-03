@@ -1,5 +1,9 @@
 class Calendar
 
+  Date.beginning_of_week = :sunday
+
+  attr_reader :view
+
   def self.month_dates(date = Date.current)
     start_date = first_of_month(date)
     start_date..start_date.days_since(34).end_of_day
@@ -32,6 +36,14 @@ class Calendar
     @date.prev_month
   end
 
+  def prev_week
+    @date.prev_week
+  end
+
+  def next_week
+    @date.next_week
+  end
+
   def each_week
     @event_type.each_week(@date, @view).each do |week|
       yield week
@@ -41,9 +53,7 @@ class Calendar
   private
 
   def self.first_of_month(date)
-    date.beginning_of_month
-      .beginning_of_week
-      .yesterday
+    date.beginning_of_month.beginning_of_week
   end
 
 end
