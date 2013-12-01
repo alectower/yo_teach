@@ -1,0 +1,13 @@
+<td class="day">
+  <div class="<%= date_class(day.date) %>">
+    <span><%= day.date.mday %></span>
+  </div>
+  <%= render day_format ||= 'calendar_day_lessons',
+    lessons: day.lessons %>
+  <div class="add-lesson-plan">
+    <% start = 9.hours.since day.date.to_datetime %>
+    <%= link_to raw("<i class='icon-plus'></i>"),
+      new_lesson_plan_path(start: start,
+        end: 1.hour.since(start)) %>
+  </div>
+</td>

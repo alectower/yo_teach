@@ -1,0 +1,32 @@
+<section id='calendar'>
+  <table>
+    <caption>
+      <div id='prev-month'>
+        <%= link_to raw("<i class='icon-chevron-left'></i>"),
+          calendar_path(view: calendar.view,
+            date: calendar.send("prev_#{calendar.view}")) %>
+      </div>
+      <h2>
+        <%= "#{calendar.month} #{calendar.year}" %>
+      </h2>
+      <div id='next-month'>
+        <%= link_to raw("<i class='icon-chevron-right'></i>"),
+          calendar_path(view: calendar.view,
+            date: calendar.send("next_#{calendar.view}")) %>
+      </div>
+      <div id='calendar-views'>
+        <%= link_to 'This Month', root_path, class: 'active' %>
+        <%= link_to 'This Week', calendar_path(view: :week) %>
+      </div>
+    </caption>
+    <thead>
+      <tr>
+        <%= yield :calendar_heading %>
+      </tr>
+    </thead>
+    <tbody>
+      <%= yield :calendar_body %>
+    </tbody>
+  </table>
+</section>
+

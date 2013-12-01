@@ -1,0 +1,16 @@
+<ul class='unstyled'>
+  <% day_hours(lessons).each do |hour| %>
+    <li class='course'>
+      <% lesson = hour[:lesson] %>
+      <% unless lesson.nil? %>
+        <%= link_to(lesson.course.name,
+                  edit_lesson_plan_path(lesson),
+                  class: "status-underline#{lesson.status}") %>
+      <% end %>
+      &nbsp;
+      <span class='time'>
+        <%= hour[:time] %>
+      </span>
+    </li>
+  <% end %>
+</ul>

@@ -2,6 +2,9 @@
 
   table {
 
+    width: 100%;
+    table-layout: fixed;
+
     caption {
 
       position: relative;
@@ -29,39 +32,43 @@
       }
     }
 
-    .week {
-      height: 400px;
+    tr.week {
+      height: 440px;
     }
 
-    width: 100%;
-    table-layout: fixed;
-
     td {
+
       padding: 0 2px 0 2px;
       height: 110px;
       border: 1px solid lightgray;
 
-      .courses {
+      ul {
         position: relative;
+        top: 10px;
         height: 70%;
+
+        li {
+
+          .status-underline1 {
+            border-bottom: 3px solid #b94a48;
+          }
+          .status-underline2 {
+            border-bottom: 3px solid #f89406;
+          }
+          .status-underline3 {
+            border-bottom: 3px solid #468847;
+          }
+
+          span.time {
+            float: right;
+            color: #888;
+            font-size: 13px;
+          }
+        }
+      }
+
+      ul.courses {
         overflow: auto;
-        top: 15px;
-
-        .status-underline1 {
-          border-bottom: 3px solid #b94a48;
-        }
-        .status-underline2 {
-          border-bottom: 3px solid #f89406;
-        }
-        .status-underline3 {
-          border-bottom: 3px solid #468847;
-        }
-
-        li span.time {
-          float: right;
-          color: #888;
-          font-size: 13px;
-        }
       }
     }
   }
