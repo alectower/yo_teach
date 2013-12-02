@@ -70,6 +70,8 @@
         <td><%= lesson_plan.end_time %></td>
       </tr>
     <% end %>
+
+    <%= will_paginate @lesson_plans %>
   </table>
 </div>
 

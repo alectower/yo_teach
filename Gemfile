@@ -16,6 +16,7 @@ gem 'jquery-ui-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'tinymce-rails'
+gem 'will_paginate', '~> 3.0'
 
 group :doc do
   gem 'sdoc', require: false

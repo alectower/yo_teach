@@ -9,12 +9,12 @@ class LessonPlansController < ApplicationController
       search_params.include?(p.to_sym)
     }
     if search.empty?
-      @lesson_plans = LessonPlan.all
+      @lesson_plans = LessonPlan.paginate(:page => params[:page], :per_page => 8)
     else
       params.each_value do |v|
         v.downcase! if !v.respond_to?(:downcase?)
       end
-      @lesson_plans = LessonPlanQuery.new.search(params)
+      @lesson_plans = LessonPlanQuery.new.search(params).paginate(:page => params[:page], :per_page => 8)
     end
   end
 
