@@ -1,20 +1,23 @@
 <% calendar = week_view %>
 
 <% content_for :calendar_heading do %>
+  <th class='weekly-heading'></th>
   <%= render 'calendar_week_heading' %>
 <% end %>
 
 <% content_for :calendar_body do %>
-  <% calendar.each_week do |week| %>
-    <tr class="week">
-      <% week.each do |day| %>
-        <%= render 'calendar_day',
-          day: day,
-          day_format: 'calendar_day_lessons_with_hours'
-        %>
+  <% 1440.times do |minute| %>
+    <tr class="minute-row minute-<%= minute %>">
+      <% if is_hour?(minute) %>
+        <td class='hour' rowspan="60"><%= hour_format(minute) %></td>
+      <% end %>
+      <% 7.times do |day| %>
+        <td class="minute-col day-<%= day %>"></td>
       <% end %>
     </tr>
   <% end %>
+  <div id='week-lessons' data-lessons="<%= calendar.lessons.to_json %>">
+  </div>
 <% end %>
 
 <%= render 'calendar', calendar: calendar %>

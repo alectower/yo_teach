@@ -9,12 +9,6 @@
 <body>
   <%= render 'layouts/nav' %>
 
-  <nav class='site-nav nav nav-pills offset1'>
-    <li class="<%= 'active' if params[:controller] == 'calendar' %>"><a href="/">Calendar</a></li>
-    <li class="<%= 'active' if params[:controller] == 'courses' %>"><a href="/courses">Courses</a></li>
-    <li class="<%= 'active' if params[:controller] == 'lesson_plans' %>"><a href="/lesson_plans">Lesson Plans</a></li>
-  </nav>
-
   <div class='container-fluid'>
     <div id='messages'>
       <%= render 'layouts/messages' %>

@@ -1,7 +1,27 @@
+@mixin status-1 {
+  background: rgba(255, 74, 72, 0.3);
+}
+
+@mixin status-2 {
+  background: rgba(248, 148, 0, 0.3);
+}
+
+@mixin status-3 {
+  background: rgba(70, 200, 71, 0.3);
+}
+
+@mixin lesson-border {
+  border-radius: 7px;
+  -moz-border-radius: 7px;
+  margin: 1px;
+  padding: 1px;
+}
+
 #calendar {
+    width: 100%;
+    overflow: auto;
 
   table {
-
     width: 100%;
     table-layout: fixed;
 
@@ -36,8 +56,15 @@
       height: 440px;
     }
 
-    td {
+    th.weekly-heading:first-child {
+      width: 10%;
+    }
 
+    th.weekly-heading:not(:first-child) {
+      width: 15%;
+    }
+
+    td {
       padding: 0 2px 0 2px;
       height: 110px;
       border: 1px solid lightgray;
@@ -47,23 +74,21 @@
         top: 10px;
         height: 70%;
 
+        .status-1 {
+          @include status-1
+        }
+
+        .status-2 {
+          @include status-2
+        }
+
+        .status-3 {
+          @include status-3
+        }
+
         li {
-
-          .status-underline1 {
-            border-bottom: 3px solid #b94a48;
-          }
-          .status-underline2 {
-            border-bottom: 3px solid #f89406;
-          }
-          .status-underline3 {
-            border-bottom: 3px solid #468847;
-          }
-
-          span.time {
-            float: right;
-            color: #888;
-            font-size: 13px;
-          }
+          @include lesson-border;
+          text-align: center;
         }
       }
 
@@ -119,3 +144,54 @@
 
 }
 
+
+#calendar-week {
+  width: 100%;
+  padding-top: 10px;
+  height: 450px;
+  overflow: scroll;
+
+  table {
+    width: 100%;
+    table-layout: fixed;
+
+    td:first-child {
+      width: 10%;
+    }
+
+    td:not(:first-child) {
+      width: 15%;
+    }
+
+    tr.minute-row, td.minute-col {
+      height: 0.5px;
+      text-align: center;
+      vertical-align: top;
+    }
+
+    td.hour {
+      border-right: solid 1px #ccc;
+      border-top: solid 1px #ccc;
+    }
+
+    .hour-border {
+      border-top: solid 1px #ccc;
+    }
+
+    .weekly-lesson {
+      @include lesson-border
+    }
+
+    .status-1 {
+      @include status-1
+    }
+
+    .status-2 {
+      @include status-2
+    }
+
+    .status-3 {
+      @include status-3
+    }
+  }
+}

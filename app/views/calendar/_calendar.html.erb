@@ -1,4 +1,4 @@
-<section id='calendar'>
+<div id='calendar'>
   <table>
     <caption>
       <div id='prev-month'>
@@ -24,9 +24,12 @@
         <%= yield :calendar_heading %>
       </tr>
     </thead>
+  </table>
+</div>
+<div id="<%= calendar_class %>">
+  <table>
     <tbody>
       <%= yield :calendar_body %>
     </tbody>
   </table>
-</section>
-
+</div>

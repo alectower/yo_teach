@@ -1,47 +1,36 @@
 module CalendarHelper
 
-  def month_view(cal = Calendar)
-    cal.new calendar_date, view: :month
+  def month_view
+    Calendar.new calendar_date
   end
 
-  def week_view(cal = Calendar)
-    cal.new calendar_date, view: :week
+  def week_view
+    Calendar.new calendar_date, view: :week
   end
 
   def date_class(date)
     date.today? ? 'today' : 'date'
   end
 
-  def day_hours(lessons)
-    hours = add_hours(5..11, "AM", lessons)
-    hours += add_hours(12..12, "PM", lessons)
-    hours += add_hours(1..11, "PM", lessons)
+  def calendar_class
+    params[:view] == 'week' ? 'calendar-week' : 'calendar'
   end
 
-  private
-
-  def add_hours(range, time_period, lessons)
-    (range).each_with_object([]) do |time, hours|
-      hours << { time: "#{time} #{time_period}",
-                 lesson: find_lesson_for_hour(lessons, time_period, time) }
-    end
+  def calendar_heading
+    params[:view] == 'week' ? 'weekly-heading' : ''
   end
 
-  def find_lesson_for_hour(lessons, time_period, time)
-    lessons.each do |lesson|
-      return lesson if
-        time == military_time(time_period, lesson)
-    end
-    nil
+  def is_hour?(minute)
+    minute % 60 == 0
   end
 
-  def military_time(time_period, lesson)
-    if time_period == "AM"
-      lesson.start.hour
-    else
-      lesson.start.hour == 12 ? 12 :
-        lesson.start.hour + 12
-    end
+  def hour_format(minute)
+    hour = minute / 60.0
+    hour.hours.since(Time.now.beginning_of_day).strftime "%l %p"
+  end
+
+  def day_of_week(day)
+    Date::DAYNAMES[day]
   end
 
   def calendar_date

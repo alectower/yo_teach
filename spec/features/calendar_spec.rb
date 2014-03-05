@@ -21,7 +21,7 @@ describe "Calendar" do
     it 'displays lesson plans for week when clicking Week link' do
       visit root_path
       click_link 'Week'
-      page.should have_selector('tr', count: 2)
+      page.should have_selector('tr', count: 1441)
     end
   end
 end

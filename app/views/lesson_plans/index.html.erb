@@ -59,9 +59,9 @@
         <td><%= link_to lesson_plan.title,
               edit_lesson_plan_path(lesson_plan.id) %></td>
         <td>
-          <span class="<%= status_class(lesson_plan) %>">
+          <div class="status status-<%= lesson_plan.status %>">
             <%= lesson_plan.status_text %>
-          </span>
+          </div>
         </td>
         <td><%= link_to lesson_plan.course_name,
                 edit_course_path(lesson_plan.course.id)%></td>

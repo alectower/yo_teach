@@ -2,16 +2,19 @@ class LessonPlan < ActiveRecord::Base
   belongs_to :course
   has_many :fields, foreign_key: 'lesson_plan_id',
     class_name: 'LessonPlanField', dependent: :destroy
+
   accepts_nested_attributes_for :fields,
     reject_if: :empty_attrs
-  validates_presence_of :title,
-                        :course,
-                        :start,
-                        :end,
-                        :course_id,
-                        :status
+
+  validates_presence_of :title, :course, :start, :end,
+    :course_id, :status
   validates_inclusion_of :status, in: 1..3
   before_validation :update_status
+
+  scope :in_date_range, ->(date_range) { where(start: date_range) }
+  scope :by_title, ->(title) { where('lower(title) like ?', "%#{title}%") }
+  scope :by_course, ->(id) { where(course_id: id) }
+  scope :chronological, -> { order('start asc') }
 
   TIME_FORMAT = "%I:%M %p"
 
@@ -24,11 +27,11 @@ class LessonPlan < ActiveRecord::Base
   end
 
   def start_date
-    read_attribute(:start).to_date
+    start.to_date
   end
 
   def start_time
-    read_attribute(:start).strftime(TIME_FORMAT)
+    start.strftime(TIME_FORMAT)
   end
 
   def end_time

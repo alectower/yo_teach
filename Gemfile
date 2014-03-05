@@ -1,53 +1,46 @@
-ruby '2.0.0'
+ruby '2.1.0'
 
 source 'https://rubygems.org'
 
-gem 'rails',     github: 'rails/rails'
-gem 'arel',      github: 'rails/arel'
-
-gem 'sprockets-rails', github: 'rails/sprockets-rails'
-gem 'sass-rails', github: 'rails/sass-rails'
+gem 'bcrypt-ruby'
 gem 'bootstrap-sass', '~> 2.3.2.0'
-gem 'jquery-turbolinks'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', github: 'rails/coffee-rails'
+gem 'coffee-rails'
+gem 'factory_girl_rails'
+gem 'faker'
+gem 'jbuilder'
 gem 'jquery-rails'
+gem 'jquery-turbolinks'
 gem 'jquery-ui-rails'
-gem 'turbolinks'
-gem 'jbuilder', '~> 1.2'
+gem 'nokogiri'
+gem 'rails', '4.0.2'
+gem 'sass-rails', '>= 3.2'
 gem 'tinymce-rails'
-
-group :doc do
-  gem 'sdoc', require: false
-end
+gem 'turbolinks'
+gem 'uglifier'
+gem 'unicorn'
 
 group :development do
-  gem 'metric_fu', require: false
-  gem 'brakeman', require: false
-  gem 'turbulence', require: false
+  gem 'brakeman'
+  gem 'flamegraph'
+  gem 'metric_fu'
+  gem 'rack-mini-profiler'
+  gem 'turbulence'
 end
 
 group :development, :test do
-  gem 'sqlite3'
-  gem 'rspec'
-  gem 'rspec-rails', '~> 2.2'
   gem 'capybara'
+  gem 'database_cleaner'
   gem 'poltergeist'
+  gem 'rspec'
+  gem 'rspec-rails'
   gem 'selenium-webdriver'
-  gem 'database_cleaner', '1.0.1'
-  gem 'simplecov', require: false
+  gem 'simplecov'
+  gem 'sqlite3'
 end
-
-gem 'factory_girl_rails', '~> 4.0'
-gem 'faker'
-gem 'nokogiri'
 
 group :production do
   gem 'pg'
   gem 'rails_12factor'
 end
 
-gem 'bcrypt-ruby', '~> 3.0.0'
-gem 'rack-mini-profiler'
-gem 'unicorn'
 

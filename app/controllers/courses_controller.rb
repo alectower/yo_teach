@@ -16,7 +16,7 @@ class CoursesController < ApplicationController
   end
 
   def create
-    @course = Course.new course_params(params[:course])
+    @course = Course.new course_params
     if @course.save
       flash[:notice] = 'Course was successfully created.'
       redirect_to courses_path
@@ -54,7 +54,7 @@ class CoursesController < ApplicationController
       @course = Course.find(params[:id])
     end
 
-    def course_params(params)
-      params.permit(:name, :start_date, :end_date)
+    def course_params
+      params.require(:course).permit(:name, :start_date, :end_date)
     end
 end
