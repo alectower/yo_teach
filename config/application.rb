@@ -7,6 +7,8 @@ Bundler.require(:default, Rails.env)
 module YoTeach
   class Application < Rails::Application
 
+    config.time_zone = "Eastern Time (US & Canada)"
+
     config.generators do |g|
       g.test_framework :rspec,
         :fixtures => true,

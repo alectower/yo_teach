@@ -5,7 +5,7 @@ FactoryGirl.define do
     start_datetime = 1.day.from_now.to_datetime
     lp.start { start_datetime }
     lp.end { 1.hour.since start_datetime }
-    lp.title { Faker::Lorem.sentence(1) }
+    lp.title { 'Area' }
     lp.status { 1 }
     lp.course
   end

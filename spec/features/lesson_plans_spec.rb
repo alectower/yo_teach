@@ -84,22 +84,19 @@ describe "LessonPlans" do
   end
 
   describe 'edit lesson plan' do
-    let(:datetime) { DateTime.new(2013, 6, 26) }
-    before :each do
-      c = FactoryGirl.create :course_with_lesson_plan_field do |course|
-        l = course.lesson_plans.first
-        l.start = datetime
-        l.save!
-      end
-      visit edit_lesson_plan_path c.lesson_plans.first.id
-    end
+    let(:start_time) { Time.parse "2013-06-26 09:00:00" }
+    let(:end_time) { 1.hour.since start_time}
+    let(:course) { FactoryGirl.create :course }
+    let(:lesson) { FactoryGirl.create :lesson_plan,
+      start: start_time, end: end_time, course: course }
 
     it "displays lesson plan info in title" do
+      visit edit_lesson_plan_path lesson.id
       within '.heading' do
         page.should have_content /Area/
         page.should have_content /Math/
         page.should have_content /Wednesday/
-        page.should have_content datetime.to_date
+        page.should have_content start_time.to_date
       end
     end
   end

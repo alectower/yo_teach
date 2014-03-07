@@ -5,7 +5,7 @@ class Calendar
 
   def initialize(cal_date, view: :month)
     @date = cal_date.to_date
-    @view = view
+    @view = view.to_sym
   end
 
   def year
@@ -25,11 +25,11 @@ class Calendar
   end
 
   def prev_week
-    date.prev_week
+    date.prev_week(:sunday)
   end
 
   def next_week
-    date.next_week
+    date.next_week(:sunday)
   end
 
   def each_week

@@ -8,9 +8,9 @@ rval.each do |t|
 end
 
 def time
-  month = DateTime.now.beginning_of_month
-  day = month.beginning_of_week
-  time = 8.hours.since day.beginning_of_day
+  month = Time.now.beginning_of_month
+  day = month.beginning_of_week(:monday)
+  8.hours.since(day.beginning_of_day)
 end
 
 def create_lesson_plans(course, *args)

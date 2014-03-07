@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   before_filter :authorize if Rails.env == "development"
 
   private
+
   def authorize
     Rack::MiniProfiler.authorize_request
   end

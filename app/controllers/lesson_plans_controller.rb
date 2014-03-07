@@ -103,15 +103,9 @@ class LessonPlansController < ApplicationController
   end
 
   def lesson_plan_params
-    params.require(:lesson_plan)
-      .permit(:course_id,
-              :title,
-              :start,
-              :end,
-              :status,
-              fields_attributes: [:id,
-                                  :title,
-                                  :description])
+    params.require(:lesson_plan).permit(:course_id,
+      :title, :start, :end, :status,
+      fields_attributes: [:id, :title, :description])
   end
 
 end

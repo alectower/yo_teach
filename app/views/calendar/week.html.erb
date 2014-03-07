@@ -1,5 +1,3 @@
-<% calendar = week_view %>
-
 <% content_for :calendar_heading do %>
   <th class='weekly-heading'></th>
   <%= render 'calendar_week_heading' %>
@@ -11,8 +9,8 @@
       <% if is_hour?(minute) %>
         <td class='hour' rowspan="60"><%= hour_format(minute) %></td>
       <% end %>
-      <% 7.times do |day| %>
-        <td class="minute-col day-<%= day %>"></td>
+      <% 7.times do |wday| %>
+        <td class="minute-col day-<%= wday %>"></td>
       <% end %>
     </tr>
   <% end %>
