@@ -1,41 +1,39 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Yo Teach</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-</head>
-<body>
-  <%= render 'layouts/nav' %>
+  <head>
+    <title>Yo Teach</title>
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  </head>
+  <body>
+    <%= render 'layouts/nav' %>
 
-  <div class='container-fluid'>
-    <div id='messages'>
-      <%= render 'layouts/messages' %>
+    <div class='container-fluid'>
+      <div id='messages'>
+        <%= render 'layouts/messages' %>
+      </div>
+
+      <div class='row'>
+        <div class='main span9'>
+          <%= yield %>
+        </div>
+        <div class='span3'>
+          <%= render 'layouts/to_do_list' %>
+        </div>
+      </div>
     </div>
 
-    <div class='row'>
-      <div class='main span9'>
-        <%= yield %>
-      </div>
-      <div class='span3'>
-        <%= render 'layouts/to_do_list' %>
-      </div>
+    <div id="dialog" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="dialogModalHeader" aria-hidden="true">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3 id="dialogModalHeader"></h3>
+        </div>
+        <div id='dialog-body' class="modal-body"></div>
+        <div class="modal-footer">
+          <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+          <button id='submit' class="btn btn-primary">Create</button>
+        </div>
     </div>
-
-  </div>
-
-  <div id="dialog" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="dialogModalHeader" aria-hidden="true">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="dialogModalHeader"></h3>
-      </div>
-      <div id='dialog-body' class="modal-body"></div>
-      <div class="modal-footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-        <button id='submit' class="btn btn-primary">Create</button>
-      </div>
-  </div>
-
-</body>
+  </body>
 </html>
