@@ -4,6 +4,10 @@ module ApplicationHelper
     ToDo.all
   end
 
+  def active(controller)
+    'active' if params[:controller] == controller
+  end
+
   def sortable(args)
     column = args.fetch(:sort)
     args[:direction] = (args[:sort] == params[:sort] &&

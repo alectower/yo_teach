@@ -3,15 +3,19 @@
     <div class='container'>
       <div class='nav-collapse'>
         <ul class='site-nav nav nav-pills'>
-          <li class="<%= 'active' if params[:controller] == 'calendar' %>"><a href="/">Calendar</a></li>
-          <li class="<%= 'active' if params[:controller] == 'courses' %>"><a href="/courses">Courses</a></li>
-          <li class="<%= 'active' if params[:controller] == 'lesson_plans' %>"><a href="/lesson_plans">Lesson Plans</a></li>
-        </ul>
-        </ul>
-        <ul class='nav pull-right'>
-          <li>
-            <a href='#'>My Account</a>
+          <a class="brand" href="/">Lesson Mate</a>
+          <li class="<%= active('calendar') %>">
+            <a href="/">Calendar</a>
           </li>
+          <li class="<%= active('courses') %>">
+            <a href="/courses">Courses</a>
+          </li>
+          <li class="<%= active('lesson_plans') %>">
+            <a href="/lesson_plans">Lesson Plans</a>
+          </li>
+        </ul>
+        <ul class='site-nav nav nav-pills pull-right'>
+          <li><a href='#'>My Account</a></li>
           <li class='divider-vertical'></li>
           <li class='nav pull-right'>
             <a href='#'>Sign In</a>
