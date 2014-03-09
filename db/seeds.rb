@@ -10,13 +10,15 @@ end
 def time
   month = Time.now.beginning_of_month
   day = month.beginning_of_week(:monday)
-  8.hours.since(day.beginning_of_day)
+  8.hours.since(day.beginning_of_day.utc)
 end
 
 def create_lesson_plans(course, *args)
   t = time
   args.each do |l|
-    FactoryGirl.create :lesson_plan_with_fields, course: course, title: l, start: t, end: 1.hour.since(t)
+    FactoryGirl.create :lesson_plan_with_fields,
+      course: course, title: l,
+      start: t, end: 1.hour.since(t)
     t += 2.days
   end
 end
