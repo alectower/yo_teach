@@ -37,8 +37,8 @@ module CalendarHelper
   end
 
   def hour_format(minute)
-    hour = minute / 60.0
-    hour.hours.since(Time.now.beginning_of_day).strftime "%l %p"
+    hour = minute / 60
+    hour.hours.since(DateTime.new).strftime "%l %p"
   end
 
   def day_of_week(day)

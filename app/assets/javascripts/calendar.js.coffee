@@ -26,11 +26,11 @@ class Calendar
     $('td.minute-col').html('')
     $(lessons).each (index, lesson) ->
       startTime = new Date(lesson.start)
-      startMinute = (startTime.getHours() * 60) - 60 + startTime.getMinutes()
+      startMinute = (startTime.getHours() * 60) + startTime.getMinutes()
       startRow = $('tr.minute-' + startMinute)
       day = startRow.find('td.day-' + startTime.getDay())
       endTime = new Date(lesson.end)
-      endMinute = (endTime.getHours() * 60) - 60 + endTime.getMinutes()
+      endMinute = (endTime.getHours() * 60) + endTime.getMinutes()
       classLength = endMinute - startMinute
       day.attr('rowspan', classLength)
       day.append('<div class="weekly-lesson status-' +
