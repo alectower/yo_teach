@@ -9,7 +9,7 @@ class CalendarController < ApplicationController
   private
 
   def calendar_date
-    params[:date] ? Time.parse(params[:date]).utc : Time.zone.now
+    params[:date] ? Date.parse(params[:date]) : Date.today
   end
 
 end

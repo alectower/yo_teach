@@ -13,7 +13,7 @@ describe "Calendar" do
   describe 'calendar month view' do
     it 'displays lesson plans for week when clicking Week link' do
       visit root_path
-      page.should have_selector('tr', count: 7)
+      page.should have_selector('tr', count: 6)
     end
   end
 

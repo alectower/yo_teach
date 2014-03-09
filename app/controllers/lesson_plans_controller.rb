@@ -19,7 +19,7 @@ class LessonPlansController < ApplicationController
   end
 
   def new
-    now = 8.hours.since DateTime.now.beginning_of_day
+    now = 8.hours.since Date.today.beginning_of_day
     start_time = params.fetch(:start) { now }
       .to_datetime.strftime(TIME_FORMAT)
     end_time = params.fetch(:end) { 1.hour.since(now) }

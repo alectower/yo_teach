@@ -23,7 +23,7 @@ module CalendarHelper
 
   def day_with_date(day)
     if params[:date]
-      date = DateTime.parse(params[:date]).to_date
+      date = Date.parse(params[:date])
     else
       date = Date.today
     end
@@ -38,7 +38,7 @@ module CalendarHelper
 
   def hour_format(minute)
     hour = minute / 60
-    hour.hours.since(DateTime.new).strftime "%l %p"
+    hour.hours.since(Date.new).strftime "%l %p"
   end
 
   def day_of_week(day)
