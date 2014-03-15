@@ -23,9 +23,10 @@ module CalendarHelper
 
   def day_with_date(day)
     if params[:date]
-      date = Date.parse(params[:date])
+      date = Date.parse(params[:date]).
+        beginning_of_week(:sunday)
     else
-      date = Date.today
+      date = Date.today.beginning_of_week(:sunday)
     end
     dates = (date..6.days.since(date)).map { |d| d.day }
     date = dates[Date::DAYNAMES.index(day)]

@@ -13,8 +13,8 @@
 @mixin lesson-border {
   border-radius: 7px;
   -moz-border-radius: 7px;
-  margin: 1px;
-  padding: 1px;
+  margin: 1px 3.5px 1px 1px;
+  padding-top: 1px;
 }
 
 #calendar {
@@ -172,15 +172,17 @@
 
     td.hour {
       border-right: solid 1px #ccc;
-      border-top: solid 1px #ccc;
+     # border-top: solid 1px #ccc;
     }
 
     .hour-border {
-      border-top: solid 1px #ccc;
+     # border-top: solid 1px #ccc;
     }
 
     .weekly-lesson {
-      @include lesson-border
+      @include lesson-border;
+      height: 100%;
+      cursor: pointer;
     }
 
     .status-1 {

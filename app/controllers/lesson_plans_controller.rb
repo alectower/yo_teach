@@ -62,6 +62,7 @@ class LessonPlansController < ApplicationController
         format.html { redirect_to(
                       edit_lesson_plan_path @lesson_plan)}
         format.json { head :no_content }
+        format.js
       else
         flash[:error] =
           'Lesson plan failed to be updated.'

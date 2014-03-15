@@ -12,7 +12,7 @@
           </div>
           <ul class='unstyled courses'>
             <% day.lessons.each do |lesson| %>
-              <li class="class status-<%= lesson.status %>">
+              <li class="status-<%= lesson.status %>">
                 <%= link_to lesson.course.name,
                   edit_lesson_plan_path(lesson) %>
               </li>

@@ -1,15 +1,14 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: [:show, :edit, :update, :destroy]
+  before_action :set_course,
+    only: [:edit, :update, :destroy]
 
   def index
-    @courses = Course.paginate page: params[:page], per_page: 8
+    @courses = Course.paginate page: params[:page],
+      per_page: 8
   end
 
   def new
     @course = Course.new
-  end
-
-  def show
   end
 
   def edit
@@ -29,12 +28,12 @@ class CoursesController < ApplicationController
     respond_to do |format|
       if @course.update(course_params)
         format.html { redirect_to courses_path,
-                      notice: 'Course was successfully updated.' }
+          notice: 'Course was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render :edit }
         format.json { render json: @course.errors,
-                      status: :unprocessable_entity }
+          status: :unprocessable_entity }
       end
     end
   end
@@ -55,6 +54,7 @@ class CoursesController < ApplicationController
     end
 
     def course_params
-      params.require(:course).permit(:name, :start_date, :end_date)
+      params.require(:course).permit :name, :start_date,
+        :end_date
     end
 end

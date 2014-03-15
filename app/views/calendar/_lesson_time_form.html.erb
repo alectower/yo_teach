@@ -1,0 +1,6 @@
+<%= bootstrap_form_for lesson, remote: true do |f| %>
+  <%= f.text_field :title %>
+  <%= f.datetime_local_field :start %>
+  <%= f.datetime_local_field :end %>
+  <%= f.submit 'Update' %>
+<% end %>

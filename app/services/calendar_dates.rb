@@ -7,7 +7,7 @@ class CalendarDates
 
   def self.week_dates(date = Date.current)
     start_date = date.beginning_of_week(:sunday)
-    start_date..start_date.days_since(6)
+    start_date..start_date.days_since(6).end_of_day
   end
 
   def self.first_of_month(date)

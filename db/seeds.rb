@@ -19,7 +19,7 @@ def create_lesson_plans(course, *args)
     FactoryGirl.create :lesson_plan_with_fields,
       course: course, title: l,
       start: t, end: 1.hour.since(t)
-    t += 2.days
+    t = 2.hours.since(2.days.since(t))
   end
 end
 

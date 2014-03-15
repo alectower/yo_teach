@@ -7,15 +7,21 @@
   <% 1440.times do |minute| %>
     <tr class="minute-row minute-<%= minute %>">
       <% if is_hour?(minute) %>
-        <td class='hour' rowspan="60"><%= hour_format(minute) %></td>
+        <td class="hour" rowspan="60"><%= hour_format(minute) %></td>
       <% end %>
       <% 7.times do |wday| %>
         <td class="minute-col day-<%= wday %>"></td>
       <% end %>
     </tr>
   <% end %>
-  <div id='week-lessons' data-lessons="<%= calendar.lessons.to_json %>">
+<% end %>
+
+<% calendar.lessons.each do |l| %>
+  <div id="<%= "lesson-#{l.id}" %>" class='lesson-data'
+    data-lesson="<%= l.to_json %>" style='display:none'>
+    <%= render 'lesson_time_form', lesson: l %>
   </div>
 <% end %>
 
+<div id="popover"></div>
 <%= render 'calendar', calendar: calendar %>
