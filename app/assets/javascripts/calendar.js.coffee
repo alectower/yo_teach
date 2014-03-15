@@ -3,7 +3,6 @@ class Calendar
   this.init = ->
     addLessonPlan()
     addDailySchedule()
-    setPopovers()
 
   addLessonPlan = ->
     $('.day').hover(showLink, hideLink)
@@ -51,6 +50,8 @@ class Calendar
       day.append('<div id="day-lesson-' + lesson.id +
         '" class="weekly-lesson status-' + lesson.status +
         '">' + lesson.title + '</div>')
+
+    setPopovers()
 
   setPopovers = ->
     $('.weekly-lesson').each (index, lesson) ->

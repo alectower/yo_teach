@@ -7,7 +7,6 @@ $('#' + lessonId).
 
 var dayLessonId = 'day-lesson-' + <%= @lesson_plan.id %>;
 
-$('#popover').html('');
 $('.weekly-lesson').remove();
 $('td.minute-col').attr('rowspan', '');
 
@@ -18,6 +17,7 @@ lessons = $('.lesson-data').map(function(index, lesson) {
 
 Calendar.addLessons(lessons);
 
+$('#popover').html('');
 $('#' + dayLessonId).popover({
   html: true,
   content: $('#' + lessonId).html(),
