@@ -13,7 +13,7 @@
 @mixin lesson-border {
   border-radius: 7px;
   -moz-border-radius: 7px;
-  margin: 1px 3.5px 1px 1px;
+  margin: 1px;
   padding-top: 1px;
 }
 
@@ -145,55 +145,54 @@
 }
 
 
+@mixin calendar-height {
+  height: (1440 * 2px);
+  padding-top: 10px;
+}
+
 #calendar-week {
   width: 100%;
-  padding-top: 10px;
-  height: 450px;
+  height: 550px;
   overflow: scroll;
 
-  table {
+  .weekly-lesson {
     width: 100%;
-    table-layout: fixed;
+    @include lesson-border;
+    cursor: pointer;
+    text-align: center;
+    position: relative;
+    float: left;
+    word-wrap: break-word;
+  }
 
-    td:first-child {
-      width: 10%;
-    }
+  .status-1 {
+    @include status-1
+  }
 
-    td:not(:first-child) {
-      width: 15%;
-    }
+  .status-2 {
+    @include status-2
+  }
 
-    tr.minute-row, td.minute-col {
-      max-height: 0.5px;
-      text-align: center;
-      vertical-align: top;
-      border-right: solid 1px #ccc;
-    }
+  .status-3 {
+    @include status-3
+  }
 
-    td.hour {
-      border-right: solid 1px #ccc;
-     # border-top: solid 1px #ccc;
-    }
+  .hour-column {
+    width: 10%;
+    @include calendar-height;
+    float: left;
+  }
 
-    .hour-border {
-     # border-top: solid 1px #ccc;
-    }
+  .hour {
+    text-align: right;
+    padding-right: 10px;
+  }
 
-    .weekly-lesson {
-      @include lesson-border;
-      cursor: pointer;
-    }
-
-    .status-1 {
-      @include status-1
-    }
-
-    .status-2 {
-      @include status-2
-    }
-
-    .status-3 {
-      @include status-3
-    }
+  .day-column {
+    width: 12.7%;
+    @include calendar-height;
+    float: right;
+    border-left: solid 1px #ccc;
   }
 }
+

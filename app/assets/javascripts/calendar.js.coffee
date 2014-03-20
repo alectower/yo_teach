@@ -24,28 +24,47 @@ class Calendar
     Calendar.addLessons(lessons)
 
   this.addLessons = (lessons) ->
-    $('td.minute-col').html('').attr('rowspan', '0')
     $(lessons).each (index, lesson) ->
       startTime = new Date(lesson.start)
       startMinute = (startTime.getUTCHours() * 60) +
         startTime.getMinutes()
-      startRow = $('tr.minute-' + startMinute)
-      dayNumber = startTime.getDay()
-      day = startRow.find('td.day-' + dayNumber)
       endTime = new Date(lesson.end)
       endMinute = (endTime.getUTCHours() * 60) +
         endTime.getMinutes()
       classLength = endMinute - startMinute
-      day.attr('rowspan', classLength)
-      console.log(day.css('height'))
-      nextRows = day.parent().siblings().
-        slice(startMinute, startMinute + classLength - 1)
-      nextRows.find('td.day-' + dayNumber).remove()
+      dayNumber = startTime.getDay()
+      day = $('#day-' + dayNumber)
       day.append('<div id="day-lesson-' + lesson.id +
         '" class="weekly-lesson status-' + lesson.status +
-        '" style="height:' + day.css('height') +
-        ';">' + lesson.title + '</div>')
+        '" style="top:' + (startMinute * 2) +
+        'px; height:' + (classLength * 2) +
+        'px;">' + lesson.title + '</div>')
+    updateWidths()
     setPopovers()
+
+  updateWidths = ->
+    for day in [1..7]
+      do (day) ->
+        dayColumn = $('#day-' + day)
+        overlaps = findOverlaps(dayColumn.children())
+        if overlaps > 0
+          dayWidth = dayColumn.css('width')
+          dayColumn.children().css('width', (dayWidth.replace('px', '') // (overlaps + 1)) - 2)
+
+  findOverlaps = (lessons) ->
+    overlaps = 0
+    lessons.each (index, lesson) ->
+      nextLesson = $(lessons[index + 1])
+      lesson = $(lesson)
+      if nextLesson
+        currentStart = lesson.css('top')
+        nextStart = nextLesson.css('top')
+        currentEnd = lesson.css('top') +
+          lesson.css('height')
+        if nextStart >= currentStart &&
+          nextStart <= currentEnd
+            overlaps += 1
+    overlaps
 
   setPopovers = ->
     $('.weekly-lesson').each (index, lesson) ->

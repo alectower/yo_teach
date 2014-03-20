@@ -37,9 +37,12 @@ module CalendarHelper
     minute % 60 == 0
   end
 
-  def hour_format(minute)
-    hour = minute / 60
+  def hour_format(hour)
     hour.hours.since(Date.new).strftime "%l %p"
+  end
+
+  def hour_style(hour)
+    "top:#{hour * 60}px; height:120px;"
   end
 
   def day_of_week(day)
