@@ -24,33 +24,27 @@ class Calendar
     Calendar.addLessons(lessons)
 
   this.addLessons = (lessons) ->
-    $('td.minute-col').html('')
-
+    $('td.minute-col').html('').attr('rowspan', '0')
     $(lessons).each (index, lesson) ->
       startTime = new Date(lesson.start)
-
       startMinute = (startTime.getUTCHours() * 60) +
         startTime.getMinutes()
-
       startRow = $('tr.minute-' + startMinute)
-
-      day = startRow.find('td.day-' + startTime.getDay())
-
+      dayNumber = startTime.getDay()
+      day = startRow.find('td.day-' + dayNumber)
       endTime = new Date(lesson.end)
-
       endMinute = (endTime.getUTCHours() * 60) +
         endTime.getMinutes()
-
       classLength = endMinute - startMinute
-
-      if day.attr('rowspan') == undefined ||
-        classLength > day.attr('rowspan')
-          day.attr('rowspan', classLength)
-
+      day.attr('rowspan', classLength)
+      console.log(day.css('height'))
+      nextRows = day.parent().siblings().
+        slice(startMinute, startMinute + classLength - 1)
+      nextRows.find('td.day-' + dayNumber).remove()
       day.append('<div id="day-lesson-' + lesson.id +
         '" class="weekly-lesson status-' + lesson.status +
-        '">' + lesson.title + '</div>')
-
+        '" style="height:' + day.css('height') +
+        ';">' + lesson.title + '</div>')
     setPopovers()
 
   setPopovers = ->

@@ -7,7 +7,9 @@
   <% 1440.times do |minute| %>
     <tr class="minute-row minute-<%= minute %>">
       <% if is_hour?(minute) %>
-        <td class="hour" rowspan="60"><%= hour_format(minute) %></td>
+        <td class="hour" rowspan="60">
+          <%= hour_format(minute) %>
+        </td>
       <% end %>
       <% 7.times do |wday| %>
         <td class="minute-col day-<%= wday %>"></td>

@@ -8,7 +8,7 @@ $('#' + lessonId).
 var dayLessonId = 'day-lesson-' + <%= @lesson_plan.id %>;
 
 $('.weekly-lesson').remove();
-$('td.minute-col').attr('rowspan', '');
+$('td.minute-col').removeAttr('rowspan');
 
 lessons = $('.lesson-data').map(function(index, lesson) {
   lessonData = $('<div/>').html($(lesson).attr('data-lesson')).text();

@@ -164,7 +164,7 @@
     }
 
     tr.minute-row, td.minute-col {
-      height: 0.5px;
+      max-height: 0.5px;
       text-align: center;
       vertical-align: top;
       border-right: solid 1px #ccc;
@@ -181,7 +181,6 @@
 
     .weekly-lesson {
       @include lesson-border;
-      height: 100%;
       cursor: pointer;
     }
 
