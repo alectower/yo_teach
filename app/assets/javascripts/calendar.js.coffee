@@ -24,6 +24,7 @@ class Calendar
     Calendar.addLessons(lessons)
 
   this.addLessons = (lessons) ->
+    $('.weekly-lesson').remove()
     $(lessons).each (index, lesson) ->
       startTime = new Date(lesson.start)
       startMinute = (startTime.getUTCHours() * 60) +
@@ -48,8 +49,10 @@ class Calendar
         dayColumn = $('#day-' + day)
         overlaps = findOverlaps(dayColumn.children())
         if overlaps > 0
-          dayWidth = dayColumn.css('width')
-          dayColumn.children().css('width', (dayWidth.replace('px', '') // (overlaps + 1)) - 2)
+          dayWidth = dayColumn.css('width').
+            replace('px', '')
+          dayColumn.children().css('width',
+            (dayWidth // (overlaps + 1)) - 2)
 
   findOverlaps = (lessons) ->
     overlaps = 0
