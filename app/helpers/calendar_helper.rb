@@ -42,7 +42,7 @@ module CalendarHelper
   end
 
   def hour_style(hour)
-    "top:#{hour * 60}px; height:120px;"
+    "top:#{hour * 60}px; height:119px;"
   end
 
   def day_of_week(day)

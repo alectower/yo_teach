@@ -5,13 +5,15 @@
 
 <% content_for :calendar_body do %>
   <div class="hour-column">
+    <div class="half-hour"></div>
     <% 24.times do |hour| %>
       <div class="hour" style="<%= hour_style(hour) %>">
         <%= hour_format(hour) %>
       </div>
+      <div class="half-hour"></div>
     <% end %>
   </div>
-  <% 7.downto(1) do |wday| %>
+  <% 6.downto(0) do |wday| %>
     <div id="day-<%= wday %>" class="day-column"></div>
   <% end %>
 <% end %>
@@ -20,6 +22,7 @@
   <div id="<%= "lesson-#{l.id}" %>" class='lesson-data'
     data-lesson="<%= l.to_json %>" style='display:none'>
     <%= render 'lesson_time_form', lesson: l %>
+    <%= link_to 'View', edit_lesson_plan_path(l) %>
   </div>
 <% end %>
 

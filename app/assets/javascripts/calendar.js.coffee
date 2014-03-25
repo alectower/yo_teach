@@ -37,7 +37,7 @@ class Calendar
       day = $('#day-' + dayNumber)
       day.append('<div id="day-lesson-' + lesson.id +
         '" class="weekly-lesson status-' + lesson.status +
-        '" style="top:' + (startMinute * 2) +
+        '" style="top:' + ((startMinute * 2) + 5) +
         'px; height:' + (classLength * 2) +
         'px;">' + lesson.title + '</div>')
     updateWidths()
@@ -48,26 +48,48 @@ class Calendar
       do (day) ->
         dayColumn = $('#day-' + day)
         overlaps = findOverlaps(dayColumn.children())
-        if overlaps > 0
+        if overlaps.length > 0
           dayWidth = dayColumn.css('width').
             replace('px', '')
-          dayColumn.children().css('width',
-            (dayWidth // (overlaps + 1)) - 2)
+          $(overlaps).each (index, lesson) ->
+            $('#' + lesson).css('width',
+              (dayWidth // (overlaps.length)) - 2.5)
 
-  findOverlaps = (lessons) ->
-    overlaps = 0
-    lessons.each (index, lesson) ->
+  findOverlaps = (lessons, timeOverlaps = []) ->
+    $(lessons).each (index, lesson) ->
       nextLesson = $(lessons[index + 1])
       lesson = $(lesson)
-      if nextLesson
-        currentStart = lesson.css('top')
-        nextStart = nextLesson.css('top')
-        currentEnd = lesson.css('top') +
-          lesson.css('height')
-        if nextStart >= currentStart &&
-          nextStart <= currentEnd
-            overlaps += 1
-    overlaps
+      if nextLesson.css('top') != undefined
+        if isOverlap(lesson, nextLesson)
+          timeOverlaps.push lesson.attr('id')
+          timeOverlaps.push nextLesson.attr('id')
+          nextOverlap = findOverlaps(
+            lessons[(index + 1)..-1], timeOverlaps)
+          timeOverlaps = nextOverlap.unique()
+    timeOverlaps
+
+  Array::unique = ->
+    output = {}
+    output[@[key]] = @[key] for key in [0...@length]
+    value for key, value of output
+
+  isOverlap = (lesson, nextLesson) ->
+    currentStart = parseInt(
+      lesson.css('top').replace('px', ''))
+    nextStart = parseInt(
+      nextLesson.css('top').replace('px', ''))
+    currentEnd = currentStart +
+      parseInt(lesson.css('height').replace('px', ''))
+    nextEnd = nextStart +
+      parseInt(nextLesson.css('height').
+      replace('px', ''))
+    if (nextStart >= currentStart &&
+      nextStart <= currentEnd) ||
+      (nextEnd >= currentStart &&
+      nextEnd <= currentEnd)
+        true
+    else
+      false
 
   setPopovers = ->
     $('.weekly-lesson').each (index, lesson) ->
