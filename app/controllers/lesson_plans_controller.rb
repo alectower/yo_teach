@@ -41,12 +41,23 @@ class LessonPlansController < ApplicationController
 
   def update
     if @lesson_plan.update(lesson_plan_params)
-      flash[:notice] =
-        'Lesson plan was successfully updated.'
-      redirect_to edit_lesson_plan_path @lesson_plan
+      response do |format|
+        format.html do
+          flash[:notice] =
+            'Lesson plan was successfully updated.'
+          redirect_to edit_lesson_plan_path @lesson_plan
+        end
+        format.js
+      end
     else
-      flash[:error] = 'Lesson plan failed to be updated.'
-      render :edit
+      response do |format|
+        format.html do
+          flash[:error] =
+            'Lesson plan failed to be updated.'
+          render :edit
+        end
+        format.js
+      end
     end
   end
 
@@ -80,7 +91,7 @@ class LessonPlansController < ApplicationController
 
   def lesson_plan_params
     params.require(:lesson_plan).permit(:course_id,
-      :title, :start, :end, :status,
+      :title, :start, :end,
       fields_attributes: [:id, :title, :description])
   end
 
