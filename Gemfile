@@ -2,7 +2,7 @@ ruby '2.1.1'
 
 source 'https://rubygems.org'
 
-gem 'bcrypt-ruby'
+gem 'bcrypt'
 gem 'bootstrap-sass', '~> 2.3.2.0'
 gem 'coffee-rails'
 gem 'factory_girl_rails'
