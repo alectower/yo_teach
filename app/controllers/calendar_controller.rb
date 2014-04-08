@@ -9,7 +9,7 @@ class CalendarController < ApplicationController
   private
 
   def calendar_date
-    params[:date] ? Date.parse(params[:date]) : Date.today
+    params[:date] ? Date.strptime(params[:date], "%m/%d/%Y") : Date.today
   end
 
 end

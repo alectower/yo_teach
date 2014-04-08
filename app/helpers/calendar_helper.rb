@@ -23,7 +23,7 @@ module CalendarHelper
 
   def day_with_date(day)
     if params[:date]
-      date = Date.parse(params[:date]).
+      date = Date.strptime(params[:date], "%m/%d/%Y").
         beginning_of_week(:sunday)
     else
       date = Date.today.beginning_of_week(:sunday)
