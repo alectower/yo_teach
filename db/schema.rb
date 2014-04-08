@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20140326170546) do
     t.string "dot_notation",  null: false
     t.string "uri",           null: false
     t.string "guid",          null: false
-    t.string "description",   null: false
+    t.text   "description",   null: false
   end
 
   create_table "core_standards_lesson_plans", id: false, force: true do |t|

@@ -5,7 +5,7 @@ class CreateCoreStandards < ActiveRecord::Migration
       t.string :dot_notation, null: false
       t.string :uri, null: false
       t.string :guid, null: false
-      t.string :description, null: false
+      t.text :description, null: false
     end
   end
 end
