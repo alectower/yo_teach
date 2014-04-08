@@ -2,8 +2,13 @@ var lessonId = 'lesson-' + <%= @lesson_plan.id %>;
 $('#' + lessonId).
   attr('data-lesson', "<%= @lesson_plan.to_json %>");
 
-$('#' + lessonId).
-  html("<%= raw(escape_javascript(render 'calendar/lesson_time_form', lesson: @lesson_plan)) %> ");
+<%
+  html = raw(escape_javascript(
+    render 'calendar/lesson_time_form',
+    lesson: @lesson_plan))
+%>
+
+$('#' + lessonId).html("<%= html %>");
 
 var dayLessonId = 'day-lesson-' + <%= @lesson_plan.id %>;
 
@@ -11,7 +16,8 @@ $('.weekly-lesson').remove();
 $('td.minute-col').removeAttr('rowspan');
 
 lessons = $('.lesson-data').map(function(index, lesson) {
-  lessonData = $('<div/>').html($(lesson).attr('data-lesson')).text();
+  lessonData = $('<div/>').html($(lesson).
+    attr('data-lesson')).text();
   return $.parseJSON(lessonData);
 });
 

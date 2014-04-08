@@ -22,7 +22,6 @@
   <div id="<%= "lesson-#{l.id}" %>" class='lesson-data'
     data-lesson="<%= l.to_json %>" style='display:none'>
     <%= render 'lesson_time_form', lesson: l %>
-    <%= link_to 'View', edit_lesson_plan_path(l) %>
   </div>
 <% end %>
 

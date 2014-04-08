@@ -1,0 +1,49 @@
+<div id='standards-tab' class='tab-pane'>
+  <% if !lesson_plan.core_standards.empty? %>
+    <table class='table'>
+      <caption>Core Standards In Lesson Plan</caption>
+      <thead>
+        <tr>
+          <th>Standard</th>
+          <th>Description</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% lesson_plan.core_standards.ordered.each do |s| %>
+          <tr>
+            <td><a href="<%= s.uri%>" target='_blank'><%= s.dot_notation %></a></td>
+            <td><%= raw s.description %></td>
+            <td>
+              <%= link_to 'Remove Standard',
+                lesson_plan_standards_path(
+                  lesson_plan_id: lesson_plan.id,
+                  core_standard_id: s.id), method: :delete %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+  <table class='table filterable'>
+    <caption>Add Core Standards</caption>
+    <thead>
+      <tr>
+        <th>Standard</th>
+        <th>Description</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% CoreStandard.ordered.each do |s| %>
+        <tr>
+          <td><a href="<%= s.uri%>" target='_blank'><%= s.dot_notation %></a></td>
+          <td><%= raw s.description %></td>
+          <td>
+            <%= link_to 'Add Standard', lesson_plan_standards_path(lesson_plan_id: lesson_plan.id, core_standard_id: s.id), method: :post %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

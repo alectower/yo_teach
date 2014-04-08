@@ -57,14 +57,16 @@
     <% @lesson_plans.each do |lesson_plan| %>
       <tr>
         <td><%= link_to lesson_plan.title,
-              edit_lesson_plan_path(lesson_plan.id) %></td>
+          edit_lesson_plan_path(lesson_plan.id) %>
+        </td>
         <td>
           <div class="status status-<%= lesson_plan.status %>">
             <%= lesson_plan.status_text %>
           </div>
         </td>
         <td><%= link_to lesson_plan.course_name,
-                edit_course_path(lesson_plan.course.id)%></td>
+          edit_course_path(lesson_plan.course.id)%>
+        </td>
         <td><%= lesson_plan.start_date %></td>
         <td><%= lesson_plan.start_time %></td>
         <td><%= lesson_plan.end_time %></td>

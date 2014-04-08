@@ -31,7 +31,6 @@ FactoryGirl.define do
           Activities
           Assessments
           Homework
-          Standards
       ].each do |field|
         FactoryGirl.create(:lesson_plan_field, title: field, description: "", lesson_plan: l)
       end
@@ -49,6 +48,4 @@ FactoryGirl.define do
         FactoryGirl.create(:lesson_plan_field, lesson_plan: l)
       end
   end
-
-
 end

@@ -1,7 +1,7 @@
 <div id='details-tab' class='tab-pane active'>
   <div class="span7">
     <%= lesson_plan_form.collection_select :course_id,
-      Course.all, :id, :name, prepend: 'icon-book' %>
+      Course.all, :id, :name_with_date, prepend: 'icon-book' %>
 
     <%= lesson_plan_form.text_field :title,
       prepend: 'icon-list-alt', label: { text: 'Lesson Title' } %>

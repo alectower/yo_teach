@@ -65,7 +65,7 @@ describe "LessonPlans" do
                 fill_in 'Description', with: 'Read ch. 1-3'
               end
               click_button 'Create Lesson Plan'
-            }.to change(LessonPlanField, :count).by(6)
+            }.to change(LessonPlanField, :count).by 5
           end
         end
 
@@ -76,7 +76,7 @@ describe "LessonPlans" do
                 fill_in 'Title', with: ''
               end
               click_button 'Create Lesson Plan'
-            }.to change(LessonPlanField, :count).by 5
+            }.to change(LessonPlanField, :count).by 4
           end
         end
       end

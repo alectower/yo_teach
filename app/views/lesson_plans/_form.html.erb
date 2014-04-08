@@ -2,7 +2,6 @@
 
   <div class='tabbable tabs-left'>
     <%= render 'form_nav', lesson_plan: lesson_plan %>
-
     <div class='tab-content'>
       <%= render 'form_details_tab',
         lesson_plan_form: form %>
@@ -10,17 +9,19 @@
         <%= render 'form_content_tab',
           field: f, lesson_plan_form: form, lesson_plan: lesson_plan %>
       <% end %>
+      <%= render 'form_standards_tab',
+        lesson_plan: lesson_plan, form: form %>
     </div>
   </div>
 
-  <div class="control-group form-submit">
-    <div class="controls">
+  <div class='control-group form-submit'>
+    <div class='controls'>
       <%= form.submit submit_text,
         class: 'btn btn-primary' %>
       <%= link_to 'Cancel', lesson_plans_path,
         class: 'btn' %>
       <%=
-        unless lesson_plan.id.nil?
+        if !lesson_plan.id.nil?
           link_to 'Delete', lesson_plan_path(lesson_plan),
             data: { confirm: 'Are you sure?' },
             method: :delete,
@@ -29,5 +30,4 @@
       %>
     </div>
   </div>
-
 <% end %>

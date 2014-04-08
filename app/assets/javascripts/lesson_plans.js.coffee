@@ -1,6 +1,11 @@
 class LessonPlan
 
-  this.initTinyMce = ->
+  this.init = ->
+    initTinyMce()
+    filter()
+    filterStandards()
+
+  initTinyMce = ->
     tinymce.init
       menubar: 'edit view format table'
       selector: 'textarea'
@@ -9,7 +14,7 @@ class LessonPlan
       plugins: 'fullscreen table'
       tools: 'inserttable'
 
-  this.filter = ->
+  filter = ->
     $('#dropdown').change ->
       course = $(this).find('select :selected')
       if course.text() == 'All Courses'
@@ -17,9 +22,10 @@ class LessonPlan
       else
         Turbolinks.visit '/lesson_plans?course=' + course.val()
 
+  filterStandards = ->
+    $(".filterable").filterTable()
+
 $(document).ready ->
-  LessonPlan.filter()
-  LessonPlan.initTinyMce()
+  LessonPlan.init()
 $(document).on 'page:load', ->
-  LessonPlan.filter()
-  LessonPlan.initTinyMce()
+  LessonPlan.init()

@@ -6,6 +6,9 @@ class LessonPlan < ActiveRecord::Base
   accepts_nested_attributes_for :fields,
     reject_if: :empty_attrs
 
+  has_and_belongs_to_many :core_standards
+  accepts_nested_attributes_for :core_standards
+
   validates_presence_of :title, :course, :start, :end,
     :course_id, :status
   validates_inclusion_of :status, in: 1..3

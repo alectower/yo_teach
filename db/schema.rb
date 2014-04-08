@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131005115405) do
+ActiveRecord::Schema.define(version: 20140326170546) do
+
+  create_table "core_standards", force: true do |t|
+    t.string "standard_type", null: false
+    t.string "dot_notation",  null: false
+    t.string "uri",           null: false
+    t.string "guid",          null: false
+    t.string "description",   null: false
+  end
+
+  create_table "core_standards_lesson_plans", id: false, force: true do |t|
+    t.integer "core_standard_id"
+    t.integer "lesson_plan_id"
+  end
 
   create_table "courses", force: true do |t|
     t.string   "name"

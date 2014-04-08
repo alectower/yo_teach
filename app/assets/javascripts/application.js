@@ -12,6 +12,7 @@
 //= require tinymce
 //= require jquery
 //= require jquery_ujs
+//= require jquery.filtertable
 //= require jquery.turbolinks
 //= require bootstrap
 //= require calendar
