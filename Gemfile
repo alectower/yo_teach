@@ -1,4 +1,4 @@
-ruby '2.1.0'
+ruby '2.1.1'
 
 source 'https://rubygems.org'
 
@@ -42,6 +42,7 @@ end
 group :production do
   gem 'pg'
   gem 'rails_12factor'
+  gem 'therubyracer-heroku'
 end
 
 
