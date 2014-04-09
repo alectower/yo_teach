@@ -22,7 +22,7 @@
 <% @lesson_plan.fields.each do |f| %>
   <div>
     <b><%= f.title %></b>
-    <p><%= raw f.description %></p>
+    <p><%= f.description.html_safe %></p>
   </div>
 <% end %>
 <div>
@@ -31,7 +31,7 @@
     <p>
       <%= s.dot_notation %><br/>
       <%= s.uri %>
-      <p><%= raw s.description %></p>
+      <p><%= s.description.html_safe %></p>
     </p>
   <% end %>
 </div>

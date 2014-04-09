@@ -13,8 +13,8 @@ gem 'jquery-rails'
 gem 'jquery-turbolinks'
 gem 'jquery-ui-rails'
 gem 'nokogiri'
-gem 'rails', '4.0.2'
-gem 'sass-rails', '>= 3.2'
+gem 'rails'
+gem 'sass-rails', '~> 4.0.2'
 gem 'tinymce-rails'
 gem 'turbolinks'
 gem 'uglifier'
@@ -26,6 +26,7 @@ group :development do
   gem 'metric_fu'
   gem 'rack-mini-profiler'
   gem 'turbulence'
+  gem 'spring'
 end
 
 group :development, :test do

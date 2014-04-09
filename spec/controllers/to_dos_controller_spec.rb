@@ -4,12 +4,12 @@ describe ToDosController do
 
   describe "GET #new" do
     it "assigns a new ToDo to @to_do" do
-      get :new, format: :js
+      xhr :get, :new, format: :js
       assigns(:to_do).should be_a_new(ToDo)
     end
 
     it "renders the :new template" do
-      get :new, format: :js
+      xhr :get, :new, format: :js
       response.should render_template :new
     end
   end
