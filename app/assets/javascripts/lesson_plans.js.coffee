@@ -3,7 +3,6 @@ class LessonPlan
   this.init = ->
     initTinyMce()
     $('#dropdown').change filter
-    $('#print-lesson').click print
     $(".filterable").filterTable()
 
   initTinyMce = ->
@@ -21,12 +20,6 @@ class LessonPlan
         Turbolinks.visit '/lesson_plans'
       else
         Turbolinks.visit '/lesson_plans?course=' + course.val()
-
-  print = ->
-    url = window.location.pathname
-    url = url.substring 0, url.indexOf('edit')
-    win = window.open url, '_blank'
-    win.print()
 
 $(document).ready LessonPlan.init
 $(document).on 'page:load', LessonPlan.init

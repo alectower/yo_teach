@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lesson Mate</title>
+    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  </head>
+  <body>
+    <div class='container'>
+      <h1>Lesson Mate</h1>
+    </div>
+    <div class='container-fluid'>
+      <div id='messages'>
+        <%= render 'layouts/messages' %>
+      </div>
+      <div class='span3 offset4'>
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>

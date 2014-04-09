@@ -1,12 +1,17 @@
 require 'spec_helper'
 
 describe LessonPlanFieldsController do
+  let(:user) { FactoryGirl.create :user }
+  let(:lesson_plan_field) { FactoryGirl.create(:lesson_plan_field) }
+
+  before do
+    request.session[:user_id] = user.id
+  end
 
   describe 'DELETE destroy' do
-
-    before { request.env["HTTP_REFERER"] = "where_i_came_from" }
-
-    let(:lesson_plan_field) { FactoryGirl.create(:lesson_plan_field) }
+    before do
+      request.env["HTTP_REFERER"] = "where_i_came_from"
+    end
 
     it 'sets the variable to the correct lesson plan' do
       delete :destroy, id: lesson_plan_field.id

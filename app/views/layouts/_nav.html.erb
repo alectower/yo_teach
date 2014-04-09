@@ -18,7 +18,9 @@
           <li><a href='#'>My Account</a></li>
           <li class='divider-vertical'></li>
           <li class='nav pull-right'>
-            <a href='#'>Sign In</a>
+            <%= link_to 'Sign Out',
+              session_path(id: current_user.id),
+              method: :delete %>
           </li>
         </ul>
       </div>

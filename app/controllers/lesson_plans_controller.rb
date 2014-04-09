@@ -1,5 +1,6 @@
 class LessonPlansController < ApplicationController
-  before_action :set_lesson_plan, except: [:index, :new, :create]
+  before_action :set_lesson_plan,
+    only: [:show, :edit, :update, :destroy]
 
   def index
     search_params = [:sort, :direction, :search, :course]
@@ -7,12 +8,15 @@ class LessonPlansController < ApplicationController
       search_params.include?(p.to_sym)
     }
     if search.empty?
-      @lesson_plans = LessonPlan.paginate page: params[:page], per_page: 8
+      @lesson_plans = current_user.lesson_plans.
+        paginate page: params[:page], per_page: 8
     else
       params.each_value do |v|
         v.downcase! if !v.respond_to?(:downcase?)
       end
-      @lesson_plans = LessonPlanQuery.new.search(params).paginate page: params[:page], per_page: 8
+      @lesson_plans = LessonPlanQuery.new(
+        current_user.lesson_plans).search(params).
+        paginate page: params[:page], per_page: 8
     end
   end
 
@@ -21,8 +25,8 @@ class LessonPlansController < ApplicationController
   end
 
   def new
-    @lesson_plan =
-      LessonPlan.new start: start_time, end: end_time
+    @lesson_plan = current_user.lesson_plans.
+      new start: start_time, end: end_time
     build_default_fields
   end
 
@@ -31,7 +35,8 @@ class LessonPlansController < ApplicationController
   end
 
   def create
-    @lesson_plan = LessonPlan.new(lesson_plan_params)
+    @lesson_plan = current_user.lesson_plans.
+      new(lesson_plan_params)
     if @lesson_plan.save
       flash[:notice] =
         'Lesson plan was successfully created.'
@@ -89,7 +94,8 @@ class LessonPlansController < ApplicationController
   end
 
   def set_lesson_plan
-    @lesson_plan = LessonPlanQuery.new.
+    @lesson_plan = LessonPlanQuery.new(
+      current_user.lesson_plans).
       lesson_plan_with_fields(params[:id])
   end
 

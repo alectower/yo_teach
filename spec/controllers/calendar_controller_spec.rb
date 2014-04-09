@@ -1,6 +1,11 @@
 require 'spec_helper'
 
 describe CalendarController do
+  let(:user) { FactoryGirl.create :user }
+
+  before do
+    request.session[:user_id] = user.id
+  end
 
   context 'calendar month' do
     it 'renders the calendar template' do

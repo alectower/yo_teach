@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140326170546) do
+ActiveRecord::Schema.define(version: 20140410131754) do
 
   create_table "core_standards", force: true do |t|
     t.string "standard_type", null: false
@@ -32,7 +32,10 @@ ActiveRecord::Schema.define(version: 20140326170546) do
     t.date     "end_date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
+
+  add_index "courses", ["user_id"], name: "index_courses_on_user_id"
 
   create_table "lesson_plan_fields", force: true do |t|
     t.string   "title"
@@ -52,14 +55,26 @@ ActiveRecord::Schema.define(version: 20140326170546) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "status"
+    t.integer  "user_id"
   end
 
   add_index "lesson_plans", ["course_id"], name: "index_lesson_plans_on_course_id"
   add_index "lesson_plans", ["start"], name: "index_lesson_plans_on_start"
+  add_index "lesson_plans", ["user_id"], name: "index_lesson_plans_on_user_id"
 
   create_table "to_dos", force: true do |t|
     t.string   "body"
     t.boolean  "complete"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
+  add_index "to_dos", ["user_id"], name: "index_to_dos_on_user_id"
+
+  create_table "users", force: true do |t|
+    t.string   "email"
+    t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

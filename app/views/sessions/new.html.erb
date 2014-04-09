@@ -1,0 +1,15 @@
+<h1>Log In</h1>
+
+<%= form_tag sessions_path do %>
+  <div class='control-group'>
+    <%= label_tag :email %>
+    <%= text_field_tag :email, params[:email] %>
+  </div>
+  <div class='control-group'>
+    <%= label_tag :password %>
+    <%= password_field_tag :password %>
+  </div>
+  <%= submit_tag 'Log In', class: 'btn btn-primary' %>
+<% end %>
+
+<p>Don't have an account? <%= link_to 'Sign up', new_user_path %></p>

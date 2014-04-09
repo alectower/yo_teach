@@ -6,6 +6,7 @@ FactoryGirl.define do
     name { "Math" }
     start_date 1.month.ago
     end_date 1.month.from_now
+    user
   end
 
   factory :course_with_lesson_plans, parent: :course do
@@ -17,10 +18,10 @@ FactoryGirl.define do
     after(:create) do |course|
       (course.start_date..course.end_date).each do |d|
         if d.wday % 2 != 0
-          FactoryGirl.create(:lesson_plan,
-                             start: d.to_datetime,
-                             end: 1.hour.since(d.to_datetime),
-                             course: course)
+          FactoryGirl.create :lesson_plan,
+            start: d.to_datetime,
+            end: 1.hour.since(d.to_datetime),
+            course: course
         end
       end
     end

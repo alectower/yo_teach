@@ -1,37 +1,46 @@
-<h2><%= @lesson_plan.title %></h2>
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <%= javascript_include_tag "application"  %>
+    <script>$(window.print());</script>
+  </head>
+  <body>
+    <h2><%= @lesson_plan.title %></h2>
 
-<div>
-  <p>
-    <b>Course:</b>
-    <%= @lesson_plan.course.name %>
-  </p>
-</div>
-<div>
-  <p>
-    <b>Date:</b>
-    <%= @lesson_plan.start.strftime "%A, %B %e, %Y" %>
-  </p>
-</div>
-<div>
-  <p>
-    <b>Time:</b>
-    <%= @lesson_plan.start.strftime "%l:%M%p" %> -
-    <%= @lesson_plan.end.strftime "%l:%M%p" %>
-  </p>
-</div>
-<% @lesson_plan.fields.each do |f| %>
-  <div>
-    <b><%= f.title %></b>
-    <p><%= f.description.html_safe %></p>
-  </div>
-<% end %>
-<div>
-  <b>Standards</b>
-  <% @lesson_plan.core_standards.each do |s| %>
-    <p>
-      <%= s.dot_notation %><br/>
-      <%= s.uri %>
-      <p><%= s.description.html_safe %></p>
-    </p>
-  <% end %>
-</div>
+    <div>
+      <p>
+        <b>Course:</b>
+        <%= @lesson_plan.course.name %>
+      </p>
+    </div>
+    <div>
+      <p>
+        <b>Date:</b>
+        <%= @lesson_plan.start.strftime "%A, %B %e, %Y" %>
+      </p>
+    </div>
+    <div>
+      <p>
+        <b>Time:</b>
+        <%= @lesson_plan.start.strftime "%l:%M%p" %> -
+        <%= @lesson_plan.end.strftime "%l:%M%p" %>
+      </p>
+    </div>
+    <% @lesson_plan.fields.each do |f| %>
+      <div>
+        <b><%= f.title %></b>
+        <p><%= f.description.html_safe %></p>
+      </div>
+    <% end %>
+    <div>
+      <b>Standards</b>
+      <% @lesson_plan.core_standards.each do |s| %>
+        <p>
+          <%= s.dot_notation %><br/>
+          <%= s.uri %>
+          <p><%= s.description.html_safe %></p>
+        </p>
+      <% end %>
+    </div>
+  </body>
+</html>

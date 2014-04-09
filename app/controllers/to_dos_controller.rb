@@ -2,14 +2,14 @@ class ToDosController < ApplicationController
   before_action :set_to_do, only: [:destroy]
 
   def new
-    @to_do = ToDo.new
+    @to_do = current_user.to_dos.new
     respond_to do |format|
       format.js
     end
   end
 
   def create
-    @to_do = ToDo.new(to_do_params)
+    @to_do = current_user.to_dos.new to_do_params
     respond_to do |format|
       if @to_do.save
         format.js
@@ -29,10 +29,10 @@ class ToDosController < ApplicationController
 
   private
     def set_to_do
-      @to_do = ToDo.find(params[:id])
+      @to_do = current_user.to_dos.find params[:id]
     end
 
     def to_do_params
-      params.require(:to_do).permit(:body)
+      params.require(:to_do).permit :body
     end
 end

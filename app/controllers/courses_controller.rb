@@ -3,19 +3,19 @@ class CoursesController < ApplicationController
     only: [:edit, :update, :destroy]
 
   def index
-    @courses = Course.paginate page: params[:page],
-      per_page: 8
+    @courses = current_user.courses.
+      paginate page: params[:page], per_page: 8
   end
 
   def new
-    @course = Course.new
+    @course = current_user.courses.new
   end
 
   def edit
   end
 
   def create
-    @course = Course.new course_params
+    @course = current_user.courses.new course_params
     if @course.save
       flash[:notice] = 'Course was successfully created.'
       redirect_to courses_path
@@ -50,7 +50,7 @@ class CoursesController < ApplicationController
 
   private
     def set_course
-      @course = Course.find(params[:id])
+      @course = current_user.courses.find(params[:id])
     end
 
     def course_params

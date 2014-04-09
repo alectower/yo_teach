@@ -1,10 +1,15 @@
 require 'spec_helper'
 
 describe LessonPlansController do
+  let(:user) { FactoryGirl.create :user }
+
+  before do
+    request.session[:user_id] = user.id
+  end
 
   describe "GET #index" do
     it "populates an array of lesson_plans" do
-      lesson_plan = FactoryGirl.create(:lesson_plan)
+      lesson_plan = FactoryGirl.create :lesson_plan, user: user
       get :index
       assigns(:lesson_plans).should eq([lesson_plan])
     end
@@ -32,13 +37,13 @@ describe LessonPlansController do
       it "creates a new lesson_plan" do
         expect{
           post :create, lesson_plan:
-            FactoryGirl.build(:lesson_plan)
+            FactoryGirl.build(:lesson_plan, user: user)
               .attributes.symbolize_keys
         }.to change(LessonPlan, :count).by(1)
       end
 
       it "redirects to the lesson_plans page" do
-        l = FactoryGirl.build(:lesson_plan)
+        l = FactoryGirl.build(:lesson_plan, user: user)
           .attributes.symbolize_keys
         post :create, lesson_plan: l
         response.should redirect_to(
@@ -66,7 +71,7 @@ describe LessonPlansController do
 
   describe "POST #update" do
     it "saves updated fields" do
-      l = FactoryGirl.create(:lesson_plan)
+      l = FactoryGirl.create :lesson_plan, user: user
       l.title = 'In class essay'
       put :update, id: l,
         lesson_plan: l.attributes.symbolize_keys
@@ -74,7 +79,7 @@ describe LessonPlansController do
     end
 
     it 'redirects to edit template' do
-      l = FactoryGirl.create(:lesson_plan)
+      l = FactoryGirl.create :lesson_plan, user: user
       l.title = 'In class essay'
       put :update, id: l,
         lesson_plan: l.attributes.symbolize_keys
@@ -85,13 +90,15 @@ describe LessonPlansController do
 
   describe "POST #delete" do
     it "renders the destroy template" do
-      lesson_plan = FactoryGirl.create(:lesson_plan)
+      lesson_plan = FactoryGirl.create :lesson_plan,
+        user: user
       delete :destroy, id: lesson_plan.id
       response.should redirect_to lesson_plans_path
     end
 
     it "deletes the lesson_plan" do
-      lesson_plan = FactoryGirl.create(:lesson_plan)
+      lesson_plan = FactoryGirl.create :lesson_plan,
+        user: user
       expect{
         delete :destroy, id: lesson_plan.id
       }.to change(LessonPlan, :count).by(-1)
@@ -100,8 +107,8 @@ describe LessonPlansController do
 
   describe "GET #search" do
     it "sets the @lesson_plans variable to the searched for lesson plans" do
-      math = FactoryGirl.create(:lesson_plan,
-                                title: 'Area')
+      math = FactoryGirl.create :lesson_plan, user: user,
+        title: 'Area'
       get :index, title: 'are'
       assigns(:lesson_plans).size.should eq (1)
     end

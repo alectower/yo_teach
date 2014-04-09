@@ -1,6 +1,15 @@
 require 'spec_helper'
 
 describe "ToDos" do
+  let(:user) { FactoryGirl.create :user }
+
+  before do
+    visit new_session_path
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
+    click_button 'Log In'
+  end
+
   describe "User adds to-do" do
     it "creates new to-do", js: true do
       expect {

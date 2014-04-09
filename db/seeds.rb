@@ -1,3 +1,4 @@
+User.delete_all
 LessonPlan.delete_all
 Course.delete_all
 ToDo.delete_all
@@ -21,20 +22,32 @@ def create_lesson_plans(course, *args)
   end
 end
 
-c = FactoryGirl.create :course, name: 'Math'
-create_lesson_plans(c, 'Multiplication', 'Division',
+user = FactoryGirl.create :user,
+  email: 'user@site.com',
+  password: 'password',
+  password_confirmation: 'password'
+
+math = FactoryGirl.create :course, name: 'Math',
+  user: user
+create_lesson_plans(math, 'Multiplication', 'Division',
   'Order of Operations', 'Exponents',
   'Area', 'Circumference',
   'Pythagorean Theorem', 'Distance', 'Summation')
 
-c = FactoryGirl.create :course, name: 'English'
-create_lesson_plans(c, 'Sentences', 'Paragraphs',
+english = FactoryGirl.create :course, name: 'English',
+  user: user
+create_lesson_plans(english, 'Sentences', 'Paragraphs',
   'Punctuation', 'Spelling',
   'Short Stories', 'Novels',
   'Grammar', 'Rhetoric',
   'Style of Speech')
 
-FactoryGirl.create :to_do, body: 'Create math exam'
-FactoryGirl.create :to_do, body: 'Grade english papers'
-FactoryGirl.create :to_do, body: 'Fill out report cards'
-FactoryGirl.create :to_do, body: 'Talk to Billy about his behavior in class'
+FactoryGirl.create :to_do, body: 'Create math exam',
+  user: user
+FactoryGirl.create :to_do, body: 'Grade english papers',
+  user: user
+FactoryGirl.create :to_do, body: 'Fill out report cards',
+  user: user
+FactoryGirl.create :to_do,
+  body: 'Talk to Billy about his behavior in class',
+  user: user

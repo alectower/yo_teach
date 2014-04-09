@@ -1,6 +1,11 @@
 require 'spec_helper'
 
 describe ToDosController do
+  let(:user) { FactoryGirl.create :user }
+
+  before do
+    request.session[:user_id] = user.id
+  end
 
   describe "GET #new" do
     it "assigns a new ToDo to @to_do" do
@@ -48,13 +53,13 @@ describe ToDosController do
 
   describe "POST #delete" do
     it "renders the destroy template" do
-      to_do = FactoryGirl.create(:to_do)
+      to_do = FactoryGirl.create :to_do, user: user
       delete :destroy, id: to_do.id, format: :json
       response.should be_success
     end
 
     it "deletes the to_do" do
-      to_do = FactoryGirl.create(:to_do)
+      to_do = FactoryGirl.create :to_do, user: user
       expect{
         delete :destroy, id: to_do.id, format: :json
       }.to change(ToDo, :count).by(-1)

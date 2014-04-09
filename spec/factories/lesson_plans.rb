@@ -8,6 +8,7 @@ FactoryGirl.define do
     lp.title { 'Area' }
     lp.status { 1 }
     lp.course
+    lp.user
   end
 
   factory :invalid_lesson_plan, parent: :lesson_plan do |lp|
@@ -16,6 +17,7 @@ FactoryGirl.define do
     lp.title { nil }
     lp.status { 1 }
     lp.course
+    lp.user
   end
 
   factory :lesson_plan_with_fields, parent: :lesson_plan do |lp|

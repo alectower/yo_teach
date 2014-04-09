@@ -1,6 +1,14 @@
 require 'spec_helper'
 
 describe "LessonPlans" do
+  let(:user) { FactoryGirl.create :user }
+
+  before do
+    visit new_session_path
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
+    click_button 'Log In'
+  end
 
   describe "view lesson plans page" do
     it "displays lesson plans and their attribtues" do
@@ -29,7 +37,7 @@ describe "LessonPlans" do
 
     context "course exists" do
       it "creates a valid lesson plan" do
-        FactoryGirl.create(:course, name: 'Math')
+        FactoryGirl.create(:course, user: user, name: 'Math')
         expect {
           visit new_lesson_plan_path
           within '#details-tab' do
@@ -45,7 +53,8 @@ describe "LessonPlans" do
 
       context "content tab" do
         before :each do
-          FactoryGirl.create :course, name: 'Math'
+          FactoryGirl.create :course, user: user,
+            name: 'Math'
           visit new_lesson_plan_path
           within "#details-tab" do
             select 'Math', from: 'Course'
@@ -86,9 +95,10 @@ describe "LessonPlans" do
   describe 'edit lesson plan' do
     let(:start_time) { Time.parse "2013-06-26 09:00:00" }
     let(:end_time) { 1.hour.since start_time}
-    let(:course) { FactoryGirl.create :course }
+    let(:course) { FactoryGirl.create :course, user: user }
     let(:lesson) { FactoryGirl.create :lesson_plan,
-      start: start_time, end: end_time, course: course }
+      user: user, start: start_time, end: end_time,
+      course: course }
 
     it "displays lesson plan info in title" do
       visit edit_lesson_plan_path lesson.id
@@ -103,10 +113,10 @@ describe "LessonPlans" do
 
   describe 'user searches for lesson plan(s)' do
     it "returns the correct lesson plan(s)" do
-      math = FactoryGirl.create :course
-      math.lesson_plans << FactoryGirl.create(:lesson_plan, title: "Area")
-      math.lesson_plans << FactoryGirl.create(:lesson_plan, title: "Barely Multiplication")
-      math.lesson_plans << FactoryGirl.create(:lesson_plan, title: "Circumference")
+      math = FactoryGirl.create :course, user: user
+      math.lesson_plans << FactoryGirl.create(:lesson_plan, user: user, title: "Area")
+      math.lesson_plans << FactoryGirl.create(:lesson_plan, user: user, title: "Barely Multiplication")
+      math.lesson_plans << FactoryGirl.create(:lesson_plan, user: user, title: "Circumference")
       visit lesson_plans_path
       page.should have_content /Lesson Plans/
       page.should have_content /Area/

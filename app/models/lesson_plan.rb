@@ -1,5 +1,6 @@
 class LessonPlan < ActiveRecord::Base
   belongs_to :course
+  belongs_to :user
   has_many :fields, foreign_key: 'lesson_plan_id',
     class_name: 'LessonPlanField', dependent: :destroy
 
@@ -10,8 +11,9 @@ class LessonPlan < ActiveRecord::Base
   accepts_nested_attributes_for :core_standards
 
   validates_presence_of :title, :course, :start, :end,
-    :course_id, :status
+    :course, :status, :user
   validates_inclusion_of :status, in: 1..3
+  validate :course_user_match?
   before_validation :update_status
 
   scope :in_date_range, ->(date_range) { where(start: date_range) }
@@ -50,6 +52,10 @@ class LessonPlan < ActiveRecord::Base
     when COMPLETE
       'Complete'
     end
+  end
+
+  def course_user_match?
+    course && course.user == user
   end
 
   private

@@ -1,10 +1,15 @@
 require 'spec_helper'
 
 describe CoursesController do
+  let(:user) { FactoryGirl.create :user }
+
+  before do
+    request.session[:user_id] = user.id
+  end
 
   describe "GET #index" do
     it "populates an array of courses" do
-      course = FactoryGirl.create(:course)
+      course = FactoryGirl.create :course, user: user
       get :index
       assigns(:courses).should eq([course])
     end
@@ -61,13 +66,13 @@ describe CoursesController do
 
   describe "POST #delete" do
     it "renders the destroy template" do
-      course = FactoryGirl.create(:course)
+      course = FactoryGirl.create :course, user: user
       delete :destroy, id: course.id
       response.should redirect_to courses_path
     end
 
     it "deletes the course" do
-      course = FactoryGirl.create(:course)
+      course = FactoryGirl.create :course, user: user
       expect{
         delete :destroy, id: course.id
       }.to change(Course, :count).by(-1)

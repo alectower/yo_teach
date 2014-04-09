@@ -1,5 +1,4 @@
 <%= bootstrap_form_for lesson_plan do |form| %>
-
   <div class='tabbable tabs-left'>
     <%= render 'form_nav', lesson_plan: lesson_plan %>
     <div class='tab-content'>
@@ -19,19 +18,19 @@
     <div class='controls'>
       <%= form.submit submit_text,
         class: 'btn btn-primary' %>
-      <a id='print-lesson' class='btn' href='#'>
-        Print Lesson Plan
-      </a>
-      <%= link_to 'Cancel', lesson_plans_path,
-        class: 'btn' %>
-      <%=
-        if !lesson_plan.id.nil?
+      <% if lesson_plan.id.present? %>
+        <%= link_to 'Print Lesson Plan',
+          lesson_plan_path(lesson_plan),
+          target: '_blank',
+          class: 'btn' %>
+        <%= link_to 'Cancel', lesson_plans_path,
+          class: 'btn' %>
+        <%=
           link_to 'Delete', lesson_plan_path(lesson_plan),
             data: { confirm: 'Are you sure?' },
             method: :delete,
-            class: 'btn'
-        end
-      %>
+            class: 'btn' %>
+      <% end %>
     </div>
   </div>
 <% end %>

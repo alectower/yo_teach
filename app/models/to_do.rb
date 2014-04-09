@@ -1,3 +1,4 @@
 class ToDo < ActiveRecord::Base
-  validates :body, presence: true
+  validates_presence_of :body, :user
+  belongs_to :user
 end
