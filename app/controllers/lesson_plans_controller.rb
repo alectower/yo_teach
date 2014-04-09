@@ -1,5 +1,5 @@
 class LessonPlansController < ApplicationController
-  before_action :set_lesson_plan, only: [:edit, :update, :destroy]
+  before_action :set_lesson_plan, except: [:index, :new, :create]
 
   def index
     search_params = [:sort, :direction, :search, :course]
@@ -14,6 +14,10 @@ class LessonPlansController < ApplicationController
       end
       @lesson_plans = LessonPlanQuery.new.search(params).paginate page: params[:page], per_page: 8
     end
+  end
+
+  def show
+    render layout: false
   end
 
   def new
@@ -41,7 +45,7 @@ class LessonPlansController < ApplicationController
 
   def update
     if @lesson_plan.update(lesson_plan_params)
-      response do |format|
+      respond_to do |format|
         format.html do
           flash[:notice] =
             'Lesson plan was successfully updated.'
@@ -50,7 +54,7 @@ class LessonPlansController < ApplicationController
         format.js
       end
     else
-      response do |format|
+      respond_to do |format|
         format.html do
           flash[:error] =
             'Lesson plan failed to be updated.'

@@ -2,8 +2,9 @@ class LessonPlan
 
   this.init = ->
     initTinyMce()
-    filter()
-    filterStandards()
+    $('#dropdown').change filter
+    $('#print-lesson').click print
+    $(".filterable").filterTable()
 
   initTinyMce = ->
     tinymce.init
@@ -15,15 +16,17 @@ class LessonPlan
       tools: 'inserttable'
 
   filter = ->
-    $('#dropdown').change ->
       course = $(this).find('select :selected')
       if course.text() == 'All Courses'
         Turbolinks.visit '/lesson_plans'
       else
         Turbolinks.visit '/lesson_plans?course=' + course.val()
 
-  filterStandards = ->
-    $(".filterable").filterTable()
+  print = ->
+    url = window.location.pathname
+    url = url.substring 0, url.indexOf('edit')
+    win = window.open url
+    win.print()
 
 $(document).ready ->
   LessonPlan.init()

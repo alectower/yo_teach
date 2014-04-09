@@ -7,11 +7,14 @@
   </div>
 <% else %>
   <div id=<%= "#{field.title.downcase}-tab"%> class='tab-pane'>
-    <%= link_to "Remove #{field.title}",
-          lesson_plan_fields_path(id: field.id),
-          method: :delete,
-          data: { confirm: "Are you sure you want to remove #{field.title} ?" },
-          style: 'float: right' %>
+    <% if field.id %>
+      <%= link_to "Remove #{field.title}",
+        lesson_plan_field_path(id: field.id),
+        method: :delete,
+        data: { confirm:
+          "Are you sure you want to remove #{field.title}?"
+        }, style: 'float: right' %>
+    <% end %>
     <%= lesson_plan_form.fields_for :fields, lesson_plan.fields.select { |f| f == field } do |field| %>
       <%= field.text_field :title, class: 'span4'%>
       <%= field.text_area :description, class: 'span6'%>

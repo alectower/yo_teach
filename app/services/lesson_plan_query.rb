@@ -20,7 +20,6 @@ class LessonPlanQuery
 
   def lesson_plan_with_fields(id)
     @relation = @relation.includes(:fields, :course)
-      .order("lesson_plan_fields.title asc")
       .find(id)
   end
 

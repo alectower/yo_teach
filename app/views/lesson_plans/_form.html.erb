@@ -7,7 +7,8 @@
         lesson_plan_form: form %>
       <% lesson_plan.fields.each do |f| %>
         <%= render 'form_content_tab',
-          field: f, lesson_plan_form: form, lesson_plan: lesson_plan %>
+          field: f, lesson_plan_form: form,
+          lesson_plan: lesson_plan %>
       <% end %>
       <%= render 'form_standards_tab',
         lesson_plan: lesson_plan, form: form %>
@@ -18,6 +19,9 @@
     <div class='controls'>
       <%= form.submit submit_text,
         class: 'btn btn-primary' %>
+      <a id='print-lesson' class='btn' href='#'>
+        Print Lesson Plan
+      </a>
       <%= link_to 'Cancel', lesson_plans_path,
         class: 'btn' %>
       <%=

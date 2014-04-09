@@ -1,4 +1,37 @@
-<p id="notice"><%= notice %></p>
+<h2><%= @lesson_plan.title %></h2>
 
-<%= link_to 'Edit', edit_lesson_plan_path(@lesson_plan) %> |
-<%= link_to 'Back', lesson_plans_path %>
+<div>
+  <p>
+    <b>Course:</b>
+    <%= @lesson_plan.course.name %>
+  </p>
+</div>
+<div>
+  <p>
+    <b>Date:</b>
+    <%= @lesson_plan.start.strftime "%A, %B %e, %Y" %>
+  </p>
+</div>
+<div>
+  <p>
+    <b>Time:</b>
+    <%= @lesson_plan.start.strftime "%l:%M%p" %> -
+    <%= @lesson_plan.end.strftime "%l:%M%p" %>
+  </p>
+</div>
+<% @lesson_plan.fields.each do |f| %>
+  <div>
+    <b><%= f.title %></b>
+    <p><%= raw f.description %></p>
+  </div>
+<% end %>
+<div>
+  <b>Standards</b>
+  <% @lesson_plan.core_standards.each do |s| %>
+    <p>
+      <%= s.dot_notation %><br/>
+      <%= s.uri %>
+      <p><%= raw s.description %></p>
+    </p>
+  <% end %>
+</div>

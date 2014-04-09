@@ -16,7 +16,7 @@
             <td><%= raw s.description %></td>
             <td>
               <%= link_to 'Remove Standard',
-                lesson_plan_standards_path(
+                lesson_plan_standard_path(
                   lesson_plan_id: lesson_plan.id,
                   core_standard_id: s.id), method: :delete %>
             </td>
