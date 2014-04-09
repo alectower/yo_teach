@@ -25,10 +25,8 @@ class LessonPlan
   print = ->
     url = window.location.pathname
     url = url.substring 0, url.indexOf('edit')
-    win = window.open url
+    win = window.open url, '_blank'
     win.print()
 
-$(document).ready ->
-  LessonPlan.init()
-$(document).on 'page:load', ->
-  LessonPlan.init()
+$(document).ready LessonPlan.init
+$(document).on 'page:load', LessonPlan.init

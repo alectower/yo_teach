@@ -20,7 +20,7 @@ describe LessonPlanFieldsController do
 
     it 'sets the flash success' do
       delete :destroy, id: lesson_plan_field.id
-      expect(flash[:success]).to be_present
+      expect(flash[:notice]).to be_present
     end
 
     it 'redirects to the previous page' do
