@@ -19,7 +19,7 @@
           <li class='divider-vertical'></li>
           <li class='nav pull-right'>
             <%= link_to 'Sign Out',
-              session_path(id: current_user.id),
+              log_out_path(id: current_user.id),
               method: :delete %>
           </li>
         </ul>

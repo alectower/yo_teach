@@ -1,13 +1,13 @@
 require 'spec_helper'
+require 'support/authenticate'
 
 describe "ToDos" do
+  include Authenticate
+
   let(:user) { FactoryGirl.create :user }
 
   before do
-    visit new_session_path
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    click_button 'Log In'
+    log_in
   end
 
   describe "User adds to-do" do
