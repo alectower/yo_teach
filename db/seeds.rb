@@ -9,11 +9,12 @@ def time
   hour = 8.hours.since(day.beginning_of_day)
 end
 
-def create_lesson_plans(course, *args)
+def create_lesson_plans(user, course, *args)
   t = time
   args.each_slice(3) do |week|
     week.each do |l|
       FactoryGirl.create :lesson_plan_with_fields,
+        user: user,
         course: course, title: l,
         start: t, end: 1.hour.since(t)
       t = 2.hours.since(2.days.since(t))
@@ -29,14 +30,14 @@ user = FactoryGirl.create :user,
 
 math = FactoryGirl.create :course, name: 'Math',
   user: user
-create_lesson_plans(math, 'Multiplication', 'Division',
+create_lesson_plans(user, math, 'Multiplication', 'Division',
   'Order of Operations', 'Exponents',
   'Area', 'Circumference',
   'Pythagorean Theorem', 'Distance', 'Summation')
 
 english = FactoryGirl.create :course, name: 'English',
   user: user
-create_lesson_plans(english, 'Sentences', 'Paragraphs',
+create_lesson_plans(user, english, 'Sentences', 'Paragraphs',
   'Punctuation', 'Spelling',
   'Short Stories', 'Novels',
   'Grammar', 'Rhetoric',
