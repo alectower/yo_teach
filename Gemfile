@@ -15,6 +15,7 @@ gem 'jquery-ui-rails'
 gem 'nokogiri'
 gem 'rails'
 gem 'sass-rails', '~> 4.0.2'
+gem 'stripe'
 gem 'tinymce-rails'
 gem 'turbolinks'
 gem 'uglifier'
@@ -45,5 +46,3 @@ group :production do
   gem 'rails_12factor'
   gem 'therubyracer-heroku'
 end
-
-

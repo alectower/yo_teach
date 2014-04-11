@@ -4,7 +4,9 @@ require 'support/authenticate'
 describe "Calendar" do
   include Authenticate
 
-  let(:user) { FactoryGirl.create :user }
+  let(:account) { FactoryGirl.create :account }
+  let(:user) { FactoryGirl.create :user,
+    account: account }
 
   before do
     log_in

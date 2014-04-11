@@ -4,7 +4,9 @@ require 'support/authenticate'
 describe "LessonPlans" do
   include Authenticate
 
-  let(:user) { FactoryGirl.create :user }
+  let(:account) { FactoryGirl.create :account }
+  let(:user) { FactoryGirl.create :user,
+    account: account }
 
   before do
     log_in
@@ -114,9 +116,12 @@ describe "LessonPlans" do
   describe 'user searches for lesson plan(s)' do
     it "returns the correct lesson plan(s)" do
       math = FactoryGirl.create :course, user: user
-      math.lesson_plans << FactoryGirl.create(:lesson_plan, user: user, title: "Area")
-      math.lesson_plans << FactoryGirl.create(:lesson_plan, user: user, title: "Barely Multiplication")
-      math.lesson_plans << FactoryGirl.create(:lesson_plan, user: user, title: "Circumference")
+      FactoryGirl.create :lesson_plan, user: user,
+       course: math, title: "Area"
+      FactoryGirl.create :lesson_plan, user: user,
+        course: math, title: "Barely Multiplication"
+      FactoryGirl.create :lesson_plan, user: user,
+        course: math, title: "Circumference"
       visit lesson_plans_path
       page.should have_content /Lesson Plans/
       page.should have_content /Area/

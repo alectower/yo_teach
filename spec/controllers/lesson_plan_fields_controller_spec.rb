@@ -1,8 +1,14 @@
 require 'spec_helper'
 
 describe LessonPlanFieldsController do
-  let(:user) { FactoryGirl.create :user }
-  let(:lesson_plan_field) { FactoryGirl.create(:lesson_plan_field) }
+  let(:account) { FactoryGirl.create :account }
+  let(:user) { FactoryGirl.create :user,
+    account: account }
+  let(:course) { FactoryGirl.create :course, user: user }
+  let(:lesson_plan) { FactoryGirl.create :lesson_plan,
+    course: course, user: user }
+  let(:lesson_plan_field) { FactoryGirl.create(
+    :lesson_plan_field, lesson_plan: lesson_plan) }
 
   before do
     request.session[:user_id] = user.id

@@ -10,8 +10,11 @@ describe Course do
   end
 
   it "allows non-unique name" do
-    FactoryGirl.create(:course)
-    FactoryGirl.build(:course).should be_valid
+    account = FactoryGirl.create :account
+    user = FactoryGirl.create :user,
+      account: account
+    FactoryGirl.create(:course, user: user)
+    FactoryGirl.build(:course, user: user).should be_valid
   end
 
   it "is invalid without a start date" do

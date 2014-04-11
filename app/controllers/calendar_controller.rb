@@ -2,7 +2,8 @@ class CalendarController < ApplicationController
 
   def calendar
     view = view_params[:view] || :month
-    calendar = Calendar.new calendar_date, view: view
+    calendar = Calendar.new user: current_user,
+     date: calendar_date, view: view
     render view, locals: { calendar: calendar }
   end
 
@@ -19,7 +20,9 @@ class CalendarController < ApplicationController
   end
 
   def calendar_date
-    params[:date] ? Date.strptime(params[:date], "%m/%d/%Y") : Date.today
+    date = params[:date]
+    return Date.strptime(date, "%m/%d/%Y") if date
+    Date.today
   end
 
 end

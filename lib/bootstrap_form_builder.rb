@@ -90,7 +90,7 @@ module BootstrapFormBuilder
 
         wrapperClass = 'control-group' + (errorText.empty? ? '' : ' error')
         prepend_icon = options.fetch(:prepend) {false}
-        errorSpan = if errorText.empty? then "" else "<span class='help-inline'>#{errorText}</span>" end
+        errorSpan = "<span class='help-inline'>#{errorText}</span>"
         ("<div class='#{wrapperClass}'>" +
             labelTag +
             "<div class='controls'>" +

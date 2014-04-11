@@ -1,15 +1,21 @@
 class DateLesson
 
-  def initialize(date)
+  attr_reader :user, :date
+  private :user, :date
+
+  def initialize(user, date)
+    @user = user
     @date = date
   end
 
   def range(view)
-    date_range = CalendarDates.send("#{view}_dates", @date)
+    date_range = CalendarDates.send "#{view}_dates", date
     if view == :week
-      LessonPlan.in_date_range(date_range).chronological
+      user.lesson_plans.in_date_range(date_range).
+        chronological
     else
-      lessons = LessonPlanQuery.new.range(date_range)
+      lessons = LessonPlanQuery.new(user.lesson_plans).
+        range date_range
       date_lessons date_range, lessons
     end
   end

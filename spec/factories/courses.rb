@@ -3,7 +3,7 @@ require 'faker'
 FactoryGirl.define do
 
   factory :course do
-    name { "Math" }
+    name "Math"
     start_date 1.month.ago
     end_date 1.month.from_now
     user
@@ -32,7 +32,7 @@ FactoryGirl.define do
   end
 
   factory :course_with_lesson_plan, parent: :course do
-    name { "Math" }
+    name "Math"
     start_date 1.month.ago
     end_date 1.month.from_now
     after(:create) do |c|
@@ -41,7 +41,7 @@ FactoryGirl.define do
   end
 
   factory :course_with_lesson_plan_field, parent: :course do
-    name { "Math" }
+    name "Math"
     start_date 1.month.ago
     end_date 1.month.from_now
     after(:create) do |c|

@@ -34,7 +34,8 @@ FactoryGirl.define do
           Assessments
           Homework
       ].each do |field|
-        FactoryGirl.create(:lesson_plan_field, title: field, description: "", lesson_plan: l)
+        FactoryGirl.create(:lesson_plan_field,
+          title: field, description: "", lesson_plan: l)
       end
     end
   end
@@ -47,7 +48,8 @@ FactoryGirl.define do
     lp.status { 1 }
     lp.course
     after(:create) do |l|
-        FactoryGirl.create(:lesson_plan_field, lesson_plan: l)
+      FactoryGirl.create(:lesson_plan_field,
+        lesson_plan: l)
       end
   end
 end

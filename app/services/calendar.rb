@@ -1,11 +1,12 @@
 class Calendar
 
-  attr_reader :view, :date
-  private :date
+  attr_reader :view, :date, :user
+  private :date, :user
 
-  def initialize(cal_date, view: :month)
-    @date = cal_date.to_date
-    @view = view.to_sym
+  def initialize(args)
+    @user = args.fetch :user
+    @date = args.fetch(:date).to_date
+    @view = args.fetch(:view).to_sym
   end
 
   def year
@@ -45,6 +46,6 @@ class Calendar
   alias :each_hour :each_week
 
   def lessons
-    @lessons ||= DateLesson.new(date).range(view)
+    @lessons ||= DateLesson.new(user, date).range(view)
   end
 end

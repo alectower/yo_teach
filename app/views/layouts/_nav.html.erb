@@ -15,7 +15,10 @@
           </li>
         </ul>
         <ul class='site-nav nav nav-pills pull-right'>
-          <li><a href='#'>My Account</a></li>
+          <li>
+            <%= link_to 'My Account',
+              account_path(current_user.account) %>
+          </li>
           <li class='divider-vertical'></li>
           <li class='nav pull-right'>
             <%= link_to 'Sign Out',

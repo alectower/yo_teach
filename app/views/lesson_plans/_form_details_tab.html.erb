@@ -1,6 +1,6 @@
 <div id='details-tab' class='tab-pane active'>
   <%= lesson_plan_form.collection_select :course_id,
-    Course.all, :id, :name_with_date,
+    current_user.courses.sort, :id, :name_with_date,
     prepend: 'icon-book' %>
 
   <%= lesson_plan_form.text_field :title,

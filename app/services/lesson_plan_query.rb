@@ -1,7 +1,7 @@
 class LessonPlanQuery
 
-  def initialize(relation = LessonPlan.all)
-    @relation = relation
+  def initialize(lesson_plans)
+    @relation = lesson_plans
   end
 
   def search(args)
