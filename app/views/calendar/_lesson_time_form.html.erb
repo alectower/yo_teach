@@ -1,7 +1,22 @@
-<%= bootstrap_form_for lesson, remote: true do |f| %>
-  <%= f.text_field :title %>
-  <%= f.datetime_local_field :start %>
-  <%= f.datetime_local_field :end %>
-  <%= f.submit 'Update' %>
+<%= simple_form_for lesson, remote: true do |f| %>
+  <%= f.input :title, wrapper: :prepend do %>
+    <%= content_tag :span, class: 'add-on' do %>
+      <i class='icon-list-alt'></i>
+    <% end %>
+    <%= f.input_field :title %>
+  <% end %>
+  <%= f.input :start, wrapper: :prepend do %>
+    <%= content_tag :span, class: 'add-on' do %>
+      <i class='icon-time'></i>
+    <% end %>
+    <%= f.datetime_local_field :start %>
+  <% end %>
+  <%= f.input :end, wrapper: :prepend do %>
+    <%= content_tag :span, class: 'add-on' do %>
+      <i class='icon-time'></i>
+    <% end %>
+    <%= f.datetime_local_field :end %>
+  <% end %>
+  <%= f.submit 'Update', class: 'btn btn-primary' %>
 <% end %>
 <%= link_to 'View', edit_lesson_plan_path(lesson) %>

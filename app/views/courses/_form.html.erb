@@ -1,7 +1,22 @@
-<%= bootstrap_form_for course do |f| %>
-  <%= f.text_field :name, prepend: 'icon-book' %>
-  <%= f.date_field :start_date, prepend: 'icon-calendar' %>
-  <%= f.date_field :end_date, prepend: 'icon-calendar' %>
+<%= simple_form_for course do |f| %>
+  <%= f.input :name, wrapper: :prepend do %>
+    <%= content_tag :span, class: 'add-on' do %>
+      <i class='icon-book'></i>
+    <% end %>
+    <%= f.input_field :name %>
+  <% end %>
+  <%= f.input :start_date, wrapper: :prepend do %>
+    <%= content_tag :span, class: 'add-on' do %>
+      <i class='icon-calendar'></i>
+    <% end %>
+    <%= f.date_field :start_date %>
+  <% end %>
+  <%= f.input :end_date, wrapper: :prepend do %>
+    <%= content_tag :span, class: 'add-on' do %>
+      <i class='icon-calendar'></i>
+    <% end %>
+    <%= f.date_field :end_date %>
+  <% end %>
 
   <div class="control-group form-submit">
     <div class="controls">

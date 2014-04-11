@@ -1,16 +1,28 @@
 <div id='details-tab' class='tab-pane active'>
-  <%= lesson_plan_form.collection_select :course_id,
-    current_user.courses.sort, :id, :name_with_date,
-    prepend: 'icon-book' %>
-
-  <%= lesson_plan_form.text_field :title,
-    prepend: 'icon-list-alt',
-    label: { text: 'Lesson Title' } %>
-
-  <%= lesson_plan_form.datetime_local_field :start,
-    prepend: 'icon-time' %>
-
-  <%= lesson_plan_form.datetime_local_field :end,
-    prepend: 'icon-time' %>
+  <%= lesson_plan_form.input :course_id, wrapper: :prepend do %>
+    <%= content_tag :span, class: 'add-on' do %>
+      <i class='icon-book'></i>
+    <% end %>
+    <%= lesson_plan_form.input_field :course_id,
+      collection: current_user.courses.sort %>
+  <% end %>
+  <%= lesson_plan_form.input :title, label: 'Lesson Title', wrapper: :prepend do %>
+    <%= content_tag :span, class: 'add-on' do %>
+      <i class='icon-list-alt'></i>
+    <% end %>
+    <%= lesson_plan_form.input_field :title %>
+  <% end %>
+  <%= lesson_plan_form.input :start, wrapper: :prepend do %>
+    <%= content_tag :span, class: 'add-on' do %>
+      <i class='icon-time'></i>
+    <% end %>
+    <%= lesson_plan_form.datetime_local_field :start %>
+  <% end %>
+  <%= lesson_plan_form.input :end, wrapper: :prepend do %>
+    <%= content_tag :span, class: 'add-on' do %>
+      <i class='icon-time'></i>
+    <% end %>
+    <%= lesson_plan_form.datetime_local_field :end %>
+  <% end %>
 </div>
 

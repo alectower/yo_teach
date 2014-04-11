@@ -1,4 +1,4 @@
-<%= bootstrap_form_for lesson_plan do |form| %>
+<%= simple_form_for lesson_plan, html: { class: 'form-vertical' } do |form| %>
   <div class='tabbable tabs-left'>
     <%= render 'form_nav', lesson_plan: lesson_plan %>
     <div class='tab-content'>

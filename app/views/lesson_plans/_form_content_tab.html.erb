@@ -1,8 +1,10 @@
 <% if field.title.nil? %>
   <div id='add-tab' class='tab-pane'>
-    <%= lesson_plan_form.fields_for :fields, lesson_plan.fields.last do |field| %>
-      <%= field.text_field :title, class: 'span4'%>
-      <%= field.text_area :description, rows: 10, class: 'span6'%>
+    <%= lesson_plan_form.simple_fields_for :fields, lesson_plan.fields.last do |field| %>
+      <%= field.input :title, class: 'span4'%>
+      <%= field.input :description do %>
+        <%= field.text_area :description, rows: 10, class: 'span6'%>
+      <% end %>
     <% end %>
   </div>
 <% else %>
@@ -15,9 +17,11 @@
           "Are you sure you want to remove #{field.title}?"
         }, style: 'float: right' %>
     <% end %>
-    <%= lesson_plan_form.fields_for :fields, lesson_plan.fields.select { |f| f == field } do |field| %>
-      <%= field.text_field :title, class: 'span4'%>
-      <%= field.text_area :description, class: 'span6'%>
+    <%= lesson_plan_form.simple_fields_for :fields, lesson_plan.fields.select { |f| f == field } do |field| %>
+      <%= field.input :title, class: 'span4'%>
+      <%= field.input :description do %>
+        <%= field.text_area :description, class: 'span6'%>
+      <% end %>
     <% end %>
   </div>
 <% end %>
