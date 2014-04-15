@@ -4,4 +4,4 @@ $('#to-do-list-table').append("<tr><td>" +
     "<%= escape_javascript(@to_do.body) %>" +
     "</td></tr>");
 $('#new_to_do').remove();
-$('#to-do-list-body').trigger('page:load');
+$('.to-do-list-body').trigger('page:load');
