@@ -1,6 +1,6 @@
 module CalendarHelper
   def date_class(date)
-    date.today? ? 'today' : 'date'
+    date.today? ? 'today' : 'cal-date'
   end
 
   def weekly_heading
