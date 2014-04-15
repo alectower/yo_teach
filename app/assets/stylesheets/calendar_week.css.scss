@@ -1,0 +1,73 @@
+@mixin calendar-height {
+  height: (1440 * 2px);
+}
+
+.weekly-heading:first-child {
+  width: 10%;
+}
+
+.weekly-heading:not(:first-child) {
+  width: 15%;
+}
+
+.hour {
+  border-top: 1px solid #bbb;
+  text-align: right;
+  padding-right: 10px;
+  height: 118px;
+}
+
+.half-hour {
+  position: relative;
+  top: 60px;
+  border-top: 1px solid #bbb;
+}
+
+.day-column {
+  Box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  @include calendar-height;
+  float: right;
+  border-left: solid 1px #ccc;
+}
+
+.weekly-lesson {
+  width: 100%;
+  @include lesson-border;
+  cursor: pointer;
+  text-align: center;
+  position: relative;
+  float: left;
+  word-wrap: break-word;
+}
+
+.calendar-week {
+  height: 440px;
+  overflow: scroll;
+}
+
+@media (min-width: 1200px) {
+  .row-fluid .weekly-heading:first-child {
+    width: 8%;
+  }
+
+  .row-fluid .weekly-heading:not(:first-child) {
+    width: 13%;
+  }
+
+  .hour-column.span1 {
+    Box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    margin-left: 0px;
+    width: 8%;
+    @include calendar-height;
+    float: left;
+  }
+
+  .day-column[class*="span"] {
+    width: 13%;
+    margin-left: 0px;
+  }
+}

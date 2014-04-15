@@ -1,0 +1,98 @@
+@mixin date-base {
+  top: 0;
+  margin: 0 1px 0 1px;
+  border-radius: 5px;
+}
+
+@mixin date-span {
+  padding: 0 0 0 5px;
+}
+
+.day {
+  Box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+
+  padding: 0 2px 0 2px;
+  height: 110px;
+  border: 1px solid lightgray;
+  position: relative;
+
+  .add-lesson-plan {
+    position: absolute;
+    right: 7px;
+    top: 1px;
+    display: none;
+  }
+
+  ul {
+    position: relative;
+    top: 10px;
+    height: 70%;
+
+    @include status-1;
+    @include status-2;
+    @include status-3;
+
+    li {
+      @include lesson-border;
+      text-align: center;
+    }
+  }
+
+  ul.courses {
+    overflow: auto;
+  }
+}
+
+.course {
+  list-style: none;
+  margin: 2px 5px 2px 5px;
+}
+
+.date {
+  @include date-base;
+  background-color: #ececf0;
+  span {
+    @include date-span
+  }
+}
+
+.today {
+  @include date-base;
+  background-color: #dceaf4;
+  span {
+    @include date-span
+  }
+}
+
+@media (min-width: 1200px) {
+  .day.span1,
+  .day-name.span1,
+  .row-fluid .day.span1:first-child {
+    width: 14%;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+  .day.span1,
+  .day-name.span1,
+  .row-fluid .day.span1:first-child {
+    width: 14%;
+    margin-left: 0px;
+    margin-bottom: 0px;
+  }
+}
+
+@media (max-width: 768px) {
+  .day.span1,
+  .day-name.span1,
+  .row-fluid .day.span1:first-child {
+    width: 100%;
+    margin-left: 0px;
+    margin-bottom: 0px;
+  }
+}

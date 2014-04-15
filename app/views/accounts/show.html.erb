@@ -1,6 +1,9 @@
 <h3>Account</h3>
 
-Email: <%= current_user.email %>
+<p>
+  <strong>Email: </strong>
+  <%= current_user.email %>
+</p>
 
 <%= link_to 'Update user information',
   edit_user_path(current_user) %>

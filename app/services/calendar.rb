@@ -26,11 +26,11 @@ class Calendar
   end
 
   def prev_week
-    date.prev_week(:sunday)
+    date.prev_week
   end
 
   def next_week
-    date.next_week(:sunday)
+    date.next_week
   end
 
   def each_week

@@ -9,7 +9,7 @@ class LessonPlan
     tinymce.init
       menubar: 'edit view format table'
       selector: 'textarea'
-      height: '300px'
+      height: '230px'
       autoresize: true
       plugins: 'fullscreen table'
       tools: 'inserttable'

@@ -1,37 +1,35 @@
 <% content_for :calendar_heading do %>
-  <%= render 'calendar_week_heading' %>
+  <div class='row-fluid'>
+    <%= render 'calendar_week_heading' %>
+  </div>
 <% end %>
 
 <% content_for :calendar_body do %>
-  <table>
-    <tbody>
-      <% calendar.each_week do |week| %>
-        <tr>
-          <% week.each do |day| %>
-            <td class="day">
-              <div class="<%= date_class(day.date) %>">
-                <span><%= day.date.mday %></span>
-              </div>
-              <ul class='unstyled courses'>
-                <% day.lessons.each do |lesson| %>
-                  <li class="status-<%= lesson.status %>">
-                    <%= link_to lesson.course.name,
-                      edit_lesson_plan_path(lesson) %>
-                  </li>
-                <% end %>
-              </ul>
-              <div class="add-lesson-plan">
-                <% start = 9.hours.since day.date.to_time %>
-                <%= link_to raw("<i class='icon-plus'></i>"),
-                  new_lesson_plan_path(start: start,
-                    end: 1.hour.since(start)) %>
-              </div>
-            </td>
-          <% end %>
-        </tr>
+  <% calendar.each_week do |week| %>
+    <div class='row-fluid'>
+      <% week.each do |day| %>
+        <div class="day span1">
+          <div class="<%= date_class(day.date) %>">
+            <span><%= day.date.mday %></span>
+          </div>
+          <ul class='unstyled courses'>
+            <% day.lessons.each do |lesson| %>
+              <li class="status-<%= lesson.status %>">
+                <%= link_to lesson.course.name,
+                  edit_lesson_plan_path(lesson) %>
+              </li>
+            <% end %>
+          </ul>
+          <div class="add-lesson-plan">
+            <% start = 9.hours.since day.date.to_time %>
+            <%= link_to raw("<i class='icon-plus'></i>"),
+              new_lesson_plan_path(start: start,
+                end: 1.hour.since(start)) %>
+          </div>
+        </div>
       <% end %>
-    </tbody>
-  </table>
+    </div>
+  <% end %>
 <% end %>
 
 <%= render 'calendar', calendar: calendar %>

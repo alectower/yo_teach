@@ -1,0 +1,20 @@
+@mixin lesson-border {
+  border-radius: 7px;
+  -moz-border-radius: 7px;
+  margin: 1px;
+  padding-top: 1px;
+}
+
+.prev-month, .next-month {
+  margin-top: 2em;
+}
+
+.prev-month a {
+  float: left;
+  padding-left: 13%;
+}
+
+.next-month a {
+  float: right;
+  padding-right: 16%;
+}

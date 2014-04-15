@@ -1,31 +1,28 @@
-<div id='calendar'>
-  <table>
-    <caption>
-      <div id='prev-month'>
-        <%= link_to raw("<i class='icon-chevron-left'></i>"),
-          calendar_path(view: calendar.view,
-            date: calendar.send("prev_#{calendar.view}")) %>
-      </div>
-      <h2>
+<div class='calendar-nav'>
+  <div class='row-fluid'>
+    <div class='prev-month span4'>
+      <%= link_to raw("<i class='icon-chevron-left'></i>"),
+        calendar_path(view: calendar.view,
+          date: calendar.send("prev_#{calendar.view}")) %>
+    </div>
+    <div class='span4'>
+      <h2 class='center-text'>
         <%= "#{calendar.month} #{calendar.year}" %>
       </h2>
-      <div id='next-month'>
-        <%= link_to raw("<i class='icon-chevron-right'></i>"),
-          calendar_path(view: calendar.view,
-            date: calendar.send("next_#{calendar.view}")) %>
-      </div>
-      <div id='calendar-views'>
-        <%= link_to 'This Month', root_path, class: 'active' %>
-        <%= link_to 'This Week', calendar_path(view: :week) %>
-      </div>
-    </caption>
-    <thead>
-      <tr>
-        <%= yield :calendar_heading %>
-      </tr>
-    </thead>
-  </table>
+    </div>
+    <div class='next-month span4'>
+      <%= link_to raw("<i class='icon-chevron-right'></i>"),
+        calendar_path(view: calendar.view,
+          date: calendar.send("next_#{calendar.view}")) %>
+    </div>
+  </div>
+  <div class='row-fluid'>
+    <div class='center-text span4 offset4'>
+      <%= link_to 'This Month', root_path, class: 'active' %>
+      &nbsp;&nbsp;&nbsp;
+      <%= link_to 'This Week', calendar_path(view: :week) %>
+    </div>
+  </div>
 </div>
-<div id="<%= calendar_class %>">
-    <%= yield :calendar_body %>
-</div>
+<%= yield :calendar_heading %>
+<%= yield :calendar_body %>

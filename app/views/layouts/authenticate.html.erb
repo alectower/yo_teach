@@ -7,14 +7,12 @@
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   </head>
   <body>
-    <div class='container'>
-      <h1>Lesson Mate</h1>
-    </div>
+    <%= render 'layouts/nav' %>
     <div class='container-fluid'>
       <div id='messages'>
         <%= render 'layouts/messages' %>
       </div>
-      <div class='span3 offset4'>
+      <div class='offset4'>
         <%= yield %>
       </div>
     </div>

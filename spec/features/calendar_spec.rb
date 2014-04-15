@@ -23,7 +23,7 @@ describe "Calendar" do
   describe 'calendar month view' do
     it 'displays lesson plans for week when clicking Week link' do
       visit root_path
-      page.should have_selector('tr', count: 6)
+      page.should have_selector('.day-name', count: 7)
     end
   end
 
@@ -31,7 +31,7 @@ describe "Calendar" do
     it 'displays lesson plans for week when clicking Week link' do
       visit root_path
       click_link 'Week'
-      page.should have_selector('th', count: 8)
+      page.should have_selector('.day-name', count: 7)
     end
   end
 end

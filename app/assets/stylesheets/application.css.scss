@@ -18,3 +18,9 @@
  */
 @import "bootstrap";
 @import "bootstrap-responsive";
+
+@media (min-width: 1200px) {
+  .day .span1 {
+    width: 10%;
+  }
+}

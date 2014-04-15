@@ -1,23 +1,18 @@
 module CalendarHelper
-
   def date_class(date)
     date.today? ? 'today' : 'date'
   end
 
-  def calendar_class
-    params[:view] == 'week' ? 'calendar-week' : 'calendar'
-  end
-
-  def calendar_heading
+  def weekly_heading
     params[:view] == 'week' ? 'weekly-heading' : ''
   end
 
   def day(day)
     day_name = day.to_s.camelize
-    if params[:view] != 'week'
-      day_name
-    else
+    if params[:view] == 'week'
       day_with_date(day_name)
+    else
+      day_name
     end
   end
 
@@ -33,20 +28,11 @@ module CalendarHelper
     "#{date} #{day}"
   end
 
-  def is_hour?(minute)
-    minute % 60 == 0
-  end
-
   def hour_format(hour)
     hour.hours.since(Date.new).strftime "%l %p"
-  end
-
-  def hour_style(hour)
-    "top:#{hour * 60}px; height:119px;"
   end
 
   def day_of_week(day)
     Date::DAYNAMES[day]
   end
-
 end

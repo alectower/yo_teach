@@ -22,5 +22,6 @@ module YoTeach
 
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
     config.secret_key_base = Rails.application.secrets.secret_key_base
+    config.beginning_of_week = :sunday
   end
 end

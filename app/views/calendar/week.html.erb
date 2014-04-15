@@ -1,21 +1,25 @@
 <% content_for :calendar_heading do %>
-  <th class='weekly-heading'></th>
-  <%= render 'calendar_week_heading' %>
+  <div class='row-fluid'>
+    <div class='weekly-heading span1'></div>
+    <%= render 'calendar_week_heading' %>
+  </div>
 <% end %>
 
 <% content_for :calendar_body do %>
-  <div class="hour-column">
-    <div class="half-hour"></div>
-    <% 24.times do |hour| %>
-      <div class="hour" style="<%= hour_style(hour) %>">
-        <%= hour_format(hour) %>
+  <div class='calendar-week row-fluid'>
+    <div class='hour-column span1'>
+      <% 24.times do |hour| %>
+        <div class='half-hour'></div>
+        <div class='hour'>
+          <%= hour_format(hour) %>
+        </div>
+      <% end %>
+    </div>
+    <% 0.upto(6) do |wday| %>
+      <div id="day-<%= wday %>" class='day-column span1'>
       </div>
-      <div class="half-hour"></div>
     <% end %>
   </div>
-  <% 6.downto(0) do |wday| %>
-    <div id="day-<%= wday %>" class="day-column"></div>
-  <% end %>
 <% end %>
 
 <% calendar.lessons.each do |l| %>
@@ -25,5 +29,5 @@
   </div>
 <% end %>
 
-<div id="popover"></div>
+<div id='popover'></div>
 <%= render 'calendar', calendar: calendar %>

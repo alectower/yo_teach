@@ -17,7 +17,7 @@ describe 'log in' do
       fill_in 'Email', with: 'test@test.com'
       fill_in 'Password', with: 'p'
       click_button 'Log In'
-      expect(page).to have_selector '#calendar'
+      expect(page).to have_selector '.calendar-nav'
     end
   end
 

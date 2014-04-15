@@ -3,7 +3,7 @@
     <%= lesson_plan_form.simple_fields_for :fields, lesson_plan.fields.last do |field| %>
       <%= field.input :title, class: 'span4'%>
       <%= field.input :description do %>
-        <%= field.text_area :description, rows: 10, class: 'span6'%>
+        <%= field.text_area :description, class: 'span6'%>
       <% end %>
     <% end %>
   </div>

@@ -1,0 +1,17 @@
+@mixin status-1 {
+  .status-1 {
+    background: rgba(255, 74, 72, 0.3);
+  }
+}
+
+@mixin status-2 {
+  .status-2 {
+    background: rgba(248, 148, 0, 0.3);
+  }
+}
+
+@mixin status-3 {
+  .status-3 {
+    background: rgba(70, 200, 71, 0.3);
+  }
+}

@@ -1,31 +1,38 @@
 <nav class='app-nav navbar'>
   <div class='navbar-inner'>
     <div class='container'>
-      <div class='nav-collapse'>
-        <ul class='site-nav nav nav-pills'>
-          <a class="brand" href="/">Lesson Mate</a>
-          <li class="<%= active('calendar') %>">
-            <a href="/">Calendar</a>
-          </li>
-          <li class="<%= active('courses') %>">
-            <a href="/courses">Courses</a>
-          </li>
-          <li class="<%= active('lesson_plans') %>">
-            <a href="/lesson_plans">Lesson Plans</a>
-          </li>
-        </ul>
-        <ul class='site-nav nav nav-pills pull-right'>
-          <li>
-            <%= link_to 'My Account',
-              account_path(current_user.account) %>
-          </li>
-          <li class='divider-vertical'></li>
-          <li class='nav pull-right'>
-            <%= link_to 'Sign Out',
-              log_out_path(id: current_user.id),
-              method: :delete %>
-          </li>
-        </ul>
+      <a class='btn btn-navbar' data-toggle='collapse' data-target='.nav-collapse'>
+        <span class='icon-bar'></span>
+        <span class='icon-bar'></span>
+        <span class='icon-bar'></span>
+      </a>
+      <a class="brand" href="/">Lesson Mate</a>
+      <div class='nav-collapse collapse'>
+        <% if current_user %>
+          <ul class='nav'>
+            <li class="<%= active('calendar') %>">
+              <a href="/">Calendar</a>
+            </li>
+            <li class="<%= active('courses') %>">
+              <a href="/courses">Courses</a>
+            </li>
+            <li class="<%= active('lesson_plans') %>">
+              <a href="/lesson_plans">Lesson Plans</a>
+            </li>
+          </ul>
+          <ul class='nav pull-right'>
+            <li>
+                <%= link_to 'My Account',
+                  account_path(current_user.account) %>
+            </li>
+            <li class='divider-vertical'></li>
+            <li class='nav pull-right'>
+              <%= link_to 'Sign Out',
+                log_out_path(id: current_user.id),
+                method: :delete %>
+            </li>
+          </ul>
+        <% end %>
       </div>
     </div>
   </div>

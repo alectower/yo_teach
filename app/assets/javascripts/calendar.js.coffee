@@ -14,11 +14,6 @@ class Calendar
     $('.add-lesson-plan').not(this).hide()
 
   addDailySchedule = ->
-    $('.minute-row').each (index, row) ->
-      hour = $(row)
-      if index % 60 == 0
-        cols = hour.find('td:not(:first-child)')
-        cols.addClass('hour-border')
     lessons = $('.lesson-data').map (index, lesson) ->
       $(lesson).data('lesson')
     Calendar.addLessons(lessons)
@@ -37,7 +32,7 @@ class Calendar
       day = $('#day-' + dayNumber)
       day.append('<div id="day-lesson-' + lesson.id +
         '" class="weekly-lesson status-' + lesson.status +
-        '" style="top:' + ((startMinute * 2) + 5) +
+        '" style="top:' + (startMinute * 2) +
         'px; height:' + (classLength * 2) +
         'px;">' + lesson.title + '</div>')
     updateWidths()
