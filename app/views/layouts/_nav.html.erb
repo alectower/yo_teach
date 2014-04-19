@@ -8,7 +8,7 @@
       </a>
       <a class="brand" href="/">Lesson Mate</a>
       <div class='nav-collapse collapse'>
-        <% if current_user %>
+        <% if active_user? %>
           <ul class='nav'>
             <li class="<%= active('calendar') %>">
               <a href="/">Calendar</a>
@@ -22,8 +22,8 @@
           </ul>
           <ul class='nav pull-right'>
             <li>
-                <%= link_to 'My Account',
-                  account_path(current_user.account) %>
+              <%= link_to 'My Account',
+                user_path(current_user) %>
             </li>
             <li class='divider-vertical'></li>
             <li class='nav pull-right'>

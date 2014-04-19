@@ -1,9 +1,7 @@
 require 'spec_helper'
 
 describe LessonPlan do
-  let(:account) { FactoryGirl.create :account }
-  let(:user) { FactoryGirl.create :user,
-    account: account }
+  let(:user) { FactoryGirl.create :user }
   let(:course) { FactoryGirl.create :course, user: user }
 
   it "has a valid factory" do

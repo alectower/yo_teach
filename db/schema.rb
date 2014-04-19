@@ -11,14 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140411140648) do
-
-  create_table "accounts", force: true do |t|
-    t.string  "stripe_customer_id"
-    t.integer "owner_id"
-  end
-
-  add_index "accounts", ["owner_id"], name: "index_accounts_on_owner_id"
+ActiveRecord::Schema.define(version: 20140419235135) do
 
   create_table "core_standards", force: true do |t|
     t.string "standard_type", null: false
@@ -84,9 +77,7 @@ ActiveRecord::Schema.define(version: 20140411140648) do
     t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "account_id"
+    t.boolean  "locked",          default: false
   end
-
-  add_index "users", ["account_id"], name: "index_users_on_account_id"
 
 end

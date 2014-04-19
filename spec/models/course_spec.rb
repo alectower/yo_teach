@@ -10,9 +10,7 @@ describe Course do
   end
 
   it "allows non-unique name" do
-    account = FactoryGirl.create :account
-    user = FactoryGirl.create :user,
-      account: account
+    user = FactoryGirl.create :user
     FactoryGirl.create(:course, user: user)
     FactoryGirl.build(:course, user: user).should be_valid
   end

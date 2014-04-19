@@ -1,9 +1,7 @@
 require 'spec_helper'
 
 describe LessonPlanField do
-  let(:account) { FactoryGirl.create :account }
-  let(:user) { FactoryGirl.create :user,
-    account: account }
+  let(:user) { FactoryGirl.create :user }
   let(:course) { FactoryGirl.create :course, user: user }
   let(:lesson_plan) { FactoryGirl.create :lesson_plan,
     course: course, user: user }

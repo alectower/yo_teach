@@ -1,4 +1,3 @@
-Account.delete_all
 User.delete_all
 LessonPlan.delete_all
 Course.delete_all
@@ -24,13 +23,10 @@ def create_lesson_plans(user, course, *args)
   end
 end
 
-account = FactoryGirl.create :account
-
 user = FactoryGirl.create :user,
   email: 'user@site.com',
   password: 'password',
-  password_confirmation: 'password',
-  account: account
+  password_confirmation: 'password'
 
 math = FactoryGirl.create :course, name: 'Math',
   user: user

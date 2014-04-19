@@ -7,15 +7,11 @@ class UsersController < ApplicationController
   end
 
   def create
-    account = Account.create
-    @user = User.new user_params.
-      merge({ account: account })
+    @user = User.new user_params
     if @user.save
-      session[:user_id] = @user.id
-      flash[:notice] = 'You have successfully signed up.'
-      redirect_to root_url
+      flash[:notice] = 'You have successfully signed up. Please login.'
+      redirect_to new_session_path
     else
-      account.destroy
       render :new
     end
   end

@@ -10,7 +10,6 @@ describe 'sign up' do
       fill_in :user_password_confirmation, with: 'password'
       click_button 'Sign Up'
       expect(User.count).to be 1
-      expect(Account.count).to be 1
     end
   end
 
@@ -21,7 +20,6 @@ describe 'sign up' do
       fill_in :user_password, with: 'password'
       click_button 'Sign Up'
       expect(User.count).to be 0
-      expect(Account.count).to be 0
     end
   end
 

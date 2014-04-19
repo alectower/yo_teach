@@ -1,9 +1,7 @@
 require 'spec_helper'
 
 describe CoursesController do
-  let(:account) { FactoryGirl.create :account }
-  let(:user) { FactoryGirl.create :user,
-    account: account }
+  let(:user) { FactoryGirl.create :user }
 
   before do
     request.session[:user_id] = user.id
