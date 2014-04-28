@@ -20,7 +20,7 @@ describe UserMailer do
   end
 
   describe '#email_update' do
-    let(:mail) { UserMailer.email_update user }
+    let(:mail) { UserMailer.user_update user }
 
     it 'has a recipient' do
       mail.to.should eq [user.email]
@@ -31,7 +31,7 @@ describe UserMailer do
     end
 
     it 'has a subject' do
-      mail.subject.should eq 'Lesson Mate email update'
+      mail.subject.should eq 'Lesson Mate user update'
     end
   end
 

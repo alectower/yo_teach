@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140419235135) do
+ActiveRecord::Schema.define(version: 20140421144638) do
 
   create_table "core_standards", force: true do |t|
     t.string "standard_type", null: false
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20140419235135) do
     t.date     "end_date"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
+    t.integer  "user_id",    null: false
   end
 
   add_index "courses", ["user_id"], name: "index_courses_on_user_id"
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20140419235135) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "status"
-    t.integer  "user_id"
+    t.integer  "user_id",    null: false
   end
 
   add_index "lesson_plans", ["course_id"], name: "index_lesson_plans_on_course_id"
@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 20140419235135) do
     t.boolean  "complete"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
+    t.integer  "user_id",    null: false
   end
 
   add_index "to_dos", ["user_id"], name: "index_to_dos_on_user_id"
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 20140419235135) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "locked",          default: false
+    t.string   "name",                            null: false
   end
 
 end

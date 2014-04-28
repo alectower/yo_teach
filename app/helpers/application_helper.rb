@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def to_dos
-    ToDo.all
+    current_user.to_dos
   end
 
   def active(controller)

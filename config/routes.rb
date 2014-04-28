@@ -1,11 +1,16 @@
 Rails.application.routes.draw do
   root 'calendar#calendar'
   get 'calendar', to: 'calendar#calendar', as: :calendar
-  resources :users
+  resources :users, only: [:new, :create, :show]
+  get 'users/:id/edit/user', to: 'users#edit_user', as: :edit_user
+  patch 'users/:id/edit/user', to: 'users#update_user', as: :update_user
+  get 'users/:id/edit/password', to: 'users#edit_password',
+    as: :edit_password
+  patch 'users/:id/edit/password',
+    to: 'users#update_password', as: :update_password
   get 'log_in', to: 'sessions#new', as: :new_session
   post 'log_in', to: 'sessions#create', as: :sessions
   delete 'log_out', to: 'sessions#destroy', as: :log_out
-  resources :accounts, only: [:show]
   resources :courses
   resources :lesson_plans
   resources :lesson_plan_standards,

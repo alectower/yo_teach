@@ -1,9 +1,23 @@
-<h3>User</h3>
+<h3><%= current_user.name %></h3>
 
-<p>
-  <strong>Email: </strong>
-  <%= current_user.email %>
-</p>
+<div class='row-fluid'>
+  <div class='span3'>
+    <strong>Email: </strong>
+    <%= current_user.email %>
+  </div>
+  <div class='span3'>
+    <%= link_to 'Update user information',
+      edit_user_path(current_user) %>
+  </div>
+</div>
 
-<%= link_to 'Update user information',
-  edit_user_path(current_user) %>
+<div class='row-fluid'>
+  <div class='span3'>
+    <strong>Password: </strong>***
+  </div>
+  <div class='span3'>
+    <%= link_to 'Update password',
+      edit_password_path(current_user) %>
+  </div>
+</div>
+

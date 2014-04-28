@@ -6,6 +6,8 @@ Bundler.require(:default, Rails.env)
 
 module YoTeach
   class Application < Rails::Application
+    config.app_name = 'Lesson Mate'
+
     config.time_zone = 'UTC'
 
     config.generators do |g|
@@ -16,13 +18,19 @@ module YoTeach
         routing_specs: false,
         request_specs: true
       g.fixture_replacement :factory_girl,
-        dir: "spec/factories"
+        dir: 'spec/factories'
     end
 
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
+
     config.secret_key_base = Rails.application.secrets.
       secret_key_base
 
     config.beginning_of_week = :sunday
+
+    console do
+      require 'pry'
+      config.console = Pry
+    end
   end
 end

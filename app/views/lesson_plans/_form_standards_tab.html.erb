@@ -12,7 +12,11 @@
       <tbody>
         <% lesson_plan.core_standards.ordered.each do |s| %>
           <tr>
-            <td><a href="<%= s.uri%>" target='_blank'><%= s.dot_notation %></a></td>
+            <td>
+              <a href="<%= s.uri %>" target='_blank'>
+                <%= s.dot_notation %>
+              </a>
+            </td>
             <td><%= s.description.html_safe %></td>
             <td>
               <%= link_to 'Remove Standard',
@@ -40,7 +44,10 @@
           <td><a href="<%= s.uri%>" target='_blank'><%= s.dot_notation %></a></td>
           <td><%= s.description.html_safe %></td>
           <td>
-            <%= link_to 'Add Standard', lesson_plan_standards_path(lesson_plan_id: lesson_plan.id, core_standard_id: s.id), method: :post %>
+            <%= link_to 'Add Standard',
+              lesson_plan_standards_path(
+                lesson_plan_id: lesson_plan.id,
+                core_standard_id: s.id), method: :post %>
           </td>
         </tr>
       <% end %>

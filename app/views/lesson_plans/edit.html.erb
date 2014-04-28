@@ -1,18 +1,20 @@
-<div class='heading span7'>
-  <h3>
-    <%= @lesson_plan.course.name %> - <%= @lesson_plan.title %>
-  </h3>
-  <strong>
-    <%= Date::DAYNAMES[@lesson_plan.start.to_date.wday] %>, <%= @lesson_plan.start.to_date %>
-  </strong>
-  <div class="lesson-plan-status" >
-    <span class="status status-<%= @lesson_plan.status %>">
-      <%= @lesson_plan.status_text %>
-    </span>
+<div class='row-fluid'>
+  <div class='heading span7'>
+    <h3>
+      <%= @lesson_plan.course.name %> - <%= @lesson_plan.title %>
+    </h3>
+    <strong>
+      <%= Date::DAYNAMES[@lesson_plan.start.to_date.wday] %>, <%= @lesson_plan.start.to_date %>
+    </strong>
+    <div class="lesson-plan-status" >
+      <span class="status status-<%= @lesson_plan.status %>">
+        <%= @lesson_plan.status_text %>
+      </span>
+    </div>
   </div>
 </div>
 
-<div class='span9'>
+<div class='row-fluid'>
   <%= render 'form', lesson_plan: @lesson_plan,
     submit_text: 'Update Lesson Plan' %>
 </div>

@@ -24,23 +24,23 @@ def create_lesson_plans(user, course, *args)
 end
 
 user = FactoryGirl.create :user,
+  name: 'Dude Man',
   email: 'user@site.com',
   password: 'password',
   password_confirmation: 'password'
 
 math = FactoryGirl.create :course, name: 'Math',
   user: user
-create_lesson_plans(user, math, 'Multiplication', 'Division',
-  'Order of Operations', 'Exponents',
-  'Area', 'Circumference',
-  'Pythagorean Theorem', 'Distance', 'Summation')
+create_lesson_plans(user, math, 'Multiplication',
+  'Division', 'Order of Operations', 'Exponents',
+  'Area', 'Circumference', 'Pythagorean Theorem',
+  'Distance', 'Summation')
 
 english = FactoryGirl.create :course, name: 'English',
   user: user
-create_lesson_plans(user, english, 'Sentences', 'Paragraphs',
-  'Punctuation', 'Spelling',
-  'Short Stories', 'Novels',
-  'Grammar', 'Rhetoric',
+create_lesson_plans(user, english,
+  'Sentences', 'Paragraphs', 'Punctuation', 'Spelling',
+  'Short Stories', 'Novels', 'Grammar', 'Rhetoric',
   'Style of Speech')
 
 FactoryGirl.create :to_do, body: 'Create math exam',

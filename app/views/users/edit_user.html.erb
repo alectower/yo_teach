@@ -1,0 +1,7 @@
+<h3>User Information</h3>
+
+<%= simple_form_for current_user, url: update_user_path do |f| %>
+  <%= f.input :name %>
+  <%= f.input :email %>
+  <%= f.submit 'Update', class: 'btn btn-primary' %>
+<% end %>
