@@ -1,34 +1,36 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-    <%= javascript_include_tag "application"  %>
+    <%= javascript_include_tag 'jquery' %>
+    <%= stylesheet_link_tag 'lesson_plan_print' %>
+    <%= stylesheet_link_tag 'lesson_plan_print', media: 'print' %>
     <script>$(window.print());</script>
   </head>
   <body>
-    <h2><%= @lesson_plan.title %></h2>
+    <h2 class='title'><%= @lesson_plan.title %></h2>
 
     <div>
       <p>
-        <b>Course:</b>
+        <strong>Course:</strong>
         <%= @lesson_plan.course.name %>
       </p>
     </div>
     <div>
       <p>
-        <b>Date:</b>
+        <strong>Date:</strong>
         <%= @lesson_plan.start.strftime "%A, %B %e, %Y" %>
       </p>
     </div>
     <div>
       <p>
-        <b>Time:</b>
+        <strong>Time:</strong>
         <%= @lesson_plan.start.strftime "%l:%M%p" %> -
         <%= @lesson_plan.end.strftime "%l:%M%p" %>
       </p>
     </div>
     <% @lesson_plan.fields.each do |f| %>
       <div>
-        <b><%= f.title %></b>
+        <strong><%= f.title %></strong>
         <p><%= f.description.html_safe %></p>
       </div>
     <% end %>

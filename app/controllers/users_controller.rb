@@ -44,16 +44,19 @@ class UsersController < ApplicationController
         redirect_to user_path(current_user), notice:
           'User password has been successfully updated.'
       else
-        flash[:error] = 'Old password is incorrect or new password doesn\t match password confirmation'
-        render :edit_password
+        render_update_password_fail
       end
     else
-     flash[:error] = 'Old password is incorrect or new password doesn\'t match password confirmation'
-      render :edit_password
+      render_update_password_fail
     end
   end
 
   private
+
+  def render_update_password_fail
+    flash[:error] = 'Old password is incorrect or new password does not match password confirmation'
+    render :edit_password
+  end
 
   def user_params
     params.require(:user).permit :name, :email
