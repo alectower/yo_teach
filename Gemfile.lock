@@ -332,6 +332,7 @@ DEPENDENCIES
   nokogiri
   pg
   poltergeist
+  pry
   rack-mini-profiler
   rails
   rails_12factor
