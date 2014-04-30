@@ -4,9 +4,11 @@
       <i class='icon-book'></i>
     <% end %>
     <%= lesson_plan_form.input_field :course_id,
-      collection: current_user.courses.sort %>
+      collection: current_user.courses.sort,
+      label_method: :name_with_date %>
   <% end %>
-  <%= lesson_plan_form.input :title, label: 'Lesson Title', wrapper: :prepend do %>
+  <%= lesson_plan_form.input :title,
+    label: 'Lesson Title', wrapper: :prepend do %>
     <%= content_tag :span, class: 'add-on' do %>
       <i class='icon-list-alt'></i>
     <% end %>
