@@ -1,14 +1,13 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-    <%= javascript_include_tag 'jquery' %>
-    <%= stylesheet_link_tag 'lesson_plan_print' %>
-    <%= stylesheet_link_tag 'lesson_plan_print', media: 'print' %>
+    <%= stylesheet_link_tag 'application', media: 'print' %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
     <script>$(window.print());</script>
   </head>
-  <body>
-    <h2 class='title'><%= @lesson_plan.title %></h2>
-
+  <body class='print'>
+    <h2 class='text-center'><%= @lesson_plan.title %></h2>
     <div>
       <p>
         <strong>Course:</strong>

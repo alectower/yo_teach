@@ -35,3 +35,13 @@
   max-height: 450px;
   overflow: auto;
 }
+
+@media all, print {
+  .print {
+    margin: 5em;
+  }
+
+  .print div > p {
+    margin-bottom: 2em;
+  }
+}
