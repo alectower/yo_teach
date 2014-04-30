@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140421144638) do
+ActiveRecord::Schema.define(version: 20140501124257) do
 
   create_table "core_standards", force: true do |t|
     t.string "standard_type", null: false
@@ -77,8 +77,10 @@ ActiveRecord::Schema.define(version: 20140421144638) do
     t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "locked",          default: false
-    t.string   "name",                            null: false
+    t.boolean  "locked",                 default: false
+    t.string   "name",                                   null: false
+    t.string   "password_reset_token"
+    t.datetime "password_reset_sent_at"
   end
 
 end

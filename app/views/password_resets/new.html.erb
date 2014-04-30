@@ -1,0 +1,8 @@
+<h1>Reset Password</h1>
+
+<%= simple_form_for :password_resets,
+  url: password_resets_path do |f| %>
+    <%= f.input :email %>
+    <%= submit_tag 'Reset password',
+      class: 'btn btn-primary' %>
+<% end %>

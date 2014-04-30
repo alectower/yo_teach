@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'log_in', to: 'sessions#new', as: :new_session
   post 'log_in', to: 'sessions#create', as: :sessions
   delete 'log_out', to: 'sessions#destroy', as: :log_out
+  resources :password_resets
   resources :courses
   resources :lesson_plans
   resources :lesson_plan_standards,

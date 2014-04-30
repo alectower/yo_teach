@@ -18,4 +18,10 @@ class UserMailer < ActionMailer::Base
     mail to: user.email, subject:
       "#{t :app_name} password update"
   end
+
+  def password_reset(user)
+    @token = user.password_reset_token
+    mail to: user.email, subject:
+      "#{t :app_name} password reset"
+  end
 end

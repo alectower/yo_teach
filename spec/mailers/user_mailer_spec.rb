@@ -50,4 +50,27 @@ describe UserMailer do
       mail.subject.should eq "#{I18n.t :app_name} password update"
     end
   end
+
+  describe '#password_reset' do
+    let(:mail) {
+      PasswordResetTokenator.call(user)
+      UserMailer.password_reset user
+    }
+
+    it 'has a recipient' do
+      mail.to.should eq [user.email]
+    end
+
+    it 'has a sender' do
+      mail.from.should eq [I18n.t(:noreply_email)]
+    end
+
+    it 'has a subject' do
+      mail.subject.should eq "#{I18n.t :app_name} password reset"
+    end
+
+    it 'has reset link' do
+      mail.body =~ />Reset password<\/a>/
+    end
+  end
 end

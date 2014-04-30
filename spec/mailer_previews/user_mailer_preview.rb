@@ -1,4 +1,5 @@
 class UserMailerPreview < ActionMailer::Preview
+
   def new_user
     UserMailer.new_user(User.first)
   end
@@ -9,5 +10,11 @@ class UserMailerPreview < ActionMailer::Preview
 
   def password_update
     UserMailer.password_update(User.first)
+  end
+
+  def password_reset
+    user = User.first
+    PasswordResetTokenator.call(user)
+    UserMailer.password_reset(user)
   end
 end
