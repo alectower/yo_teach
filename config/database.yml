@@ -10,6 +10,12 @@ test:
   pool: 5
   timeout: 5000
 
+staging:
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  database: yo_teach_staging
+
 production:
   adapter: postgresql
   encoding: unicode
