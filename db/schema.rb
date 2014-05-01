@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140501124257) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "core_standards", force: true do |t|
     t.string "standard_type", null: false
     t.string "dot_notation",  null: false
@@ -35,7 +38,7 @@ ActiveRecord::Schema.define(version: 20140501124257) do
     t.integer  "user_id",    null: false
   end
 
-  add_index "courses", ["user_id"], name: "index_courses_on_user_id"
+  add_index "courses", ["user_id"], name: "index_courses_on_user_id", using: :btree
 
   create_table "lesson_plan_fields", force: true do |t|
     t.string   "title"
@@ -45,7 +48,7 @@ ActiveRecord::Schema.define(version: 20140501124257) do
     t.datetime "updated_at"
   end
 
-  add_index "lesson_plan_fields", ["lesson_plan_id"], name: "index_lesson_plan_fields_on_lesson_plan_id"
+  add_index "lesson_plan_fields", ["lesson_plan_id"], name: "index_lesson_plan_fields_on_lesson_plan_id", using: :btree
 
   create_table "lesson_plans", force: true do |t|
     t.datetime "start"
@@ -58,9 +61,9 @@ ActiveRecord::Schema.define(version: 20140501124257) do
     t.integer  "user_id",    null: false
   end
 
-  add_index "lesson_plans", ["course_id"], name: "index_lesson_plans_on_course_id"
-  add_index "lesson_plans", ["start"], name: "index_lesson_plans_on_start"
-  add_index "lesson_plans", ["user_id"], name: "index_lesson_plans_on_user_id"
+  add_index "lesson_plans", ["course_id"], name: "index_lesson_plans_on_course_id", using: :btree
+  add_index "lesson_plans", ["start"], name: "index_lesson_plans_on_start", using: :btree
+  add_index "lesson_plans", ["user_id"], name: "index_lesson_plans_on_user_id", using: :btree
 
   create_table "to_dos", force: true do |t|
     t.string   "body"
@@ -70,7 +73,7 @@ ActiveRecord::Schema.define(version: 20140501124257) do
     t.integer  "user_id",    null: false
   end
 
-  add_index "to_dos", ["user_id"], name: "index_to_dos_on_user_id"
+  add_index "to_dos", ["user_id"], name: "index_to_dos_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email"

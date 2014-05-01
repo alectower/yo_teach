@@ -40,11 +40,13 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'selenium-webdriver'
   gem 'simplecov'
-  gem 'sqlite3'
 end
 
-group :staging, :production do
+group :development, :test, :integration, :staging do
   gem 'pg'
+end
+
+group :integration, :staging do
   gem 'rails_12factor'
   gem 'therubyracer-heroku'
 end

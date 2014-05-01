@@ -18,4 +18,4 @@
 .DS_Store
 turbulence
 coverage
-tags
+config/database.yml

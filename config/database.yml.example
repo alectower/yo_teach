@@ -1,0 +1,13 @@
+common: &common
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  min_messages: warning
+
+development:
+  <<: *common
+  database: yo_teach_dev
+
+test:
+  <<: *common
+  database: yo_teach_test
