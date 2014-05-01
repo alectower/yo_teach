@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
     Rack::MiniProfiler.authorize_request
   end
 
-  include YoTeach::Auth
+  include Auth
 
   helper_method :current_user, :active_user?
 end
