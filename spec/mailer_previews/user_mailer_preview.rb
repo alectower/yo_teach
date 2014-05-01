@@ -3,8 +3,8 @@ class UserMailerPreview < ActionMailer::Preview
     UserMailer.new_user(User.first)
   end
 
-  def email_update
-    UserMailer.email_update(User.first)
+  def user_update
+    UserMailer.user_update(User.first)
   end
 
   def password_update

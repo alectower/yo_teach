@@ -6,7 +6,7 @@ Bundler.require(:default, Rails.env)
 
 module YoTeach
   class Application < Rails::Application
-    config.app_name = 'Lesson Mate'
+    config.app_name = 'YoTeach'
 
     config.time_zone = 'UTC'
 

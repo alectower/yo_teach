@@ -11,11 +11,11 @@ describe UserMailer do
     end
 
     it 'has a sender' do
-      mail.from.should eq ['noreply@lessonmate.com']
+      mail.from.should eq [I18n.t(:noreply_email)]
     end
 
     it 'has a subject' do
-      mail.subject.should eq 'Lesson Mate sign up'
+      mail.subject.should eq "#{I18n.t :app_name} sign up"
     end
   end
 
@@ -27,11 +27,11 @@ describe UserMailer do
     end
 
     it 'has a sender' do
-      mail.from.should eq ['noreply@lessonmate.com']
+      mail.from.should eq [I18n.t(:noreply_email)]
     end
 
     it 'has a subject' do
-      mail.subject.should eq 'Lesson Mate user update'
+      mail.subject.should eq "#{I18n.t :app_name} user update"
     end
   end
 
@@ -43,11 +43,11 @@ describe UserMailer do
     end
 
     it 'has a sender' do
-      mail.from.should eq ['noreply@lessonmate.com']
+      mail.from.should eq [I18n.t(:noreply_email)]
     end
 
     it 'has a subject' do
-      mail.subject.should eq 'Lesson Mate password update'
+      mail.subject.should eq "#{I18n.t :app_name} password update"
     end
   end
 end
