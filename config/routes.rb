@@ -8,9 +8,9 @@ Rails.application.routes.draw do
     as: :edit_password
   patch 'users/:id/edit/password',
     to: 'users#update_password', as: :update_password
-  get 'log_in', to: 'sessions#new', as: :new_session
-  post 'log_in', to: 'sessions#create', as: :sessions
-  delete 'log_out', to: 'sessions#destroy', as: :log_out
+  get 'sign_in', to: 'sessions#new', as: :new_session
+  post 'sign_in', to: 'sessions#create', as: :sessions
+  delete 'sign_out', to: 'sessions#destroy', as: :sign_out
   resources :password_resets
   resources :courses
   resources :lesson_plans

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'log in' do
+describe 'sign in' do
   let(:user) {
     FactoryGirl.create :user,
     email: 'test@test.com',
@@ -16,7 +16,7 @@ describe 'log in' do
       visit new_session_path
       fill_in 'Email', with: 'test@test.com'
       fill_in 'Password', with: 'p'
-      click_button 'Log In'
+      click_button 'Sign In'
       expect(page).to have_selector '.calendar-nav'
     end
   end
@@ -26,7 +26,7 @@ describe 'log in' do
       visit new_session_path
       fill_in 'Email', with: 'e'
       fill_in 'Password', with: 'q'
-      click_button 'Log In'
+      click_button 'Sign In'
       expect(page).to have_selector '.alert-error'
     end
   end
