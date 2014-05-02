@@ -50,3 +50,7 @@ group :integration, :staging do
   gem 'rails_12factor'
   gem 'therubyracer-heroku'
 end
+
+group :staging do
+  gem 'newrelic_rpm'
+end
