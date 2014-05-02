@@ -85,7 +85,7 @@ class Calendar
       parseInt(nextLesson.css('height').
       replace('px', ''))
     if (nextStart >= currentStart &&
-      nextStart <= currentEnd) ||
+      nextStart < currentEnd) ||
       (nextEnd >= currentStart &&
       nextEnd <= currentEnd)
         true
