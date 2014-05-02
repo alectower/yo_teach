@@ -24,6 +24,7 @@
 }
 
 .day-column {
+  position: relative;
   Box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -33,11 +34,11 @@
 }
 
 .weekly-lesson {
+  position: absolute;
   width: 100%;
   @include lesson-border;
   cursor: pointer;
   text-align: center;
-  position: relative;
   float: left;
   word-wrap: normal;
   overflow: hidden;

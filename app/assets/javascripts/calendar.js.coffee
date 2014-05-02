@@ -47,8 +47,14 @@ class Calendar
           dayWidth = dayColumn.css('width').
             replace('px', '')
           $(overlaps).each (index, lesson) ->
-            $('#' + lesson).css('width',
-              (dayWidth // (overlaps.length)) - 2.5)
+            el = $('#' + lesson)
+            width = (dayWidth // (overlaps.length)) - 2.5
+            el.css('width', width)
+            console.log index
+            if index > 0
+              el.css('left', width * index + 1)
+            else
+              el.css('left', 0)
 
   findOverlaps = (lessons, timeOverlaps = []) ->
     $(lessons).each (index, lesson) ->
