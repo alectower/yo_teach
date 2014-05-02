@@ -50,7 +50,6 @@ class Calendar
             el = $('#' + lesson)
             width = (dayWidth // (overlaps.length)) - 2.5
             el.css('width', width)
-            console.log index
             if index > 0
               el.css('left', width * index + 1)
             else
