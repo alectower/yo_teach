@@ -39,7 +39,8 @@
   text-align: center;
   position: relative;
   float: left;
-  word-wrap: break-word;
+  word-wrap: normal;
+  overflow: hidden;
 }
 
 .calendar-week {
