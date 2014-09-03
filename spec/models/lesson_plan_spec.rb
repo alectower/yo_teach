@@ -40,28 +40,4 @@ describe LessonPlan do
         course: course).status.should eq LessonPlan::EMPTY
     end
   end
-
-  context "created with some field descriptions" do
-    it "is created with an in progress status" do
-      l = FactoryGirl.build(:lesson_plan, course: course,
-        user: user)
-      l.fields.build title: 'Homework',
-        description: 'Read'
-      l.fields.build title: 'Activities', description: nil
-      l.save
-      l.status.should eq LessonPlan::IN_PROGRESS
-    end
-  end
-
-  context "created with non-empty field descriptions" do
-    it "is created with an complete status" do
-      l = FactoryGirl.build(:lesson_plan, course: course,
-        user: user)
-      l.fields.build title: 'Homework',
-        description: 'Read'
-      l.fields.build title: 'Activities', description: 'Discuss Reading'
-      l.save
-      l.status.should eq LessonPlan::COMPLETE
-    end
-  end
 end

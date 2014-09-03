@@ -1,14 +1,28 @@
-<%= simple_form_for lesson_plan, html: { class: 'form-vertical' } do |form| %>
-  <div class='tabbable tabs-left'>
-    <%= render 'form_nav', lesson_plan: lesson_plan %>
+<%= simple_form_for lesson_plan, html: { class: 'form-inline' } do |form| %>
+  <div class='tabbable'>
+    <ul class='nav nav-tabs'>
+      <li class='active'>
+        <a href='#details-tab' data-toggle='tab'>
+          Details
+        </a>
+      </li>
+      <li>
+        <a href='#body-tab' data-toggle='tab'>
+          Lesson Plan
+        </a>
+      </li>
+      <li>
+        <a href='#standards-tab' data-toggle='tab'>
+          Standards
+        </a>
+      </li>
+    </ul>
     <div class='tab-content'>
       <%= render 'form_details_tab',
         lesson_plan_form: form %>
-      <% lesson_plan.fields.each do |f| %>
-        <%= render 'form_content_tab',
-          field: f, lesson_plan_form: form,
-          lesson_plan: lesson_plan %>
-      <% end %>
+      <div id='body-tab' class='tab-pane'>
+        <%= form.input :body %>
+      </div>
       <%= render 'form_standards_tab',
         lesson_plan: lesson_plan, form: form %>
     </div>

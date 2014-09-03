@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= t :app_name %></title>
+    <%= stylesheet_link_tag "bootstrap" %>
+    <%= stylesheet_link_tag "home" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class='container-fluid'>
+      <div class='row'>
+        <div class='offset2 span6'>
+          <h1>YoTeach</h1>
+        </div>
+        <div class='actions span5'>
+          <h4>
+            <%= link_to 'Sign in', new_session_path %>
+          </h4>
+        </div>
+      </div>
+      <%= yield %>
+    </div>
+  </body>
+</html>

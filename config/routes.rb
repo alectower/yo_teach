@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'calendar#calendar'
+  root 'home#landing'
   get 'calendar', to: 'calendar#calendar', as: :calendar
   resources :users, only: [:new, :create, :show]
   get 'users/:id/edit/user', to: 'users#edit_user', as: :edit_user
@@ -17,5 +17,4 @@ Rails.application.routes.draw do
   resources :lesson_plan_standards,
     only: [:create, :destroy]
   resources :to_dos, only: [:new, :create, :destroy]
-  resources :lesson_plan_fields, only: [:destroy]
 end

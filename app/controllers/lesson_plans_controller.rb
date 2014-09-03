@@ -27,11 +27,9 @@ class LessonPlansController < ApplicationController
   def new
     @lesson_plan = current_user.lesson_plans.
       new start: start_time, end: end_time
-    build_default_fields
   end
 
   def edit
-    @lesson_plan.fields.build
   end
 
   def create
@@ -84,25 +82,14 @@ class LessonPlansController < ApplicationController
 
   private
 
-  def build_default_fields
-    %w[
-      Objectives Activities Assessments Homework
-    ].sort.each do |field|
-      @lesson_plan.fields.build title: field
-    end
-    @lesson_plan.fields.build
-  end
-
   def set_lesson_plan
-    @lesson_plan = LessonPlanQuery.new(
-      current_user.lesson_plans).
-      lesson_plan_with_fields(params[:id])
+    @lesson_plan = current_user.lesson_plans.
+      includes(:course).find(params[:id])
   end
 
   def lesson_plan_params
-    params.require(:lesson_plan).permit(:course_id,
-      :title, :start, :end,
-      fields_attributes: [:id, :title, :description])
+    params.require(:lesson_plan).permit :course_id,
+      :title, :start, :end, :body
   end
 
   def start_time

@@ -3,9 +3,6 @@ class ToDosController < ApplicationController
 
   def new
     @to_do = current_user.to_dos.new
-    respond_to do |format|
-      format.js
-    end
   end
 
   def create
