@@ -27,8 +27,6 @@ describe "LessonPlans" do
     it "displays navigation links" do
       visit new_lesson_plan_path
       page.should have_content /Details/
-      page.should have_content /Lesson Plan/
-      page.should have_content /Standards/
     end
 
     context "course exists" do

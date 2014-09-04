@@ -15,6 +15,6 @@ Rails.application.routes.draw do
   resources :courses
   resources :lesson_plans
   resources :lesson_plan_standards,
-    only: [:create, :destroy]
+    only: [:index, :create, :destroy]
   resources :to_dos, only: [:new, :create, :destroy]
 end

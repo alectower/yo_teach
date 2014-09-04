@@ -1,9 +1,5 @@
 @import "bootstrap";
 
-body {
-  background: #eee;
-}
-
 .actions {
   text-align: right;
   padding-top: 15px;
@@ -29,8 +25,8 @@ body {
   margin-right: 0px;
 }
 
-.row:nth-child(2n+1) {
-  background: #fff;
+.gray-row {
+  background: #eee;
 }
 
 .row:first-child {
