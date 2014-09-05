@@ -19,4 +19,6 @@
 //= require courses
 //= require lesson_plans
 //= require to_dos
+//= require spin
+//= require page_load_spinner
 //= require turbolinks
