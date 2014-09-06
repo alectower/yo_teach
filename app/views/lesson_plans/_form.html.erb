@@ -2,29 +2,33 @@
   <div class='tabbable'>
     <ul class='nav nav-tabs'>
       <li class='active'>
-        <a href='#details-tab' data-toggle='tab'>
+        <a href='#details-tab' name="details-tab" data-toggle='tab'>
           Details
         </a>
       </li>
-      <li>
-        <a href='#body-tab' data-toggle='tab'>
-          Lesson Plan
-        </a>
-      </li>
-      <li>
-        <a href='#standards-tab' data-toggle='tab'>
-          Standards
-        </a>
-      </li>
+      <% if lesson_plan.persisted? %>
+        <li>
+          <a href='#lesson-plan-tab' name="lesson-plan-tab" data-toggle='tab'>
+            Lesson Plan
+          </a>
+        </li>
+        <li>
+          <a href='#standards-tab' name="standards-tab" data-toggle='tab'>
+            Standards
+          </a>
+        </li>
+      <% end %>
     </ul>
     <div class='tab-content'>
       <%= render 'form_details_tab',
         lesson_plan_form: form %>
-      <div id='body-tab' class='tab-pane'>
-        <%= form.input :body %>
-      </div>
-      <%= render 'form_standards_tab',
-        lesson_plan: lesson_plan, form: form %>
+      <% if lesson_plan.persisted? %>
+        <div id='lesson-plan-tab' class='tab-pane'>
+          <%= form.input :body %>
+        </div>
+        <%= render 'form_standards_tab',
+          lesson_plan: lesson_plan, form: form %>
+      <% end %>
     </div>
   </div>
 

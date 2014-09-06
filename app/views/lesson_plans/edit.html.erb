@@ -1,13 +1,11 @@
 <div class='row-fluid'>
-  <div class='heading span5'>
+  <div class='heading span7'>
     <h3>
       <%= @lesson_plan.course.name %> - <%= @lesson_plan.title %>
     </h3>
-    <div class="lesson-plan-status" >
-      <span class="status status-<%= @lesson_plan.status %>">
-        <%= @lesson_plan.status_text %>
-      </span>
-    </div>
+    <span class="status status-<%= @lesson_plan.status %>">
+      <%= @lesson_plan.status_text %>
+    </span>
   </div>
   <div class='span3 pull-right text-right'>
     <strong>
