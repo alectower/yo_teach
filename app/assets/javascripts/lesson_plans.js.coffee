@@ -27,7 +27,7 @@ class LessonPlan
     if /lesson_plans/.test(document.URL)
       tab = document.URL.split('#')[1]
       link = $('a[href="#' + tab + '"') if tab
-      if tab != 'undefined' && link.length != 0
+      if tab != 'undefined' && link && link.length != 0
         link.tab('show')
       $('a[data-toggle="tab"]').click ->
         tab = this.name
