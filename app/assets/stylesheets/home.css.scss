@@ -1,0 +1,40 @@
+@import "bootstrap";
+
+.actions {
+  text-align: right;
+  padding-top: 15px;
+  a {
+    color: gray;
+    underline: none;
+  }
+  height: 4em;
+}
+
+.vertical-align {
+  margin-top: 30%;
+}
+
+.container-fluid {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.row {
+  width: 100%;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.gray-row {
+  background: #eee;
+}
+
+.row:first-child {
+  background: white;
+  padding: 20px 0;
+}
+
+.row:not(:first-child) {
+  padding: 40px 0;
+}
+

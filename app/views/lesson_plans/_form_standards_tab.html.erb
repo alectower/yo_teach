@@ -22,14 +22,16 @@
               <%= link_to 'Remove Standard',
                 lesson_plan_standard_path(
                   lesson_plan_id: lesson_plan.id,
-                  core_standard_id: s.id), method: :delete %>
+                  core_standard_id: s.id) + '#standards-tab', method: :delete %>
             </td>
           </tr>
         <% end %>
       </tbody>
     </table>
   <% end %>
-  <table class='table filterable'>
+  <button class='btn btn-small standards-search pull-right'>Search</button>
+  <%= text_field_tag :search, params[:search], placeholder: 'Search by Description or Standard', class: 'span4 pull-right' %>
+  <table class='table'>
     <caption>Add Core Standards</caption>
     <thead>
       <tr>
@@ -39,7 +41,7 @@
       </tr>
     </thead>
     <tbody>
-      <% CoreStandard.ordered.each do |s| %>
+      <% @standards.each do |s| %>
         <tr>
           <td><a href="<%= s.uri%>" target='_blank'><%= s.dot_notation %></a></td>
           <td><%= s.description.html_safe %></td>
@@ -47,10 +49,11 @@
             <%= link_to 'Add Standard',
               lesson_plan_standards_path(
                 lesson_plan_id: lesson_plan.id,
-                core_standard_id: s.id), method: :post %>
+                core_standard_id: s.id) + '#standards-tab', method: :post %>
           </td>
         </tr>
       <% end %>
+      <%= will_paginate @standards, link_path: edit_lesson_plan_path(lesson_plan), search: params[:search], tab: 'standards-tab', renderer: StandardsRenderer.new %>
     </tbody>
   </table>
 </div>

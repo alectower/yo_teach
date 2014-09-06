@@ -1,22 +1,23 @@
 class LessonPlansController < ApplicationController
   before_action :set_lesson_plan,
     only: [:show, :edit, :update, :destroy]
+  before_action :set_standards, only: :edit
 
   def index
     search_params = [:sort, :direction, :search, :course]
-    search = params.each_key.to_a.keep_if { |p|
+    search = params.each_key.select { |p|
       search_params.include?(p.to_sym)
     }
     if search.empty?
       @lesson_plans = current_user.lesson_plans.
         paginate page: params[:page], per_page: 8
     else
-      params.each_value do |v|
-        v.downcase! if !v.respond_to?(:downcase?)
+      params.each.map do |k, v|
+        v.downcase! if search_params.include?(k.to_sym)
       end
       @lesson_plans = LessonPlanQuery.new(
         current_user.lesson_plans).search(params).
-        paginate page: params[:page], per_page: 8
+          paginate page: params[:page], per_page: 8
     end
   end
 
@@ -27,11 +28,17 @@ class LessonPlansController < ApplicationController
   def new
     @lesson_plan = current_user.lesson_plans.
       new start: start_time, end: end_time
-    build_default_fields
   end
 
   def edit
-    @lesson_plan.fields.build
+    if params[:search]
+      @standards = CoreStandard.ordered.where.
+        not(id: @lesson_plan.core_standards.ids).
+        where('lower(description) like ? OR lower(dot_notation) like ?',
+          "%#{params[:search].downcase}%", "%#{params[:search].downcase}%").
+          paginate page: params[:page], per_page: 5
+
+    end
   end
 
   def create
@@ -84,25 +91,20 @@ class LessonPlansController < ApplicationController
 
   private
 
-  def build_default_fields
-    %w[
-      Objectives Activities Assessments Homework
-    ].sort.each do |field|
-      @lesson_plan.fields.build title: field
-    end
-    @lesson_plan.fields.build
+  def set_lesson_plan
+    @lesson_plan = current_user.lesson_plans.
+      includes(:course).find(params[:id])
   end
 
-  def set_lesson_plan
-    @lesson_plan = LessonPlanQuery.new(
-      current_user.lesson_plans).
-      lesson_plan_with_fields(params[:id])
+  def set_standards
+    @standards = CoreStandard.ordered.where.
+      not(id: @lesson_plan.core_standards.ids).
+      paginate page: params[:page], per_page: 5
   end
 
   def lesson_plan_params
-    params.require(:lesson_plan).permit(:course_id,
-      :title, :start, :end,
-      fields_attributes: [:id, :title, :description])
+    params.require(:lesson_plan).permit :course_id,
+      :title, :start, :end, :body
   end
 
   def start_time

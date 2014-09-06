@@ -1,16 +1,34 @@
-<%= simple_form_for lesson_plan, html: { class: 'form-vertical' } do |form| %>
-  <div class='tabbable tabs-left'>
-    <%= render 'form_nav', lesson_plan: lesson_plan %>
+<%= simple_form_for lesson_plan, html: { class: 'form-inline' } do |form| %>
+  <div class='tabbable'>
+    <ul class='nav nav-tabs'>
+      <li class='active'>
+        <a href='#details-tab' name="details-tab" data-toggle='tab'>
+          Details
+        </a>
+      </li>
+      <% if lesson_plan.persisted? %>
+        <li>
+          <a href='#lesson-plan-tab' name="lesson-plan-tab" data-toggle='tab'>
+            Lesson Plan
+          </a>
+        </li>
+        <li>
+          <a href='#standards-tab' name="standards-tab" data-toggle='tab'>
+            Standards
+          </a>
+        </li>
+      <% end %>
+    </ul>
     <div class='tab-content'>
       <%= render 'form_details_tab',
         lesson_plan_form: form %>
-      <% lesson_plan.fields.each do |f| %>
-        <%= render 'form_content_tab',
-          field: f, lesson_plan_form: form,
-          lesson_plan: lesson_plan %>
+      <% if lesson_plan.persisted? %>
+        <div id='lesson-plan-tab' class='tab-pane'>
+          <%= form.input :body %>
+        </div>
+        <%= render 'form_standards_tab',
+          lesson_plan: lesson_plan, form: form %>
       <% end %>
-      <%= render 'form_standards_tab',
-        lesson_plan: lesson_plan, form: form %>
     </div>
   </div>
 

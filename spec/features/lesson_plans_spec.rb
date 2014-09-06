@@ -27,12 +27,6 @@ describe "LessonPlans" do
     it "displays navigation links" do
       visit new_lesson_plan_path
       page.should have_content /Details/
-      page.should have_content /Objectives/
-      page.should have_content /Activities/
-      page.should have_content /Assessments/
-      page.should have_content /Homework/
-      page.should have_content /Standards/
-      page.should have_content /Add/
     end
 
     context "course exists" do
@@ -64,30 +58,6 @@ describe "LessonPlans" do
           end
           click_link 'Add'
         end
-
-        context "new custom lesson plan field" do
-          it "associates field with lesson plan" do
-            expect {
-              page.should have_content /Add/
-              within '#add-tab' do
-                fill_in 'Title', with: 'Homework'
-                fill_in 'Description', with: 'Read ch. 1-3'
-              end
-              click_button 'Create Lesson Plan'
-            }.to change(LessonPlanField, :count).by 5
-          end
-        end
-
-        context "custom lesson plan field without title" do
-          it "doesn't create blank titled lesson fields" do
-            expect {
-              within '#add-tab' do
-                fill_in 'Title', with: ''
-              end
-              click_button 'Create Lesson Plan'
-            }.to change(LessonPlanField, :count).by 4
-          end
-        end
       end
     end
   end
@@ -105,8 +75,6 @@ describe "LessonPlans" do
       within '.heading' do
         page.should have_content /Area/
         page.should have_content /Math/
-        page.should have_content /Wednesday/
-        page.should have_content start_time.to_date
       end
     end
   end

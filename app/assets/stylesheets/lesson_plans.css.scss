@@ -25,9 +25,11 @@
 }
 
 .status {
+  display: inline-block;
   border-radius: 7px;
   -moz-border-radius: 7px;
-  margin: 1px;
+  margin-left: 15px;
+  margin-top: 5px;
   padding: 2px 5px 2px 5px;
 }
 
@@ -44,4 +46,13 @@
   .print div > p {
     margin-bottom: 2em;
   }
+}
+
+.heading h3 {
+  display: inline;
+  vertical-align: middle;
+}
+
+.standards-search {
+  margin: 2px 0px 0px 5px;
 }

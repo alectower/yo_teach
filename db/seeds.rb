@@ -13,7 +13,7 @@ def create_lesson_plans(user, course, *args)
   t = time
   args.each_slice(3) do |week|
     week.each do |l|
-      FactoryGirl.create :lesson_plan_with_fields,
+      FactoryGirl.create :lesson_plan,
         user: user,
         course: course, title: l,
         start: t, end: 1.hour.since(t)

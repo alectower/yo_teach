@@ -3,14 +3,14 @@
     <h3>
       <%= @lesson_plan.course.name %> - <%= @lesson_plan.title %>
     </h3>
+    <span class="status status-<%= @lesson_plan.status %>">
+      <%= @lesson_plan.status_text %>
+    </span>
+  </div>
+  <div class='span3 pull-right text-right'>
     <strong>
       <%= Date::DAYNAMES[@lesson_plan.start.to_date.wday] %>, <%= @lesson_plan.start.to_date %>
     </strong>
-    <div class="lesson-plan-status" >
-      <span class="status status-<%= @lesson_plan.status %>">
-        <%= @lesson_plan.status_text %>
-      </span>
-    </div>
   </div>
 </div>
 

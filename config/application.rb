@@ -20,6 +20,7 @@ module YoTeach
     end
 
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
+    config.assets.precompile += %w(home.css)
 
     config.secret_key_base = Rails.application.secrets.
       secret_key_base

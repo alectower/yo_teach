@@ -18,11 +18,6 @@ class LessonPlanQuery
       .group_by(&:start_date)
   end
 
-  def lesson_plan_with_fields(id)
-    @relation = @relation.includes(:fields, :course)
-      .find(id)
-  end
-
   def by_title(title)
     @relation = @relation.where('lower(title) like ?', "%#{title}%") unless title.blank?
   end
