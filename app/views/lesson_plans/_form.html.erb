@@ -1,13 +1,8 @@
 <%= simple_form_for lesson_plan, html: { class: 'form-inline' } do |form| %>
   <div class='tabbable'>
     <ul class='nav nav-tabs'>
-      <li class='active'>
-        <a href='#details-tab' name="details-tab" data-toggle='tab'>
-          Details
-        </a>
-      </li>
       <% if lesson_plan.persisted? %>
-        <li>
+        <li class='active'>
           <a href='#lesson-plan-tab' name="lesson-plan-tab" data-toggle='tab'>
             Lesson Plan
           </a>
@@ -18,12 +13,17 @@
           </a>
         </li>
       <% end %>
+      <li>
+      <a href='#details-tab' name="details-tab" data-toggle='tab'>
+        Details
+      </a>
+      </li>
     </ul>
     <div class='tab-content'>
       <%= render 'form_details_tab',
-        lesson_plan_form: form %>
+        lesson_plan: lesson_plan, lesson_plan_form: form %>
       <% if lesson_plan.persisted? %>
-        <div id='lesson-plan-tab' class='tab-pane'>
+        <div id='lesson-plan-tab' class='tab-pane active'>
           <%= form.input :body %>
         </div>
         <%= render 'form_standards_tab',
@@ -37,17 +37,17 @@
       <%= form.submit submit_text,
         class: 'btn btn-primary' %>
       <% if lesson_plan.id.present? %>
-        <%= link_to 'Print Lesson Plan',
-          lesson_plan_path(lesson_plan),
-          target: '_blank',
-          class: 'btn' %>
         <%= link_to 'Cancel', lesson_plans_path,
           class: 'btn' %>
         <%=
           link_to 'Delete', lesson_plan_path(lesson_plan),
-            data: { confirm: 'Are you sure?' },
+            data: { confirm: 'Are you sure you want to delete this lesson plan?' },
             method: :delete,
             class: 'btn' %>
+        <%= link_to 'Print',
+          lesson_plan_path(lesson_plan),
+          target: '_blank',
+          class: 'btn pull-right' %>
       <% end %>
     </div>
   </div>
