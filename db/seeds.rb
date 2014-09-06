@@ -2,6 +2,7 @@ User.delete_all
 LessonPlan.delete_all
 Course.delete_all
 ToDo.delete_all
+CoreStandard.delete_all
 
 def time
   month = Date.today.beginning_of_month
@@ -13,8 +14,7 @@ def create_lesson_plans(user, course, *args)
   t = time
   args.each_slice(3) do |week|
     week.each do |l|
-      FactoryGirl.create :lesson_plan,
-        user: user,
+      LessonPlan.create! user: user,
         course: course, title: l,
         start: t, end: 1.hour.since(t)
       t = 2.hours.since(2.days.since(t))
@@ -23,32 +23,32 @@ def create_lesson_plans(user, course, *args)
   end
 end
 
-user = FactoryGirl.create :user,
-  name: 'Dude Man',
+user = User.create! name: 'Dude Man',
   email: 'user@site.com',
   password: 'password',
   password_confirmation: 'password'
 
-math = FactoryGirl.create :course, name: 'Math',
-  user: user
+math = Course.create! name: 'Math', user: user,
+  start_date: 1.month.ago, end_date: 1.month.from_now
+
 create_lesson_plans(user, math, 'Multiplication',
   'Division', 'Order of Operations', 'Exponents',
   'Area', 'Circumference', 'Pythagorean Theorem',
   'Distance', 'Summation')
 
-english = FactoryGirl.create :course, name: 'English',
-  user: user
+english = Course.create! name: 'English', user: user,
+  start_date: 1.month.ago, end_date: 1.month.from_now
+
 create_lesson_plans(user, english,
   'Sentences', 'Paragraphs', 'Punctuation', 'Spelling',
   'Short Stories', 'Novels', 'Grammar', 'Rhetoric',
   'Style of Speech')
 
-FactoryGirl.create :to_do, body: 'Create math exam',
+ToDo.create! body: 'Create math exam',
   user: user
-FactoryGirl.create :to_do, body: 'Grade english papers',
+ToDo.create! body: 'Grade english papers',
   user: user
-FactoryGirl.create :to_do, body: 'Fill out report cards',
+ToDo.create! body: 'Fill out report cards',
   user: user
-FactoryGirl.create :to_do,
-  body: 'Talk to Billy about his behavior in class',
-  user: user
+
+StandardsImport.new("db/ccssi").import
