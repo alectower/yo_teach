@@ -1,20 +1,19 @@
-opts =
-  length: 6,
-  widht: 5,
-  color: '#999999',
-  radius: 20
+class PageLoadSpinner
+  opts =
+    length: 6,
+    widht: 5,
+    color: '#999999',
+    radius: 20
 
-startSpinner = () ->
-  spinner = new Spinner(opts).spin()
-  spinIt = () ->
+  this.start = () ->
+    spinner = new Spinner(opts).spin()
+    $("#page-load-spinner").hide()
     $('#page-load-spinner').append spinner.el
-  spinIt()
-  $("#page-load-spinner").hide()
-  setTimeout (-> $("#page-load-spinner").show()), 2000
+    setTimeout (-> $("#page-load-spinner").show()), 1000
 
-stopSpinner = () ->
-  spinner = new Spinner(opts).stop()
+  this.stop = () ->
+    spinner = new Spinner(opts).stop()
 
-$(document).on 'page:fetch', startSpinner
-$(document).on 'page:load', stopSpinner
+$(document).on 'page:fetch', PageLoadSpinner.start
+$(document).on 'page:load',  PageLoadSpinner.stop
 
