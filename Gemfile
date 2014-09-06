@@ -48,5 +48,4 @@ end
 
 group :integration, :staging do
   gem 'rails_12factor'
-  gem 'therubyracer'
 end
