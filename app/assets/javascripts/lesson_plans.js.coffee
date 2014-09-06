@@ -49,7 +49,7 @@ class LessonPlan
       new_url = if url_pieces[1]
         "#{url_pieces[0]}#{search_string}##{url_pieces[1]}"
       else
-        "#{url}#{search_string}#standards-tab}"
+        "#{url}#{search_string}#standards-tab"
 
       Turbolinks.visit new_url
 
