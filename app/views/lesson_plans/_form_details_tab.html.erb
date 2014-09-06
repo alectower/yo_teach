@@ -1,4 +1,4 @@
-<div id='details-tab' class='tab-pane active'>
+<div id='details-tab' class="tab-pane <%='active' unless lesson_plan.persisted? %>">
   <%= lesson_plan_form.input :course_id, wrapper: :prepend do %>
     <%= content_tag :span, class: 'add-on' do %>
       <i class='icon-book'></i>
