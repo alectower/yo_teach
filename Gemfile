@@ -48,5 +48,5 @@ end
 
 group :integration, :staging do
   gem 'rails_12factor'
-  gem 'therubyracer-heroku'
+  gem 'therubyracer'
 end
