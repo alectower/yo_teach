@@ -31,7 +31,7 @@ class StandardsImport
     code = dot.split('.')
     type = code[1]
     abort "Uknown type #{type}" if !valid_type(type)
-    CoreStandard.create standard_type: type,
+    CoreStandard.create! standard_type: type,
       dot_notation: dot,
       uri: item['RefURI'],
       guid: item['RefID'],
