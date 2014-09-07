@@ -3,9 +3,7 @@
     <%= content_tag :span, class: 'add-on' do %>
       <i class='icon-book'></i>
     <% end %>
-    <%= lesson_plan_form.input_field :course_id,
-      collection: current_user.courses.sort,
-      label_method: :name_with_date %>
+    <%= lesson_plan_form.input_field :course %>
   <% end %>
   <%= lesson_plan_form.input :title,
     label: 'Lesson Title', wrapper: :prepend do %>

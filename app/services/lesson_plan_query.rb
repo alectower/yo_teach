@@ -12,25 +12,22 @@ class LessonPlanQuery
   end
 
   def range(date_range)
-    @relation = @relation.includes(:course)
-      .where(start: date_range)
-      .order('start asc')
-      .group_by(&:start_date)
+    @relation = @relation.where(start: date_range).
+      order('start asc').group_by(&:start_date)
   end
 
   def by_title(title)
     @relation = @relation.where('lower(title) like ?', "%#{title}%") unless title.blank?
   end
 
-  def by_course(course_id)
-    @relation = @relation.where(course_id: course_id) unless course_id.blank?
+  def by_course(course)
+    @relation = @relation.where(course: course) unless course.blank?
   end
 
   def by_sort(column, direction)
     if !column.blank?
       if column == 'course_name'
-        @relation = @relation.includes(:course)
-          .order("courses.name #{sort_direction(direction)}")
+        @relation = @relation.order("course #{sort_direction(direction)}")
       else
         @relation = @relation.order("#{sort_column(column)} #{sort_direction(direction)}")
       end

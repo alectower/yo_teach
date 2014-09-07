@@ -13,7 +13,9 @@ class LessonPlansController < ApplicationController
         paginate page: params[:page], per_page: 8
     else
       params.each.map do |k, v|
-        v.downcase! if search_params.include?(k.to_sym)
+        if search_params.include?(k.to_sym)
+          v.downcase! unless k.to_sym == :course
+        end
       end
       @lesson_plans = LessonPlanQuery.new(
         current_user.lesson_plans).search(params).
@@ -93,7 +95,7 @@ class LessonPlansController < ApplicationController
 
   def set_lesson_plan
     @lesson_plan = current_user.lesson_plans.
-      includes(:course).find(params[:id])
+      find(params[:id])
   end
 
   def set_standards
@@ -103,7 +105,7 @@ class LessonPlansController < ApplicationController
   end
 
   def lesson_plan_params
-    params.require(:lesson_plan).permit :course_id,
+    params.require(:lesson_plan).permit :course,
       :title, :start, :end, :body
   end
 

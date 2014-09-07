@@ -7,7 +7,6 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email
   validates_format_of :email, with: /\A.+@.+\..+\Z/
 
-  has_many :courses, dependent: :destroy
   has_many :lesson_plans, dependent: :destroy
   has_many :to_dos, dependent: :destroy
 end

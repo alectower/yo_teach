@@ -5,7 +5,7 @@
   </div>
   <div class='course-list'>
     <span id='dropdown'>
-      <%= select :course, :id, current_user.courses.collect {|c| [ c.name, c.id ] }, { selected: params[:course], include_blank: 'All Courses' }, style: 'margin-right: 20px'  %>
+      <%= select :course, :course, LessonPlan.pluck(:course).uniq, { selected: params[:course], include_blank: 'All Courses' }, style: 'margin-right: 20px'  %>
     </span>
     <%= form_tag lesson_plans_path, method: 'get', style: 'display: inline' do %>
       <%= hidden_field_tag :course, params[:course] %>
@@ -65,9 +65,7 @@
               <%= lesson_plan.status_text %>
             </div>
           </td>
-          <td><%= link_to lesson_plan.course_name,
-            edit_course_path(lesson_plan.course.id)%>
-          </td>
+          <td><%= lesson_plan.course %></td>
           <td><%= lesson_plan.start_date %></td>
           <td><%= lesson_plan.start_time %></td>
           <td><%= lesson_plan.end_time %></td>

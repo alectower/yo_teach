@@ -15,7 +15,7 @@
           <ul class='unstyled courses'>
             <% day.lessons.each do |lesson| %>
               <li class="status-<%= lesson.status %>">
-                <%= link_to lesson.course.name,
+                <%= link_to lesson.course,
                   edit_lesson_plan_path(lesson) %>
               </li>
             <% end %>

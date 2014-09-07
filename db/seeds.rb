@@ -1,6 +1,5 @@
 User.delete_all
 LessonPlan.delete_all
-Course.delete_all
 ToDo.delete_all
 CoreStandard.delete_all
 
@@ -28,18 +27,12 @@ user = User.create! name: 'Dude Man',
   password: 'password',
   password_confirmation: 'password'
 
-math = Course.create! name: 'Math', user: user,
-  start_date: 1.month.ago, end_date: 1.month.from_now
-
-create_lesson_plans(user, math, 'Multiplication',
+create_lesson_plans(user, 'Math', 'Multiplication',
   'Division', 'Order of Operations', 'Exponents',
   'Area', 'Circumference', 'Pythagorean Theorem',
   'Distance', 'Summation')
 
-english = Course.create! name: 'English', user: user,
-  start_date: 1.month.ago, end_date: 1.month.from_now
-
-create_lesson_plans(user, english,
+create_lesson_plans(user, 'English',
   'Sentences', 'Paragraphs', 'Punctuation', 'Spelling',
   'Short Stories', 'Novels', 'Grammar', 'Rhetoric',
   'Style of Speech')
