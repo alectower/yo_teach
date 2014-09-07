@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <%= stylesheet_link_tag 'application', media: 'print' %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <script>$(window.print());</script>
+  </head>
+  <body class='print'>
+    <h2 class='text-center'><%= @lesson_plan.title %></h2>
+    <div>
+      <p>
+        <strong>Course:</strong>
+        <%= @lesson_plan.course.name %>
+      </p>
+    </div>
+    <div>
+      <p>
+        <strong>Date:</strong>
+        <%= @lesson_plan.start.strftime "%A, %B %e, %Y" %>
+      </p>
+    </div>
+    <div>
+      <p>
+        <strong>Time:</strong>
+        <%= @lesson_plan.start.strftime "%l:%M%p" %> -
+        <%= @lesson_plan.end.strftime "%l:%M%p" %>
+      </p>
+    </div>
+    <div>
+      <strong>Lesson Plan</strong>
+      <p><%= @lesson_plan.body.html_safe %></p>
+    </div>
+    <div>
+      <b>Standards</b>
+      <% @lesson_plan.core_standards.each do |s| %>
+        <p>
+          <%= s.dot_notation %><br/>
+          <%= s.uri %>
+          <p><%= s.description.html_safe %></p>
+        </p>
+      <% end %>
+    </div>
+  </body>
+</html>
