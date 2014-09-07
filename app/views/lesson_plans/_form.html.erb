@@ -1,6 +1,6 @@
 <%= simple_form_for lesson_plan, html: { class: 'form-inline' } do |form| %>
   <div class='tabbable'>
-    <ul class='nav nav-tabs'>
+    <ul class='nav nav-pills'>
       <% if lesson_plan.persisted? %>
         <li class='active'>
           <a href='#lesson-plan-tab' name="lesson-plan-tab" data-toggle='tab'>
@@ -24,7 +24,7 @@
         lesson_plan: lesson_plan, lesson_plan_form: form %>
       <% if lesson_plan.persisted? %>
         <div id='lesson-plan-tab' class='tab-pane active'>
-          <%= form.input :body %>
+          <%= form.input :body, label: false%>
         </div>
         <%= render 'form_standards_tab',
           lesson_plan: lesson_plan, form: form %>
