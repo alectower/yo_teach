@@ -1,17 +1,11 @@
-@mixin status-1 {
-  .status-1 {
+@mixin status-in-progress {
+  .status-in-progress {
     background: rgba(255, 74, 72, 0.3);
   }
 }
 
-@mixin status-2 {
-  .status-2 {
-    background: rgba(248, 148, 0, 0.3);
-  }
-}
-
-@mixin status-3 {
-  .status-3 {
+@mixin status-complete {
+  .status-complete {
     background: rgba(70, 200, 71, 0.3);
   }
 }

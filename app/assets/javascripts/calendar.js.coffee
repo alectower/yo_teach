@@ -31,7 +31,7 @@ class Calendar
       dayNumber = startTime.getDay()
       day = $('#day-' + dayNumber)
       day.append('<div id="day-lesson-' + lesson.id +
-        '" class="weekly-lesson status-' + lesson.status +
+        '" class="weekly-lesson status-' + (if lesson.complete then 'complete' else 'in-progress') +
         '" style="top:' + (startMinute * 2) +
         'px; height:' + (classLength * 2) +
         'px;">' + lesson.title + '</div>')

@@ -5,7 +5,7 @@
         <h3>
           <%= @lesson_plan.course %> - <%= @lesson_plan.title %>
         </h3>
-        <span class="status status-<%= @lesson_plan.status %>">
+        <span class="status status-<%= @lesson_plan.complete ? 'complete' : 'in-progress' %>">
           <%= @lesson_plan.status_text %>
         </span>
       </div>

@@ -6,8 +6,7 @@ FactoryGirl.define do
     lp.start { start_datetime }
     lp.end { 1.hour.since start_datetime }
     lp.title { 'Area' }
-    lp.status { 1 }
-    lp.course
+    lp.course 'Math'
     lp.user
   end
 
@@ -15,8 +14,6 @@ FactoryGirl.define do
     lp.start { nil }
     lp.end { 1.day.from_now.to_datetime }
     lp.title { nil }
-    lp.status { 1 }
-    lp.course
     lp.user
   end
 end

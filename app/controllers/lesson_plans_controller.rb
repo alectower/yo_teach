@@ -106,7 +106,7 @@ class LessonPlansController < ApplicationController
 
   def lesson_plan_params
     params.require(:lesson_plan).permit :course,
-      :title, :start, :end, :body
+      :title, :start, :end, :body, :complete
   end
 
   def start_time

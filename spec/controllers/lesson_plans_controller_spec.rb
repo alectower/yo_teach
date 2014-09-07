@@ -2,10 +2,9 @@ require 'spec_helper'
 
 describe LessonPlansController do
   let(:user) { FactoryGirl.create :user }
-  let(:course) { FactoryGirl.create :course, user: user }
   let(:lesson_plan) { FactoryGirl.create :lesson_plan,
-    course: course, user: user }
-  let(:invalid_lesson_plan) { FactoryGirl.create :invalid_lesson_plan, course: course, user: user }
+    user: user }
+  let(:invalid_lesson_plan) { FactoryGirl.create :invalid_lesson_plan, user: user }
 
   before do
     request.session[:user_id] = user.id
@@ -41,14 +40,12 @@ describe LessonPlansController do
         expect{
           post :create, lesson_plan:
             FactoryGirl.build(:lesson_plan,
-              course: course,
               user: user).attributes.symbolize_keys
         }.to change(LessonPlan, :count).by(1)
       end
 
       it "redirects to the lesson_plans page" do
         l = FactoryGirl.build(:lesson_plan,
-              course: course,
               user: user).attributes.symbolize_keys
         post :create, lesson_plan: l
         response.should redirect_to(
@@ -61,7 +58,6 @@ describe LessonPlansController do
         expect{
           post :create, lesson_plan:
             FactoryGirl.build(:invalid_lesson_plan,
-              course: course,
               user: user).attributes.symbolize_keys
         }.to_not change(LessonPlan, :count)
       end
@@ -69,7 +65,6 @@ describe LessonPlansController do
       it "re-renders the :new template" do
         post :create, lesson_plan:
           FactoryGirl.build(:invalid_lesson_plan,
-            course: course,
             user: user).attributes.symbolize_keys
         response.should render_template :new
       end
@@ -110,7 +105,7 @@ describe LessonPlansController do
   describe "GET #search" do
     it "sets the @lesson_plans variable to the searched for lesson plans" do
       math = FactoryGirl.create :lesson_plan, user: user,
-        course: course, title: 'Area'
+        title: 'Area'
       get :index, title: 'are'
       assigns(:lesson_plans).size.should eq (1)
     end

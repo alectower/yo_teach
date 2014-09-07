@@ -1,8 +1,7 @@
 @import 'course_status';
 
-@include status-1;
-@include status-2;
-@include status-3;
+@include status-in-progress;
+@include status-complete;
 
 .lesson-plan {
   width: 100%;
@@ -59,4 +58,3 @@
   margin: 2px 0px 0px 5px;
   text-align: right;
 }
-

@@ -29,46 +29,26 @@ describe "LessonPlans" do
       page.should have_content /Details/
     end
 
-    context "course exists" do
-      it "creates a valid lesson plan" do
-        FactoryGirl.create(:course, user: user, name: 'Math')
-        expect {
-          visit new_lesson_plan_path
-          within '#details-tab' do
-            select 'Math', from: 'Course'
-            fill_in 'Lesson Title', with: 'Mitosis'
-            fill_in 'Start', with: DateTime.now
-            fill_in 'End', with: 1.hour.since(DateTime.now)
-          end
-          click_button 'Create Lesson Plan'
-        }.to change(LessonPlan, :count).by(1)
-        LessonPlan.first.status.should eq 1
-      end
-
-      context "content tab" do
-        before :each do
-          FactoryGirl.create :course, user: user,
-            name: 'Math'
-          visit new_lesson_plan_path
-          within "#details-tab" do
-            select 'Math', from: 'Course'
-            fill_in 'Lesson Title', with: 'Mitosis'
-            fill_in 'Start', with: DateTime.now
-            fill_in 'End', with: 1.hour.since(DateTime.now)
-          end
-          click_link 'Add'
+    it "creates a valid lesson plan" do
+      expect {
+        visit new_lesson_plan_path
+        within '#details-tab' do
+          fill_in 'Course', with: 'Math'
+          fill_in 'Lesson Title', with: 'Mitosis'
+          fill_in 'Start', with: DateTime.now
+          fill_in 'End', with: 1.hour.since(DateTime.now)
         end
-      end
+        click_button 'Create Lesson Plan'
+      }.to change(LessonPlan, :count).by(1)
+      LessonPlan.first.complete.should eq false
     end
   end
 
   describe 'edit lesson plan' do
     let(:start_time) { Time.parse "2013-06-26 09:00:00" }
     let(:end_time) { 1.hour.since start_time}
-    let(:course) { FactoryGirl.create :course, user: user }
     let(:lesson) { FactoryGirl.create :lesson_plan,
-      user: user, start: start_time, end: end_time,
-      course: course }
+      user: user, start: start_time, end: end_time }
 
     it "displays lesson plan info in title" do
       visit edit_lesson_plan_path lesson.id
@@ -81,13 +61,12 @@ describe "LessonPlans" do
 
   describe 'user searches for lesson plan(s)' do
     it "returns the correct lesson plan(s)" do
-      math = FactoryGirl.create :course, user: user
       FactoryGirl.create :lesson_plan, user: user,
-       course: math, title: "Area"
+       title: "Area"
       FactoryGirl.create :lesson_plan, user: user,
-        course: math, title: "Barely Multiplication"
+        title: "Barely Multiplication"
       FactoryGirl.create :lesson_plan, user: user,
-        course: math, title: "Circumference"
+        title: "Circumference"
       visit lesson_plans_path
       page.should have_content /Lesson Plans/
       page.should have_content /Area/

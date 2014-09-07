@@ -31,7 +31,7 @@
             <%= sort_image 'title' %>
           </th>
           <th>
-            <%= sortable sort: 'status' %>
+            <%= sortable sort: 'complete', title: 'Status' %>
             <%= sort_image 'status' %>
           </th>
           <th>
@@ -61,7 +61,7 @@
             edit_lesson_plan_path(lesson_plan.id) %>
           </td>
           <td>
-            <div class="status status-<%= lesson_plan.status %>">
+            <div class="status status-<%= lesson_plan.complete ? 'complete' : 'in-progress' %>">
               <%= lesson_plan.status_text %>
             </div>
           </td>
