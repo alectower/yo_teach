@@ -38,14 +38,10 @@ class UsersController < ApplicationController
 
   def update_password
     password = params[:user][:old_password]
-    if current_user.authenticate(password)
-      if current_user.update(password_params)
-          UserMailer.password_update(current_user).deliver
-        redirect_to user_path(current_user), notice:
-          'User password has been successfully updated.'
-      else
-        render_update_password_fail
-      end
+    if current_user.authenticate(password) && current_user.update(password_params)
+      UserMailer.password_update(current_user).deliver
+      redirect_to user_path(current_user), notice:
+        'User password has been successfully updated.'
     else
       render_update_password_fail
     end

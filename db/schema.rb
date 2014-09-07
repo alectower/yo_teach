@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140613173326) do
+ActiveRecord::Schema.define(version: 20140907161852) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,9 @@ ActiveRecord::Schema.define(version: 20140613173326) do
     t.integer "core_standard_id"
     t.integer "lesson_plan_id"
   end
+
+  add_index "core_standards_lesson_plans", ["core_standard_id"], name: "index_core_standards_lesson_plans_on_core_standard_id", using: :btree
+  add_index "core_standards_lesson_plans", ["lesson_plan_id"], name: "index_core_standards_lesson_plans_on_lesson_plan_id", using: :btree
 
   create_table "courses", force: true do |t|
     t.string   "name"

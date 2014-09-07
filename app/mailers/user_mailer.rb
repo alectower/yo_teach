@@ -27,6 +27,7 @@ class UserMailer < ActionMailer::Base
 
   def mail_to_user(subject)
     mail to: "#{@user.name} <#{@user.email}>",
+      content_type: 'multipart/alternative',
       subject: subject
   end
 end
