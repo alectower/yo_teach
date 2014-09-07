@@ -12,6 +12,7 @@ gem 'jquery-rails'
 gem 'jquery-turbolinks'
 gem 'jquery-ui-rails'
 gem 'nokogiri'
+gem 'pg'
 gem 'pry'
 gem 'rails'
 gem 'sass-rails', '~> 4.0.2'
@@ -40,10 +41,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'selenium-webdriver'
   gem 'simplecov'
-end
-
-group :development, :test, :integration, :staging do
-  gem 'pg'
 end
 
 group :integration, :staging do
