@@ -35,7 +35,7 @@ class LessonPlan
         window.history.pushState({path: new_url}, 'YoTeach', new_url)
 
   standardsSearchInit = ->
-    $('.standards-search').click (e) ->
+    $('#standards-search').click (e) ->
       e.preventDefault()
       url = document.URL
       url = url.replace /[?&]search\=.+[&#]/, (match) ->
