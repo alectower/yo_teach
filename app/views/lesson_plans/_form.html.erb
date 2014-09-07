@@ -1,6 +1,14 @@
 <%= simple_form_for lesson_plan, html: { class: 'form-inline' } do |form| %>
   <div class='tabbable'>
     <ul class='nav nav-pills'>
+      <div class='heading span7 pull-right'>
+        <h3>
+          <%= @lesson_plan.course %> - <%= @lesson_plan.title %>
+        </h3>
+        <span class="status status-<%= @lesson_plan.status %>">
+          <%= @lesson_plan.status_text %>
+        </span>
+      </div>
       <% if lesson_plan.persisted? %>
         <li class='active'>
           <a href='#lesson-plan-tab' name="lesson-plan-tab" data-toggle='tab'>

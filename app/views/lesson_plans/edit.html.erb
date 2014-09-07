@@ -1,15 +1,4 @@
 <div class='row-fluid'>
-  <div class='heading span7'>
-    <h3>
-      <%= @lesson_plan.course %> - <%= @lesson_plan.title %>
-    </h3>
-    <span class="status status-<%= @lesson_plan.status %>">
-      <%= @lesson_plan.status_text %>
-    </span>
-  </div>
-</div>
-
-<div class='row-fluid'>
   <%= render 'form', lesson_plan: @lesson_plan,
     submit_text: 'Save' %>
 </div>

@@ -47,9 +47,12 @@
   }
 }
 
-.heading h3 {
-  display: inline;
-  vertical-align: middle;
+.heading {
+  text-align: right;
+  h3 {
+    display: inline;
+    vertical-align: middle;
+  }
 }
 
 .standards-search {
