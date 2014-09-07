@@ -29,8 +29,10 @@
       </tbody>
     </table>
   <% end %>
-  <button class='btn btn-small standards-search pull-right'>Search</button>
-  <%= text_field_tag :search, params[:search], placeholder: 'Search by Description or Standard', class: 'span4 pull-right' %>
+  <div class='pull-right standards-search span6'>
+    <%= text_field_tag :search, params[:search], placeholder: 'Search by Description or Standard', class: 'span8' %>
+    <button class='btn btn-small' id='standards-search'>Search</button>
+  </div>
   <table class='table'>
     <caption>Add Core Standards</caption>
     <thead>
