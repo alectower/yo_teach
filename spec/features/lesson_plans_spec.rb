@@ -26,7 +26,10 @@ describe "LessonPlans" do
 
     it "displays navigation links" do
       visit new_lesson_plan_path
-      page.should have_content /Details/
+      page.should have_content /Course/
+      page.should have_content /Lesson Title/
+      page.should have_content /Start/
+      page.should have_content /End/
     end
 
     it "creates a valid lesson plan" do

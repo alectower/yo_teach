@@ -24,6 +24,8 @@
     <% end %>
     <%= lesson_plan_form.datetime_local_field :end %>
   <% end %>
-  <%= lesson_plan_form.input :complete %>
+  <% if lesson_plan.persisted? %>
+    <%= lesson_plan_form.input :complete %>
+  <% end %>
 </div>
 

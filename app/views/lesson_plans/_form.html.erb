@@ -1,15 +1,15 @@
 <%= simple_form_for lesson_plan, html: { class: 'form-inline' } do |form| %>
   <div class='tabbable'>
     <ul class='nav nav-pills'>
-      <div class='heading span7 pull-right'>
-        <h3>
-          <%= @lesson_plan.course %> - <%= @lesson_plan.title %>
-        </h3>
-        <span class="status status-<%= @lesson_plan.complete ? 'complete' : 'in-progress' %>">
-          <%= @lesson_plan.status_text %>
-        </span>
-      </div>
       <% if lesson_plan.persisted? %>
+        <div class='heading span7 pull-right'>
+          <h3>
+            <%= @lesson_plan.course %> - <%= @lesson_plan.title %>
+          </h3>
+          <span class="status status-<%= @lesson_plan.complete ? 'complete' : 'in-progress' %>">
+            <%= @lesson_plan.status_text %>
+          </span>
+        </div>
         <li class='active'>
           <a href='#lesson-plan-tab' name="lesson-plan-tab" data-toggle='tab'>
             Lesson Plan
@@ -20,12 +20,12 @@
             Standards
           </a>
         </li>
+        <li>
+          <a href='#details-tab' name="details-tab" data-toggle='tab'>
+            Details
+          </a>
+        </li>
       <% end %>
-      <li>
-      <a href='#details-tab' name="details-tab" data-toggle='tab'>
-        Details
-      </a>
-      </li>
     </ul>
     <div class='tab-content'>
       <%= render 'form_details_tab',
