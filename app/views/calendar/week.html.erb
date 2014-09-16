@@ -10,7 +10,7 @@
     <div class='hour-column span1'>
       <% 24.times do |hour| %>
         <div class='half-hour'></div>
-        <div class='hour'>
+        <div class='hour' id="hour-<%= hour %>">
           <%= hour_format(hour) %>
         </div>
       <% end %>

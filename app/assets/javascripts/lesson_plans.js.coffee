@@ -3,9 +3,11 @@ class LessonPlan
   this.init = ->
     initEditor()
     $('#dropdown').change filter
-    $(".filterable").filterTable()
     setTab()
     standardsSearchInit()
+    week = $('#hour-6')
+    if week.length > 0
+      $('.calendar-week').scrollTop week.offset().top
 
   initEditor = ->
     if $('#lesson_plan_body').length > 0
