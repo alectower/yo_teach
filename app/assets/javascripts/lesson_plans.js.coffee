@@ -9,6 +9,8 @@ class LessonPlan
 
   initEditor = ->
     if $('#lesson_plan_body').length > 0
+      if CKEDITOR.instances.lesson_plan_body
+        delete CKEDITOR.instances.lesson_plan_body
       CKEDITOR.inline('lesson_plan_body')
 
   filter = ->
