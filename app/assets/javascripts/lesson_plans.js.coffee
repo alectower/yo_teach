@@ -8,7 +8,8 @@ class LessonPlan
     standardsSearchInit()
 
   initEditor = ->
-    CKEDITOR.inline('lesson_plan_body')
+    if $('#lesson_plan_body').length > 0
+      CKEDITOR.inline('lesson_plan_body')
 
   filter = ->
     course = $(this).find('select :selected')
