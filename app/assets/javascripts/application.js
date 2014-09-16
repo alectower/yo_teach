@@ -9,7 +9,7 @@
 //
 // stub path allows dependency to be excluded from the asset bundle.
 //
-//= require tinymce
+//= require ckeditor/ckeditor
 //= require jquery
 //= require jquery_ujs
 //= require jquery.filtertable

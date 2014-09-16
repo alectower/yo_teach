@@ -1,20 +1,14 @@
 class LessonPlan
 
   this.init = ->
-    initTinyMce()
+    initEditor()
     $('#dropdown').change filter
     $(".filterable").filterTable()
     setTab()
     standardsSearchInit()
 
-  initTinyMce = ->
-    tinymce.init
-      menubar: 'edit view format table'
-      selector: 'textarea'
-      height: '330px'
-      autoresize: true
-      plugins: 'fullscreen table'
-      tools: 'inserttable'
+  initEditor = ->
+    CKEDITOR.inline('lesson_plan_body')
 
   filter = ->
     course = $(this).find('select :selected')
