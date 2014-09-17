@@ -26,20 +26,28 @@
         <%= @lesson_plan.start.strftime "%l:%M%p" %> -
         <%= @lesson_plan.end.strftime "%l:%M%p" %>
       </p>
+      <p>&nbsp;</p>
     </div>
     <div>
-      <strong>Lesson Plan</strong>
-      <p><%= @lesson_plan.body.html_safe %></p>
+      <p>
+        <strong>Lesson Plan:</strong>
+        <%= @lesson_plan.body.html_safe %>
+      </p>
     </div>
     <div>
-      <b>Standards</b>
-      <% @lesson_plan.core_standards.each do |s| %>
+      <strong>Standards:</strong>
+      <p></p>
+    </div>
+    <% @lesson_plan.core_standards.each do |s| %>
+      <div>
         <p>
-          <%= s.dot_notation %><br/>
+          <%= s.dot_notation %>
+          <br/>
           <%= s.uri %>
-          <p><%= s.description.html_safe %></p>
+          <br/>
+          <%= s.description.html_safe %>
         </p>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </body>
 </html>
