@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
   root 'home#landing'
   get 'calendar', to: 'calendar#calendar', as: :calendar
   resources :users, only: [:new, :create, :show]

@@ -9,12 +9,12 @@
 //
 // stub path allows dependency to be excluded from the asset bundle.
 //
-//= require ckeditor/ckeditor
 //= require jquery
 //= require jquery_ujs
 //= require jquery.filtertable
 //= require jquery.turbolinks
 //= require bootstrap
+//= require ckeditor/init
 //= require calendar
 //= require lesson_plans
 //= require to_dos

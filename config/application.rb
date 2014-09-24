@@ -19,6 +19,8 @@ module YoTeach
         dir: 'spec/factories'
     end
 
+    config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
+
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
     config.assets.precompile += %w(home.css)
 

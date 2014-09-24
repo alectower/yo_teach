@@ -32,7 +32,7 @@
         lesson_plan: lesson_plan, lesson_plan_form: form %>
       <% if lesson_plan.persisted? %>
         <div id='lesson-plan-tab' class='tab-pane active'>
-          <%= form.input :body, label: false, html: { contenteditable: true } %>
+          <%= form.input :body, label: false %>
         </div>
         <%= render 'form_standards_tab',
           lesson_plan: lesson_plan, form: form %>
