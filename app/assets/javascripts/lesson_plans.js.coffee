@@ -15,7 +15,7 @@ class LessonPlan
       if CKEDITOR.instances.lesson_plan_body
         $('.cke_textarea_inline').remove()
         delete CKEDITOR.instances.lesson_plan_body
-      CKEDITOR.inline('lesson_plan_body')
+      CKEDITOR.inline 'lesson_plan_body'
 
   filter = ->
     course = $(this).find('select :selected')

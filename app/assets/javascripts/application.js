@@ -15,6 +15,7 @@
 //= require jquery.turbolinks
 //= require bootstrap
 //= require ckeditor/init
+//= require ckeditor/config
 //= require calendar
 //= require lesson_plans
 //= require to_dos
