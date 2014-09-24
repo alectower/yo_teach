@@ -5,6 +5,7 @@ class LessonPlan
     $('#dropdown').change filter
     setTab()
     standardsSearchInit()
+    $('.calendar-week').scrollTop 0
     week = $('#hour-6')
     if week.length > 0
       $('.calendar-week').scrollTop week.offset().top
