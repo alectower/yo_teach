@@ -1,0 +1,5 @@
+## Hi, <%= @user.name %>!
+
+Your <%= t :app_name %> user information has been updated.
+If you did not make this request,
+please email <%= t :support_email %>.
