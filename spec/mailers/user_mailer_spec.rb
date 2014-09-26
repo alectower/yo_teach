@@ -15,7 +15,7 @@ describe UserMailer do
     end
 
     it 'has a subject' do
-      mail.subject.should eq "#{I18n.t :app_name} sign up"
+      mail.subject.should eq "#{I18n.t :app_name} Sign Up"
     end
   end
 
@@ -31,7 +31,7 @@ describe UserMailer do
     end
 
     it 'has a subject' do
-      mail.subject.should eq "#{I18n.t :app_name} user update"
+      mail.subject.should eq "#{I18n.t :app_name} User Update"
     end
   end
 
@@ -47,7 +47,7 @@ describe UserMailer do
     end
 
     it 'has a subject' do
-      mail.subject.should eq "#{I18n.t :app_name} password update"
+      mail.subject.should eq "#{I18n.t :app_name} Password Update"
     end
   end
 
@@ -66,7 +66,7 @@ describe UserMailer do
     end
 
     it 'has a subject' do
-      mail.subject.should eq "#{I18n.t :app_name} password reset"
+      mail.subject.should eq "#{I18n.t :app_name} Password Reset"
     end
 
     it 'has reset link' do
