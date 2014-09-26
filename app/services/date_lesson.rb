@@ -8,26 +8,34 @@ class DateLesson
     @date = date
   end
 
-  def range(view)
+  def in_range(view)
     date_range = CalendarDates.send "#{view}_dates", date
     if view == :week
-      user.lesson_plans.in_date_range(date_range).
-        chronological
+      weekly_lesson_plans(date_range)
     else
-      lessons = LessonPlanQuery.new(user.lesson_plans).
-        range date_range
-      date_lessons date_range, lessons
+      monthly_lesson_plans(date_range)
     end
   end
 
   private
+
+  def weekly_lesson_plans(range)
+    user.lesson_plans.in_date_range(range).chronological
+  end
+
+  def monthly_lesson_plans(range)
+    query = LessonPlanQuery.new user.lesson_plans
+    lessons = query.in_range range
+    date_lessons range, lessons
+  end
 
   DateLessons = Struct.new(:date, :lessons)
 
   def date_lessons(dates, lessons)
     date_lessons = []
     dates.each do |date|
-      date_lessons << DateLessons.new(date, lessons[date] || [])
+      lessons_ary = lessons[date] || []
+      date_lessons << DateLessons.new(date, lessons_ary)
     end
     date_lessons
   end

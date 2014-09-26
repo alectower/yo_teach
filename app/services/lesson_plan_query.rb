@@ -11,7 +11,7 @@ class LessonPlanQuery
     @relation
   end
 
-  def range(date_range)
+  def in_range(date_range)
     @relation = @relation.where(start: date_range).
       order('start asc').group_by(&:start_date)
   end

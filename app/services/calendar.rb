@@ -46,6 +46,6 @@ class Calendar
   alias :each_hour :each_week
 
   def lessons
-    @lessons ||= DateLesson.new(user, date).range(view)
+    @lessons ||= DateLesson.new(user, date).in_range(view)
   end
 end
