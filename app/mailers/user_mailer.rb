@@ -4,23 +4,23 @@ class UserMailer < ActionMailer::Base
 
   def new_user(user)
     @user = user
-    mail_to_user "#{t :app_name} sign up"
+    mail_to_user "#{t :app_name} Sign Up"
   end
 
   def user_update(user)
     @user = user
-    mail_to_user "#{t :app_name} user update"
+    mail_to_user "#{t :app_name} User Update"
   end
 
   def password_update(user)
     @user = user
-    mail_to_user "#{t :app_name} password update"
+    mail_to_user "#{t :app_name} Password Update"
   end
 
   def password_reset(user)
     @user = user
     @token = user.password_reset_token
-    mail_to_user "#{t :app_name} password reset"
+    mail_to_user "#{t :app_name} Password Reset"
   end
 
   private
