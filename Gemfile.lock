@@ -54,6 +54,8 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    celluloid (0.15.2)
+      timers (~> 1.1.0)
     childprocess (0.5.3)
       ffi (~> 1.0, >= 1.0.11)
     chronic (0.10.2)
@@ -296,11 +298,14 @@ GEM
       json (~> 1.8.1)
       mime-types (~> 1.25)
       rest-client (~> 1.4)
+    sucker_punch (1.2.1)
+      celluloid (~> 0.15.2)
     temple (0.6.7)
     terminal-table (1.4.5)
     thor (0.19.1)
     thread_safe (0.3.3)
     tilt (1.4.1)
+    timers (1.1.0)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -363,6 +368,7 @@ DEPENDENCIES
   simplecov
   spring
   stripe
+  sucker_punch
   turbolinks
   turbulence
   uglifier

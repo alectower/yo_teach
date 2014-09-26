@@ -9,6 +9,7 @@ require 'rspec/autorun'
 require "capybara/rspec"
 require 'factory_girl_rails'
 require 'capybara/poltergeist'
+require 'sucker_punch/testing/inline'
 
 Capybara.javascript_driver = :poltergeist
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
@@ -26,6 +27,11 @@ RSpec.configure do |config|
 
   config.before(:each) do
     DatabaseCleaner.strategy = :transaction
+    ActionMailer::Base.deliveries = []
+  end
+
+  config.before(:each, job: true) do
+    DatabaseCleaner.strategy = :truncation
   end
 
   config.before(:each, js: true) do

@@ -49,7 +49,8 @@ class PasswordResetsController < ApplicationController
 
   def send_reset_instructions
     PasswordResetTokenator.call(@user)
-    UserMailer.password_reset(@user).deliver
+    email = UserMailer.password_reset(@user)
+    EmailJob.new.async.perform(email)
     redirect_to new_session_path, notice:
       "An email has been sent to #{@user.email} with instructions for resetting your password."
   end

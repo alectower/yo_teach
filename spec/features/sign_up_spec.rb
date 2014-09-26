@@ -1,10 +1,6 @@
 require 'spec_helper'
 
 describe 'sign up' do
-  before do
-    ActionMailer::Base.deliveries = []
-  end
-
   describe 'valid form' do
     it 'creates user with account' do
       visit new_user_path
