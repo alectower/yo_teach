@@ -35,15 +35,11 @@ class Calendar
 
   def each_week
     if block_given?
-      lessons.each_slice(7) do |week|
-        yield week
-      end
+      lessons.each_slice(7) { |week| yield week }
     else
       lessons
     end
   end
-
-  alias :each_hour :each_week
 
   def lessons
     @lessons ||= DateLesson.new(user, date).in_range(view)
