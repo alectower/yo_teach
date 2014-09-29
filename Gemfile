@@ -25,7 +25,7 @@ gem 'sucker_punch'
 gem 'turbolinks'
 gem 'uglifier'
 gem 'will_paginate', '~> 3.0'
-gem 'unicorn', group: [:development, :integration, :staging, :production]
+gem 'unicorn', group: [:development, :integration, :staging]
 
 group :development do
   gem 'brakeman'
@@ -47,6 +47,6 @@ group :development, :test do
   gem 'simplecov'
 end
 
-group :staging, :production do
+group :production do
   gem 'newrelic_rpm'
 end
