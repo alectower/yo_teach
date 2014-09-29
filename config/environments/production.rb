@@ -12,15 +12,14 @@ YoTeach::Application.configure do
   config.i18n.fallbacks = true
   config.active_support.deprecation = :notify
   config.log_formatter = ::Logger::Formatter.new
-  config.action_mailer.default_url_options = { host: ENV['SENDGRID_DOMAIN'] }
+  config.action_mailer.default_url_options = { host: ENV['MAILGUN_DOMAIN'] }
   ActionMailer::Base.smtp_settings = {
-    :port           => ENV['SENDGRID_SMTP_PORT'],
-    :address        => ENV['SENDGRID_SMTP_SERVER'],
-    :user_name      => ENV['SENDGRID_USERNAME'],
-    :password       => ENV['SENDGRID_PASSWORD'],
-    :domain         => ENV['SENDGRID_DOMAIN'],
+    :port           => ENV['MAILGUN_SMTP_PORT'],
+    :address        => ENV['MAILGUN_SMTP_SERVER'],
+    :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
+    :password       => ENV['MAILGUN_SMTP_PASSWORD'],
+    :domain         => ENV['MAILGUN_DOMAIN'],
     :authentication => :plain,
-    enable_starttls_auto: true
   }
   ActionMailer::Base.delivery_method = :smtp
 
