@@ -25,7 +25,7 @@ gem 'sucker_punch'
 gem 'turbolinks'
 gem 'uglifier'
 gem 'will_paginate', '~> 3.0'
-gem 'unicorn', group: [:development, :integration, :staging]
+gem 'unicorn', group: [:development, :staging]
 
 group :development do
   gem 'brakeman'
