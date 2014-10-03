@@ -4,7 +4,6 @@ rvm:
 branches:
   only:
     - development
-    - integration
     - staging
     - master
 before_install: gem install bundler --pre
@@ -19,14 +18,11 @@ bundler_args:
 deploy:
   provider: heroku
   app:
-    integration: yoteachintegration
     staging: yoteach
   run:
     - "rake db:migrate"
     - restart
   api_key:
-    integration:
-      secure: QLpvUPn5kssqN36L8PL06iICgumqNmp9LuB+u3+eo3ur6/F8LqgTh2Uqbg5IqAA9nnYWQNQ8isfxKlj/Kx+gUryAKVah6OQspQ7g34lEP+5m4Zpte8fKmTpe1QTeOAj30sU0rgYgIaza0rCQ4E+vlcIoEG0Qq365lHf/VjKanFk=
     staging:
       secure: K3+GYhFAV4Yx8Gcyn5p8IAWuM8lllWpwmtqOQ8524e+AuZKbzl+5Th3Hy1XwaeIYHFgrTw3m2XT9KDLAWQSFJtgST7BBh2T2z0rHD4dDYWYjw1/mouwtX/zjU/qHWTISTFBJOHcg6h5L8dz254L+cFSLeliA2I8gB8LBQNb52wY=
 notifications:
