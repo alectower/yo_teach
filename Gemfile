@@ -24,8 +24,8 @@ gem 'stripe'
 gem 'sucker_punch'
 gem 'turbolinks'
 gem 'uglifier'
-gem 'will_paginate', '~> 3.0'
 gem 'unicorn', group: [:development, :staging]
+gem 'will_paginate', '~> 3.0'
 
 group :development do
   gem 'brakeman'

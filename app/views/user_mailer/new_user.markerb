@@ -3,6 +3,10 @@
 Welcome, and thank you for choosing
 <%= t :app_name %> to manage your lesson plans.
 
+YoTeach is currently in beta, and has only
+been tested on Google Chrome.
+Please use that browser if possible.
+
 If you have any problems or questions
 related to the site please direct
 them to <%= t :support_email %>.
